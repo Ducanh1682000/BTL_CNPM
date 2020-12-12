@@ -7,7 +7,7 @@ package View;
 
 //import views.biendoinhaukhau.DangKyTamVang;
 import views.biendoinhaukhau.DangKyTamTru;
-import views.biendoinhaukhau.DangKyTamVang;
+import views.biendoinhaukhau.DangKyTamVang_TraCuu;
 import views.biendoinhaukhau.KhaiTu;
 import views.biendoinhaukhau.ThayDoiNhanKhau;
 import views.biendoinhaukhau.ThemNhanKhau;
@@ -135,7 +135,7 @@ public class ChucNang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDangKyTamTruActionPerformed
 
     private void btnTamVangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTamVangActionPerformed
-        DangKyTamVang tamVang = new DangKyTamVang();
+        DangKyTamVang_TraCuu tamVang = new DangKyTamVang_TraCuu();
         dispose();
         tamVang.setLocationRelativeTo(null);
         tamVang.setResizable(false);
