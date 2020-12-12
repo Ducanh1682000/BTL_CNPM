@@ -8,9 +8,9 @@ package Controller;
 import Bean.DanhMucBean;
 import View.HoKhauJPanel;
 import View.NhanKhauJPanel;
-import View.TachHoJPanel;
-import View.TamTruJPanel;
-import View.TamVangJPanel;
+//import View.TachHoJPanel;
+//import View.TamTruJPanel;
+//import View.TamVangJPanel;
 import View.ThongKeJPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,18 +77,18 @@ public class ChuyenManHinhController {
                 case "NhanKhau":
                     node = new NhanKhauJPanel();
                     break;
-                case "HoKhau":
+                case "ThuPhi":
                     node = new HoKhauJPanel();
                     break;
-                case "TamTru":
-                    node = new TamTruJPanel();
-                    break;
-                case "TamVang":
-                    node = new TamVangJPanel();
-                    break;
-                case "TachHo":
-                    node = new TachHoJPanel();
-                    break;
+//                case "TamTru":
+//                    node = new TamTruJPanel();
+//                    break;
+//                case "TamVang":
+//                    node = new TamVangJPanel();
+//                    break;
+//                case "TachHo":
+//                    node = new TachHoJPanel();
+//                    break;
                 case "ThongKe":
                     node = new ThongKeJPanel();
                     break;
