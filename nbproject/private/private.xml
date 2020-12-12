@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/views/biendoinhaukhau/KhaiTu.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/views/biendoinhaukhau/NewJFrame1.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/views/biendoinhaukhau/ThemNhanKhau.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/views/biendoinhaukhau/DangKyTamVang.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/View/ChucNang.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/views/biendoinhaukhau/NewJFrame.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/View/XemThongTin.java</file>
-            <file>file:/C:/Users/THUAN.HQ183840/IdeaProjects/CNPM/src/views/biendoinhaukhau/DangKyTamTru.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/ThongKeJPanel.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/BieuDoController.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/services/BieuDoService.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/views/BieuDoJFrame/BieuDoJFrame.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/MainJFrame.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/ThongKeJPanelController.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/services/ThuPhiService.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/controlllers/ThuPhi/PhiDongGopController.java</file>
         </group>
     </open-files>
 </project-private>

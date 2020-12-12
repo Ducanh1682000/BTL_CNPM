@@ -12,6 +12,7 @@ import View.NhanKhauJPanel;
 //import View.TamTruJPanel;
 //import View.TamVangJPanel;
 import View.ThongKeJPanel;
+import View.ThuPhiJPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -77,12 +78,12 @@ public class ChuyenManHinhController {
                 case "NhanKhau":
                     node = new NhanKhauJPanel();
                     break;
-                case "ThuPhi":
+                case "HoKhau":
                     node = new HoKhauJPanel();
                     break;
-//                case "TamTru":
-//                    node = new TamTruJPanel();
-//                    break;
+                case "ThuPhi":
+                    node = new ThuPhiJPanel();
+                    break;
 //                case "TamVang":
 //                    node = new TamVangJPanel();
 //                    break;
