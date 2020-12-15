@@ -21,11 +21,13 @@ public class chonch extends javax.swing.JDialog {
      */
     private List<NhanKhautest> Listnk;
     public static int selectIndex;
+    private themhokhau hk;
      private DefaultTableModel tblModel;
     public chonch(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        hk = (themhokhau) parent;
         show_nk_Jtable();
     }
        public void show_nk_Jtable(){
@@ -155,6 +157,7 @@ public class chonch extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         selectIndex = tbchuho.getSelectedRow();
+        hk.addChuHo(Listnk.get(selectIndex));
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

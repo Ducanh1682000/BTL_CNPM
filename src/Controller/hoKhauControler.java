@@ -18,7 +18,7 @@ import model_ho_khau.NhanKhautest;
  * @author admin
  */
 public class hoKhauControler {
-         public static List<NhanKhautest> getnhankhau(){
+        public static List<NhanKhautest> getnhankhau(){
         List<NhanKhautest> nhankhauList = new ArrayList<>();
         Connection conn = mycon();
         String sql = "SELECT `ID`,`hoTen`,`soCMND`,`gioiTinh`,`diaChiHienNay` FROM `nhan_khau` WHERE `QuanHeVoiChuHo` is null";

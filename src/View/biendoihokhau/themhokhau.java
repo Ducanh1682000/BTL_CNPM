@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.dao.ConnectionUtil;
 import model_ho_khau.HoKhau;
+import model_ho_khau.NhanKhautest;
 
 
 
@@ -25,7 +27,7 @@ public class themhokhau extends javax.swing.JFrame {
      */
     public themhokhau() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -57,7 +59,7 @@ public class themhokhau extends javax.swing.JFrame {
         btthem = new javax.swing.JButton();
         btch = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tb = new javax.swing.JTable();
         txtch = new javax.swing.JTextField();
         txtmhk = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -155,7 +157,7 @@ public class themhokhau extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -163,7 +165,7 @@ public class themhokhau extends javax.swing.JFrame {
                 "Họ tên", "CMTND", "Quan hệ với chủ hộ"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tb);
 
         txtch.setEnabled(false);
 
@@ -333,12 +335,33 @@ public class themhokhau extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         txtch.setText("");
+        txtcmt.setText("");
         txtdc.setText("");
         txtmhk.setText("");
         txtmkv.setText("");
+        DefaultTableModel model = (DefaultTableModel) tb.getModel();
+        model.setRowCount(0);
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    public void addChuHo(NhanKhautest nk){
+        txtch.setText(nk.getHoTen());
+        txtcmt.setText(nk.getSoCMND()+"");
+    
+        
+    }
+    public void addtb(List<NhanKhautest> Listnk, List<String> str){
+        DefaultTableModel model = (DefaultTableModel) tb.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[3];
+        for (int i = 0; i< Listnk.size();i++){
+            row[0] = Listnk.get(i).getHoTen();
+            row[1] = Listnk.get(i).getSoCMND();
+            row[2] = str.get(i);
+            
+            model.addRow(row);
+        }
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
        
@@ -404,12 +427,12 @@ public class themhokhau extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lbch;
     private javax.swing.JLabel lbcmt;
     private javax.swing.JLabel lbdc;
     private javax.swing.JLabel lbmhk;
     private javax.swing.JLabel lbmkv;
+    private javax.swing.JTable tb;
     private javax.swing.JTextField txtch;
     private javax.swing.JTextField txtcmt;
     private javax.swing.JTextField txtdc;

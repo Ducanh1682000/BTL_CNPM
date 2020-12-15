@@ -53,14 +53,18 @@ public class LoginForm extends javax.swing.JFrame{
             }
             else if(res.next()) {
                 dispose();
-                ChucNang cn = new ChucNang();
-                cn.setLocationRelativeTo(null);
-                cn.setResizable(false);
-                cn.setVisible(true);
+//                ChucNang cn = new ChucNang();
+//                cn.setLocationRelativeTo(null);
+//                cn.setResizable(false);
+//                cn.setVisible(true);
 //                  ThemNhanKhau them = new ThemNhanKhau();
 //                  them.setLocationRelativeTo(null);
 //                  them.setResizable(false);
 //                  them.setVisible(true);
+                MainJFrame mainJFrame = new MainJFrame();
+                mainJFrame.setLocationRelativeTo(null);
+                mainJFrame.setResizable(true);
+                mainJFrame.setVisible(true);
             }
             else {
                 JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);

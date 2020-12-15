@@ -9,6 +9,7 @@ import static Controller.hoKhauControler.getnhankhau;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import model_ho_khau.NhanKhautest;
@@ -23,12 +24,23 @@ public class chontv extends javax.swing.JDialog {
     /**
      * Creates new form chontv
      */
+    private themhokhau hk;
     private DefaultTableModel tblModel;
+    private DefaultTableModel tblModel1;
+    public List<String> str;
+    public List<NhanKhautest> ListTbgd;
+    public List<NhanKhautest> ListTbtv;
+    private int indexTbGiaDinh;
+    private int indexTbthanhVien;
     public chontv(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        hk = (themhokhau) parent;
+        str = new ArrayList<>();
+        ListTbtv = new ArrayList<>();
         setLocationRelativeTo(null);
         show_nk_Jtable();
+       
     }
 
     /**
@@ -94,7 +106,7 @@ public class chontv extends javax.swing.JDialog {
             }
         ));
         tbthanhvien.setGridColor(new java.awt.Color(255, 255, 255));
-        tbthanhvien.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tbthanhvien.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(tbthanhvien);
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -121,8 +133,27 @@ public class chontv extends javax.swing.JDialog {
         });
 
         jButton6.setText("Tạo mới");
+        jButton6.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jButton6AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Lưu");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,8 +196,8 @@ public class chontv extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
@@ -191,28 +222,115 @@ public class chontv extends javax.swing.JDialog {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         dispose();
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-     public void show_nk_Jtable(){
-         List<NhanKhautest> List = getnhankhau();
+      public void show_nk_Jtable(){
+         ListTbgd = getnhankhau();
          tblModel = (DefaultTableModel) tbgiadinh.getModel();
          tblModel.setRowCount(0);
-            for(NhanKhautest nk: List){
+            for(NhanKhautest nk: ListTbgd){
             tblModel.addRow(new Object[]{
             nk.getID(),nk.getHoTen(),nk.getSoCMND(),nk.getGioiTinh(),nk.getDiaChiHienNay()
             });
         }
      }
 
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        indexTbGiaDinh = tbgiadinh.getSelectedRow();
+        if(ListTbgd.size()==0){
+            JOptionPane.showMessageDialog(rootPane, "Không thể thêm");
+        } else if (indexTbGiaDinh == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa chọn");
+        } else {
+            boolean flag = true;
+            for(int i =0; i < ListTbtv.size();i++){
+                if(ListTbtv.get(i).getID() == ListTbgd.get(indexTbGiaDinh).getID()){
+                    flag = false;
+                    break;
+                }
+            }
+            if(!flag){
+                JOptionPane.showMessageDialog(rootPane, "Bạn đã chọn rồi");
+            } else {
+                NhanKhautest nkk = ListTbgd.get(indexTbGiaDinh);
+                str.add(JOptionPane.showInputDialog(rootPane,"Quan hệ Với Chủ Hộ", "Quan Hệ", JOptionPane.NO_OPTION));
+                addTb1ToTb2(nkk);
+            }
+            
+            //ListTbtv.add(nkk);
+           
+          
+        }
+    
+        
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        indexTbthanhVien = tbthanhvien.getSelectedRow();
+        if(ListTbtv.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Không có thành viên để xóa");
+            
+        } else if (indexTbthanhVien == -1){
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa chọn thành viên");
+        } else {
+            ListTbtv.remove(indexTbthanhVien);
+            str.remove(indexTbthanhVien);
+            showData();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton6AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6AncestorAdded
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        tblModel = (DefaultTableModel) tbthanhvien.getModel();
+        tblModel.setRowCount(0);
+        str.clear();
+        ListTbtv.clear();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        hk.addtb(ListTbtv, str);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+   
+           public void addTb1ToTb2(NhanKhautest nk){
+           ListTbtv.add(nk);
+           showData();
+        
+        
+        // 
+    }                                        
+        public void showData(){
+        tblModel = (DefaultTableModel) tbthanhvien.getModel();
+        tblModel.setRowCount(0);
+        Object[] row = new Object[3];
+        for (int i = 0; i< ListTbtv.size();i++){
+            row[0] = ListTbtv.get(i).getHoTen();
+            row[1] = ListTbtv.get(i).getSoCMND();
+            row[2] = str.get(i);
+            
+            tblModel.addRow(row);
+        }
+        /*tblModel.setRowCount(0);
+        for(NhanKhautest nk: ListTbtv){
+            tblModel.addRow(new Object[]{
+                nk.getHoTen(),nk.getSoCMND(),"abc"
+            });
+        }*/
+            
+        
+    }
     /**
      * @param args the command line arguments
      */
