@@ -44,8 +44,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jdDenNgay" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jdTuNgay" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="txtNoiTamTru" pref="350" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -76,15 +74,9 @@
                   <Component id="txtNoiTamTru" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jdTuNgay" min="-2" pref="30" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel3" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel4" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jdDenNgay" min="-2" pref="30" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel4" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -162,8 +154,6 @@
         <Property name="text" type="java.lang.String" value="T&#x1eeb; ng&#xe0;y :"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jdTuNgay">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -171,8 +161,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf;n ng&#xe0;y :"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jdDenNgay">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>

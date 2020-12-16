@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/TachHoKhau.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/themhokhau.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/chontv.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/Controller/hoKhauControler.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/HoKhau.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/chonch.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/BieuDoController.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/ThongKeJPanel.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/services/BieuDoService.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/TrangChuJPanel.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/TimKiemJPanel.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/TrangChuController.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/ChuyenManHinhController.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/MainJFrame.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/ThongKeJPanelController.java</file>
         </group>
     </open-files>
 </project-private>
