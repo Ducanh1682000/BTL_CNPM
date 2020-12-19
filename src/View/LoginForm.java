@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import models.UserModel;
 import views.biendoinhaukhau.ThemNhanKhau;
 
 
@@ -18,6 +19,7 @@ import views.biendoinhaukhau.ThemNhanKhau;
  * @author THUAN.HQ183840
  */
 public class LoginForm extends javax.swing.JFrame{
+    public static UserModel currentUser = new UserModel(); 
     public LoginForm() {
         initComponents();
         setLocationRelativeTo(null);
@@ -52,6 +54,8 @@ public class LoginForm extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null,"Vui lòng nhập đầy đủ thông tin đăng nhập!","Lỗi",JOptionPane.ERROR_MESSAGE);
             }
             else if(res.next()) {
+                LoginForm.currentUser.setID(res.getInt("ID"));
+                LoginForm.currentUser.setUserName(res.getString("Username"));
                 dispose();
 //                ChucNang cn = new ChucNang();
 //                cn.setLocationRelativeTo(null);

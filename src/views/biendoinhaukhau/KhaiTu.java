@@ -13,8 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.dao.ConnectionUtil;
 import java.sql.ResultSet;
+import services.MysqlConnection;
 
 /**
  *
@@ -205,8 +205,9 @@ public class KhaiTu extends javax.swing.JFrame {
        String sql2 = "select * from nhan_khau where soCMND = '"+soCMNDNguoiMat+"'";
       
        try {
-           Statement s = (Statement) ConnectionUtil.mycon().createStatement();
-           Statement s1 = (Statement) ConnectionUtil.mycon().createStatement();
+           Connection con=(Connection) new MysqlConnection().getMysqlConnection();
+           Statement s = (Statement) con.createStatement();
+           Statement s1 = (Statement) con.createStatement();
            JOptionPane.showMessageDialog(null, "Khai tử thành công !");  
            
            ResultSet res = s.executeQuery(sql1);

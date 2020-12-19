@@ -9,9 +9,9 @@ import com.mysql.jdbc.PreparedStatement;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
-import model.dao.ConnectionUtil;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import services.MysqlConnection;
 
 /**
  *
@@ -155,12 +155,13 @@ public class DangKyTamVang_TraCuu extends javax.swing.JFrame {
         }
         try {
             String sql = "select * from nhan_khau where soCMND = ?";
-            PreparedStatement pst = (PreparedStatement) ConnectionUtil.mycon().prepareStatement(sql);
+            com.mysql.jdbc.Connection con=(com.mysql.jdbc.Connection) new MysqlConnection().getMysqlConnection();
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, txtCMND.getText());
             ResultSet res = pst.executeQuery();
            
             if(res.next()) {
-               Statement s = ConnectionUtil.mycon().createStatement();
+               Statement s = con.createStatement();
                sql = "select * from nhan_khau where soCMND = '"+Integer.parseInt(txtCMND.getText())+"'";
                res = pst.executeQuery(sql);
                while(res.next()) 

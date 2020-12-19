@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/BieuDoController.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/ThongKeJPanel.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/services/BieuDoService.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/TrangChuJPanel.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/TimKiemJPanel.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/TrangChuController.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/ChuyenManHinhController.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/MainJFrame.java</file>
-            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/Controller/ThongKeJPanelController.java</file>
+            <file>file:/C:/Users/Vu%20Tran%20Duc%20Anh/Desktop/CNPM/src/View/biendoihokhau/ThayDoiHoKhau.java</file>
+            <file>file:/C:/Users/Vu%20Tran%20Duc%20Anh/Desktop/CNPM/src/Controllers/HoKhau/ThayDoiHoKhauController.java</file>
+            <file>file:/C:/Users/Vu%20Tran%20Duc%20Anh/Desktop/CNPM/src/Controller/TrangChuController.java</file>
+            <file>file:/C:/Users/Vu%20Tran%20Duc%20Anh/Desktop/CNPM/src/services/HoKhauService.java</file>
         </group>
     </open-files>
 </project-private>

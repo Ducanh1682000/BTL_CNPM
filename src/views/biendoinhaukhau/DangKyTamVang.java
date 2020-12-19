@@ -11,7 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.dao.ConnectionUtil;
+import services.MysqlConnection;
+
 
 /**
  *
@@ -40,8 +41,8 @@ public class DangKyTamVang extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNoiTamTru = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jdTuNgay = new javax.swing.JLabel();
+        jdDenNgay = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtLyDo = new javax.swing.JTextArea();
@@ -80,11 +81,11 @@ public class DangKyTamVang extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Nơi tạm trú :");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Từ ngày :");
+        jdTuNgay.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jdTuNgay.setText("Từ ngày :");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Đến ngày :");
+        jdDenNgay.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jdDenNgay.setText("Đến ngày :");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Lý do tạm vắng :");
@@ -118,8 +119,8 @@ public class DangKyTamVang extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
+                            .addComponent(jdTuNgay)
+                            .addComponent(jdDenNgay)
                             .addComponent(jLabel5))
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -144,9 +145,9 @@ public class DangKyTamVang extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtNoiTamTru, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jdTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jdDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -168,21 +169,21 @@ public class DangKyTamVang extends javax.swing.JFrame {
         
    }
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
-       String noiTamTru = txtNoiTamTru.getText();
-       String lyDo = txtLyDo.getText();
-       SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-       String vangTuNgay = date.format(jdTuNgay.getDate());
-       String vangDenNgay = date.format(jdDenNgay.getDate());
-       try {
-           Statement s = (Statement) ConnectionUtil.mycon().createStatement();
-           s.executeUpdate("INSERT INTO tam_vang(noiTamTru,vangTuNgay,vangDenNgay,lyDo) "
-                   + "VALUES ('"+noiTamTru+"','"+vangTuNgay+"','"+vangDenNgay+"','"+lyDo+"')");
-            JOptionPane.showMessageDialog(null, "Đăng ký tạm vắng thành công!");
-       } catch (SQLException ex) {
-            Logger.getLogger(DangKyTamVang.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Đăng ký thất bại vui lòng kiểm tra lại !", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            System.out.println(ex);
-        }
+//       String noiTamTru = txtNoiTamTru.getText();
+//       String lyDo = txtLyDo.getText();
+//       SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+//       String vangTuNgay = date.format(jdTuNgay.g);
+//       String vangDenNgay = date.format(jdDenNgay.getDate());
+//       try {
+//           Statement s = (Statement)  new MysqlConnection().getMysqlConnection().createStatement();
+//           s.executeUpdate("INSERT INTO tam_vang(noiTamTru,vangTuNgay,vangDenNgay,lyDo) "
+//                   + "VALUES ('"+noiTamTru+"','"+vangTuNgay+"','"+vangDenNgay+"','"+lyDo+"')");
+//            JOptionPane.showMessageDialog(null, "Đăng ký tạm vắng thành công!");
+//       } catch (SQLException ex) {
+//            Logger.getLogger(DangKyTamVang.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, "Đăng ký thất bại vui lòng kiểm tra lại !", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//            System.out.println(ex);
+//        }
         
     }//GEN-LAST:event_btnDangKyActionPerformed
 
@@ -232,12 +233,12 @@ public class DangKyTamVang extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel jdDenNgay;
+    private javax.swing.JLabel jdTuNgay;
     private javax.swing.JTextArea txtLyDo;
     private javax.swing.JTextField txtNoiTamTru;
     // End of variables declaration//GEN-END:variables

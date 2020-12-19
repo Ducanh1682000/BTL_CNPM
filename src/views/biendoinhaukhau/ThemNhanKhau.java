@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.dao.ConnectionUtil;
+import services.MysqlConnection;
 
 
 /**
@@ -595,7 +595,8 @@ public class ThemNhanKhau extends javax.swing.JFrame {
                        ||txtNoiSinh.getText().trim().isEmpty()||txtQuocTich.getText().trim().isEmpty()||txtTonGiao.getText().trim().isEmpty()||txtDanToc.getText().trim().isEmpty()) 
                    JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin các trường bắt buộc", "Lỗi", JOptionPane.WARNING_MESSAGE);
                else {
-                   Statement s = (Statement) ConnectionUtil.mycon().createStatement();
+                    Connection con=(Connection) new MysqlConnection().getMysqlConnection();
+                    Statement s = (Statement)con.createStatement();
                     s.executeUpdate("INSERT INTO nhan_khau(MaHoKhau,QuanHeVoiChuHo,hoTen, bietDanh, namSinh, gioiTinh, SoCMND, NgayCapCMND, NoiCapCMND, noiSinh, nguyenQuan, danToc, tonGiao, quocTich, noiThuongTru, ngheNghiep, noiLamViec, ghiChu)"
                             + "VALUES ('"+maHoKhau+"','"+quanHe+"','"+hoTen+"','"+bietDanh+"','"+ngaySinh+"','"+gioiTinh+"','"+soCMND+"','"+ngayCap+"','"+noiCap+"','"+noiSinh+"','"+nguyenQuan+"','"+danToc+"','"+tonGiao+"','"+quocTich+"','"+diaChiTTruTruocDay+"','"+ngheNghiep+"','"+noiLamViec+"','"+ghiChu+"')");
              JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");

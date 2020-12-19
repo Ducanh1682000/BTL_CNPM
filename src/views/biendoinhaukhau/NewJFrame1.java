@@ -8,8 +8,7 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.dao.ConnectionUtil;
-import net.proteanit.sql.DbUtils;
+import services.MysqlConnection;
 
 /**
  *
@@ -27,9 +26,10 @@ public class NewJFrame1 extends javax.swing.JFrame {
    private void DisplayTable() {
        try {
            String sql = "select * from khai_tu ";
-           PreparedStatement pst = (PreparedStatement) ConnectionUtil.mycon().prepareStatement(sql);
+           com.mysql.jdbc.Connection con=(com.mysql.jdbc.Connection) new MysqlConnection().getMysqlConnection();
+           PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
            ResultSet res = pst.executeQuery();
-           t1.setModel(DbUtils.resultSetToTableModel(res));
+//           t1.setModel(DbUtils.resultSetToTableModel(res));
            
        } catch (SQLException ex) {
             Logger.getLogger(NewJFrame1.class.getName()).log(Level.SEVERE, null, ex);

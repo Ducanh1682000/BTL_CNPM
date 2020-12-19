@@ -5,12 +5,13 @@
  */
 package views.biendoinhaukhau;
 
+import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import model.dao.ConnectionUtil;
+import services.MysqlConnection;
 
 /**
  *
@@ -258,7 +259,8 @@ public class ThayDoiNhanKhau extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin các trường bắt buộc", "Lỗi", JOptionPane.WARNING_MESSAGE);
             }
             else {
-                Statement s = (Statement) ConnectionUtil.mycon().createStatement();
+                Connection con=(Connection) new MysqlConnection().getMysqlConnection();
+                Statement s = (Statement) con.createStatement();
                 s.executeUpdate("update nhankhau set ngaychuyendi = '"+ngayChuyen+"',noichuyenden = '"+noiChuyenDen+"',lydochuyen = '"+lyDoChuyen+"',ghichu ='"+ghiChu+"'"
                     + " where mahokhau = '"+maHoKhau+"' && tenchuho = '"+tenChuHo+"' && hoten = '"+tenNhanKhau+"'" );
                 JOptionPane.showMessageDialog(null,"Cập nhật thông tin thành công !");

@@ -5,13 +5,15 @@
  */
 package views.biendoinhaukhau;
 
+import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.dao.ConnectionUtil;
+import services.MysqlConnection;
+
 
 /**
  *
@@ -364,7 +366,8 @@ public class DangKyTamTru extends javax.swing.JFrame {
             else {
                     gioiTinh = "Nữ";
                 }
-           Statement s = (Statement) ConnectionUtil.mycon().createStatement();
+            Connection con=(Connection) new MysqlConnection().getMysqlConnection();
+           Statement s = (Statement) con.createStatement();
 //           s.executeUpdate("INSERT INTO tamtru(HoTen, SoCMND, NgaySinh, GioiTinh,QueQuan, DiaChiThuongTru, NgayChuyenDen, NgayChuyenDi, LyDoTamTru, SDT, GhiChu)"
 //                   + " VALUES ('"+hoTen+"','"+soCMND+"','"+ngaySinh+"','"+gioiTinh+"','"+queQuan+"',,'"+diaChiTT+"','"+ngayChuyenDen+"','"+ngayChuyenDi+"','"+lyDo+"','"+sdt+"','"+ghiChu+"')");
 s.executeUpdate("INSERT INTO tam_tru(MaHoKhauTamTru,HoTen, SoCMND, NgaySinh, GioiTinh,QueQuan, DiaChiThuongTru, NgayChuyenDen, NgayChuyenDi, LyDoTamTru, SoDT, GhiChu)"

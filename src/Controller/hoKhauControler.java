@@ -10,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import static model.dao.ConnectionUtil.mycon;
 import model_ho_khau.NhanKhautest;
+import services.MysqlConnection;
 
 /**
  *
@@ -20,7 +20,7 @@ import model_ho_khau.NhanKhautest;
 public class hoKhauControler {
         public static List<NhanKhautest> getnhankhau(){
         List<NhanKhautest> nhankhauList = new ArrayList<>();
-        Connection conn = mycon();
+        Connection conn = new MysqlConnection().getMysqlConnection();
         String sql = "SELECT `ID`,`hoTen`,`soCMND`,`gioiTinh`,`diaChiHienNay` FROM `nhan_khau` WHERE `QuanHeVoiChuHo` is null";
         Statement st;
         ResultSet rs;

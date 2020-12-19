@@ -9,7 +9,7 @@ import com.mysql.jdbc.Statement;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.dao.ConnectionUtil;
+import services.MysqlConnection;
 
 /**
  *
@@ -89,7 +89,8 @@ public class NewJFrame extends javax.swing.JFrame {
         String sql = ("select * from nhan_khau where soCMND = '"+CMND+"'");
         
         try {
-            Statement s = (Statement) ConnectionUtil.mycon().createStatement();
+            com.mysql.jdbc.Connection con=(com.mysql.jdbc.Connection) new MysqlConnection().getMysqlConnection();
+            Statement s = (Statement) con.createStatement();
             ResultSet res = s.executeQuery(sql);
              while (res.next()) {
                 System.out.println(res.getString("id"));

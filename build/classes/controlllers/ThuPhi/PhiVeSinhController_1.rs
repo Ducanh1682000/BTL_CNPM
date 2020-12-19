@@ -1,2 +1,0 @@
-controlllers.ThuPhi.PhiVeSinhController
-controlllers.ThuPhi.PhiVeSinhController$1
