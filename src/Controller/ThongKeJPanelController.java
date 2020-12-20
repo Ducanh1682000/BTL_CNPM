@@ -1,17 +1,18 @@
 package Controller;
 
-
 import com.toedter.calendar.JDateChooser;
+
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.awt.print.PrinterException;
+
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -46,16 +47,16 @@ public class ThongKeJPanelController {
     private JDateChooser jdcDenNgay;
     private JPanel jpnView;
     private JLabel jlbKetQua;
-    private JButton btnXuatFile;
+    private JButton btnPrint;
     private JButton btnThongKe;
     private JButton btnBieuDo;
-    
+
     private ThongKeService thongKeService;
-    
+
     private ClassTableModel classTableModel;
     private final String[] COLUMNS = {"ID", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ hiện nay"};
 
-    public ThongKeJPanelController(JComboBox genderJcb, JComboBox statusJcb, JTextField tuTuoiJtf, JTextField denTuoiJtf, JDateChooser jdcTuNgay, JDateChooser jdcDenNgay, JPanel jpnView, JLabel jlbKetQua, JButton btnXuatFile,JButton btnThongKe, JButton btnBieuDo) {
+    public ThongKeJPanelController(JComboBox genderJcb, JComboBox statusJcb, JTextField tuTuoiJtf, JTextField denTuoiJtf, JDateChooser jdcTuNgay, JDateChooser jdcDenNgay, JPanel jpnView, JLabel jlbKetQua, JButton btnPrint, JButton btnThongKe, JButton btnBieuDo) {
         this.GenderJcb = genderJcb;
         this.StatusJcb = statusJcb;
         this.tuTuoiJtf = tuTuoiJtf;
@@ -64,15 +65,14 @@ public class ThongKeJPanelController {
         this.jdcDenNgay = jdcDenNgay;
         this.jpnView = jpnView;
         this.jlbKetQua = jlbKetQua;
-        this.btnXuatFile = btnXuatFile;
-        this.btnThongKe= btnThongKe;
+        this.btnPrint = btnPrint;
+        this.btnThongKe = btnThongKe;
         this.btnBieuDo = btnBieuDo;
-        
+
         this.thongKeService = new ThongKeService();
-        
+
         this.classTableModel = new ClassTableModel();
     }
-
 
     public void setDataTable() {
         int tuTuoi = -1;
@@ -96,14 +96,14 @@ public class ThongKeJPanelController {
                 tuNgay = (this.jdcTuNgay.getDateFormatString());
             }
             if (!this.jdcDenNgay.getDateFormatString().trim().isEmpty()) {
-                 tuNgay = this.jdcDenNgay.getDateFormatString();
+                tuNgay = this.jdcDenNgay.getDateFormatString();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(denTuoiJtf, "Vui lòng nhập đúng kiểu dữ liệu!!", "Warring", JOptionPane.ERROR_MESSAGE);
         }
-    
+
         List<NhanKhauModel> listItem = thongKeService.statisticNhanKhau(tuTuoi, denTuoi, gioiTinh, status, tuNgay, denNgay);
-       
+
         DefaultTableModel model = classTableModel.setTableNhanKhau(listItem, COLUMNS);
         JTable table = new JTable(model);
         //So KQ
@@ -128,9 +128,18 @@ public class ThongKeJPanelController {
         jpnView.add(scroll);
         jpnView.validate();
         jpnView.repaint();
-        
-        
-    //Xuat file Excel Theo dieu kien thong ke        
+
+        btnPrint.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    table.print();
+                } catch (PrinterException ex) {
+                    Logger.getLogger(ThongKeJPanelController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        //Xuat file Excel Theo dieu kien thong ke        
 //        btnXuatFile.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mousePressed(MouseEvent e) {
@@ -189,7 +198,6 @@ public class ThongKeJPanelController {
 //   
     }
 
-    
     public void setEvent() {
         btnBieuDo.addMouseListener(new MouseAdapter() {
             @Override
@@ -199,16 +207,13 @@ public class ThongKeJPanelController {
                 jframe.setVisible(true);
             }
         });
-        
+
         btnThongKe.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-               setDataTable();
+                setDataTable();
             }
         });
 
     }
-    
-    
-
 }
