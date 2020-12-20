@@ -4,72 +4,147 @@ import java.util.Date;
 
 /**
  *
- * @author Hai
+ * @author Khac Tao
  */
 public class TamTruModel {
-    private int ID;
-    private int idNhanKhau;
-    private String maGiayTamTru;
-    private String soDienThoaiNguoiDangKy;
-    private Date tuNgay;
-    private Date denNgay;
-    private String lyDo;
+    private int MaGiayTamTru;
+    private String MaHoKhauTamTru;
+    private String Hoten;
+    private int soCMND;
+    private Date NgaySinh;
+    private String GioiTinh;
+    private String QueQuan;
+    private String DiaChiThuongTru;
+    private Date NgayChuyenDen;
+    private Date NgayChuyenDi;
+    private String SoDT;
+    private String LyDoTamTru;
+    private String GhiChu;
+    private String TrangThai;
+    private int HOCHIEU;
 
-    public int getID() {
-        return ID;
+    public int getHOCHIEU() {
+        return HOCHIEU;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setHOCHIEU(int HOCHIEU) {
+        this.HOCHIEU = HOCHIEU;
     }
 
-    public int getIdNhanKhau() {
-        return idNhanKhau;
+    public TamTruModel() {
+        
     }
 
-    public void setIdNhanKhau(int idNhanKhau) {
-        this.idNhanKhau = idNhanKhau;
+    public int getMaGiayTamTru() {
+        return MaGiayTamTru;
     }
 
-    public String getMaGiayTamTru() {
-        return maGiayTamTru;
+    public void setMaGiayTamTru(int MaGiayTamTru) {
+        this.MaGiayTamTru = MaGiayTamTru;
     }
 
-    public void setMaGiayTamTru(String maGiayTamTru) {
-        this.maGiayTamTru = maGiayTamTru;
+    public String getMaHoKhauTamTru() {
+        return MaHoKhauTamTru;
     }
 
-    public String getSoDienThoaiNguoiDangKy() {
-        return soDienThoaiNguoiDangKy;
+    public void setMaHoKhauTamTru(String MaHoKhauTamTru) {
+        this.MaHoKhauTamTru = MaHoKhauTamTru;
     }
 
-    public void setSoDienThoaiNguoiDangKy(String soDienThoaiNguoiDangKy) {
-        this.soDienThoaiNguoiDangKy = soDienThoaiNguoiDangKy;
+    public String getHoten() {
+        return Hoten;
     }
 
-    public Date getTuNgay() {
-        return tuNgay;
+    public void setHoten(String Hoten) {
+        this.Hoten = Hoten;
     }
 
-    public void setTuNgay(Date tuNgay) {
-        this.tuNgay = tuNgay;
+    public int getSoCMND() {
+        return soCMND;
     }
 
-    public Date getDenNgay() {
-        return denNgay;
+    public void setSoCMND(int soCMND) {
+        this.soCMND = soCMND;
     }
 
-    public void setDenNgay(Date denNgay) {
-        this.denNgay = denNgay;
+    public Date getNgaySinh() {
+        return NgaySinh;
     }
 
-    public String getLyDo() {
-        return lyDo;
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
     }
 
-    public void setLyDo(String lyDo) {
-        this.lyDo = lyDo;
+    public String getGioiTinh() {
+        return GioiTinh;
     }
 
-   
+    public void setGioiTinh(String GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public String getQueQuan() {
+        return QueQuan;
+    }
+
+    public void setQueQuan(String QueQuan) {
+        this.QueQuan = QueQuan;
+    }
+
+    public String getDiaChiThuongTru() {
+        return DiaChiThuongTru;
+    }
+
+    public void setDiaChiThuongTru(String DiaChiThuongTru) {
+        this.DiaChiThuongTru = DiaChiThuongTru;
+    }
+
+    public Date getNgayChuyenDen() {
+        return NgayChuyenDen;
+    }
+
+    public void setNgayChuyenDen(Date NgayChuyenDen) {
+        this.NgayChuyenDen = NgayChuyenDen;
+    }
+
+    public Date getNgayChuyenDi() {
+        return NgayChuyenDi;
+    }
+
+    public void setNgayChuyenDi(Date NgayChuyenDi) {
+        this.NgayChuyenDi = NgayChuyenDi;
+    }
+
+    public String getSoDT() {
+        return SoDT;
+    }
+
+    public void setSoDT(String SoDT) {
+        this.SoDT = SoDT;
+    }
+
+    public String getLyDoTamTru() {
+        return LyDoTamTru;
+    }
+
+    public void setLyDoTamTru(String LyDoTamTru) {
+        this.LyDoTamTru = LyDoTamTru;
+    }
+
+    public String getGhiChu() {
+        return GhiChu;
+    }
+
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
+    }
+
+    public String getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(String TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+    
 }
