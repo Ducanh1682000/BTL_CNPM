@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import views.biendoinhaukhau.ThemNhanKhau;
+
 
 
 /**
@@ -53,18 +53,14 @@ public class LoginForm extends javax.swing.JFrame{
             }
             else if(res.next()) {
                 dispose();
-//                ChucNang cn = new ChucNang();
-//                cn.setLocationRelativeTo(null);
-//                cn.setResizable(false);
-//                cn.setVisible(true);
+                MainJFrame m = new MainJFrame();
+                m.setLocationRelativeTo(null);
+                m.setResizable(false);
+                m.setVisible(true);
 //                  ThemNhanKhau them = new ThemNhanKhau();
 //                  them.setLocationRelativeTo(null);
 //                  them.setResizable(false);
 //                  them.setVisible(true);
-                MainJFrame mainJFrame = new MainJFrame();
-                mainJFrame.setLocationRelativeTo(null);
-                mainJFrame.setResizable(true);
-                mainJFrame.setVisible(true);
             }
             else {
                 JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -261,6 +257,8 @@ public class LoginForm extends javax.swing.JFrame{
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -9,13 +9,17 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 import com.toedter.calendar.JDateChooser;
+import controllers.biendoinhankhau.ThemMoiController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.dao.ConnectionUtil;
+import models.NhanKhauModel;
+import services.MysqlConnection;
 
 
 /**
@@ -26,6 +30,7 @@ public class ThemNhanKhau extends javax.swing.JFrame {
 
     public ThemNhanKhau() {
         initComponents();
+       
     }
 
     /**
@@ -100,6 +105,7 @@ public class ThemNhanKhau extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnHuy = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnCheck = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -305,10 +311,11 @@ public class ThemNhanKhau extends javax.swing.JFrame {
                             .addComponent(rNam))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel26)
-                        .addComponent(jdNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel26))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNoiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,7 +395,7 @@ public class ThemNhanKhau extends javax.swing.JFrame {
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel17)
                                     .addComponent(jLabel15))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(txtDanToc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -477,6 +484,13 @@ public class ThemNhanKhau extends javax.swing.JFrame {
             }
         });
 
+        btnCheck.setText("Check");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -488,6 +502,8 @@ public class ThemNhanKhau extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCheck)
+                .addGap(83, 83, 83)
                 .addComponent(btnSave)
                 .addGap(71, 71, 71)
                 .addComponent(btnHuy)
@@ -512,7 +528,8 @@ public class ThemNhanKhau extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHuy)
-                    .addComponent(btnSave))
+                    .addComponent(btnSave)
+                    .addComponent(btnCheck))
                 .addGap(20, 20, 20))
         );
 
@@ -542,6 +559,8 @@ public class ThemNhanKhau extends javax.swing.JFrame {
       txtGhiChu.setText("");
       txtNoiCap.setText("");
       txtTonGiao.setText("");
+      jdNgayCap.setCalendar(null);
+      jdNgaySinh.setCalendar(null);
    }
     private void txtTenChuHoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChuHoActionPerformed
 
@@ -556,58 +575,67 @@ public class ThemNhanKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-            String maHoKhau = txtSoHK.getText();
-            String tenChuHo = txtTenChuHo.getText();
-            String quanHe = txtQuanHe.getText();
-            String hoTen = txtHoTen.getText();
-            String bietDanh = txtBietDanh.getText();
-            String ngaySinh;
-            String noiSinh = txtNoiSinh.getText();
-            String nguyenQuan = txtQueQuan.getText();
-            String quocTich = txtQuocTich.getText();
-            String gioiTinh ;
-            String danToc = txtDanToc.getText();
-            String tonGiao = txtTonGiao.getText();
-            String soCMND = txtCMND.getText();
-            String noiCap = txtNoiCap.getText();
-            String ngheNghiep = txtNgheNghiep.getText();
-            String noiLamViec = txtNoiLamViec.getText();
-            String diaChiTTruTruocDay = txtDiaChiTT.getText();
-            String ghiChu = txtGhiChu.getText();
-            String ngayCap;
+            
+            NhanKhauModel nk = new NhanKhauModel();
+            ThemMoiController t = new ThemMoiController();
+            nk.setMaHoKhau(txtSoHK.getText());
+            nk.setQuanHe(txtQuanHe.getText());
+            nk.setHoTen(txtHoTen.getText());
+            nk.setNoiSinh(txtNoiSinh.getText());
+            nk.setNgheNghiep(txtNgheNghiep.getText());
+            nk.setNoiLamViec(txtNoiLamViec.getText());
+            nk.setNoiCap(txtNoiCap.getText());
+            nk.setDanToc(txtDanToc.getText());
+            nk.setTonGiao(txtTonGiao.getText());
+            nk.setSoCMT(txtCMND.getText());
+            nk.setGhiChu(txtGhiChu.getText());
+            nk.setNguyenQuan(txtQueQuan.getText());
+            nk.setQuocTich(txtQuocTich.getText());
+            nk.setNamSinh(jdNgaySinh.getDate());
+            nk.setNgayCap(jdNgayCap.getDate());
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-            ngaySinh = date.format(jdNgaySinh.getDate());
-            ngayCap = date.format(jdNgayCap.getDate());
-            
-            
-            
-            
+            String n = date.format(nk.getNgayCap());
+         
+          
+           
+           
             try {
-                
                 if(rNam.isSelected()) {
-                    gioiTinh = "Nam";
+                   nk.setGioiTinh("Nam");
                 }
-                else {
-                    gioiTinh = "Nữ";
+                else if(rNu.isSelected()){
+                    nk.setGioiTinh("Nữ");
                 }
-                  if(txtSoHK.getText().trim().isEmpty()|| txtQuanHe.getText().trim().isEmpty()||txtHoTen.getText().trim().isEmpty()
-                       ||rNam.getText().trim().isEmpty()||txtQueQuan.getText().trim().isEmpty()
-                       ||txtNoiSinh.getText().trim().isEmpty()||txtQuocTich.getText().trim().isEmpty()||txtTonGiao.getText().trim().isEmpty()||txtDanToc.getText().trim().isEmpty()) 
-                   JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin các trường bắt buộc", "Lỗi", JOptionPane.WARNING_MESSAGE);
-               else {
-                   Statement s = (Statement) ConnectionUtil.mycon().createStatement();
-                    s.executeUpdate("INSERT INTO nhan_khau(MaHoKhau,QuanHeVoiChuHo,hoTen, bietDanh, namSinh, gioiTinh, SoCMND, NgayCapCMND, NoiCapCMND, noiSinh, nguyenQuan, danToc, tonGiao, quocTich, noiThuongTru, ngheNghiep, noiLamViec, ghiChu)"
-                            + "VALUES ('"+maHoKhau+"','"+quanHe+"','"+hoTen+"','"+bietDanh+"','"+ngaySinh+"','"+gioiTinh+"','"+soCMND+"','"+ngayCap+"','"+noiCap+"','"+noiSinh+"','"+nguyenQuan+"','"+danToc+"','"+tonGiao+"','"+quocTich+"','"+diaChiTTruTruocDay+"','"+ngheNghiep+"','"+noiLamViec+"','"+ghiChu+"')");
+                 Statement s = (Statement) MysqlConnection.getMysqlConnection().createStatement();
+               if(nk.getSoCMT() != ""){              
+              
+               s.executeUpdate("INSERT INTO nhan_khau(ngaycapCMND) VALUES ('"+n+"')");
+             }
+               else 
+                    s.executeUpdate("INSERT INTO nhan_khau(ngaycapCMND) VALUES ('')");
+                if(t.ThemMoiNhanKhau(nk))  
              JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");
              reset();
                }
-            }
+            
             catch(Exception ex){
              JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 System.out.println(ex);
+                ex.printStackTrace();
             }
+            //}
   
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+          NhanKhauModel nk = new NhanKhauModel();
+        if(nk.getSoCMT() != ""){
+          JOptionPane.showMessageDialog(null, "OKLA");
+          
+  
+        }
+                 
+    }//GEN-LAST:event_btnCheckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -642,6 +670,30 @@ public class ThemNhanKhau extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -652,6 +704,7 @@ public class ThemNhanKhau extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnSave;
     private javax.swing.ButtonGroup buttonGroup1;
