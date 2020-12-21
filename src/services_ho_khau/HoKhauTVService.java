@@ -3,38 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package services_ho_khau;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import static model.dao.ConnectionUtil.mycon;
 import model_ho_khau.NhanKhautest;
+import static services.MysqlConnection.getMysqlConnection;
 
 /**
  *
  * @author admin
  */
-public class hoKhauControler {
-        public static List<NhanKhautest> getnhankhau(){
+public class HoKhauTVService {
+
+    public static List<NhanKhautest> getnhankhau() {
         List<NhanKhautest> nhankhauList = new ArrayList<>();
-        Connection conn = mycon();
-        String sql = "SELECT `ID`,`hoTen`,`soCMND`,`gioiTinh`,`diaChiHienNay` FROM `nhan_khau` WHERE `QuanHeVoiChuHo` is null";
+        Connection conn = getMysqlConnection();
+        String sql = "SELECT DISTINCT n.ID,n.hoTen,n.SoCMND,n.QuanHeVoiChuHo "
+                + "FROM nhan_khau n WHERE n.ID not in (SELECT idNhanKhau FROM thanh_vien_cua_ho  ) AND n.QuanHeVoiChuHo != \"Chủ hộ\"";
         Statement st;
         ResultSet rs;
         try {
             st = conn.createStatement();
             rs = st.executeQuery(sql);
-        
-            while(rs.next()){
+
+            while (rs.next()) {
                 NhanKhautest nk = new NhanKhautest();
                 nk.setID(rs.getInt("ID"));
                 nk.setHoTen(rs.getString("hoTen"));
                 nk.setSoCMND(rs.getInt("soCMND"));
-                nk.setGioiTinh(rs.getString("gioiTinh"));
-                nk.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                nk.setQuanHeVoiChuHo(rs.getString("QuanHeVoiChuHo"));
                 nhankhauList.add(nk);
             }
         } catch (Exception e) {

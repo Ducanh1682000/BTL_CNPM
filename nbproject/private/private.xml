@@ -3,12 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/LoginForm.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/HoKhauService.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/TachHoKhau.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services/MysqlConnection.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/ChonTvInTachHk.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/ThanhVienCuaHo.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/themhokhau.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/chontv.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/Controller/hoKhauControler.java</file>
-            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/HoKhau.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model/dao/ConnectionUtil.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/Controller/ThongKeJPanelController.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/chonch.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/views/biendoinhaukhau/ThemNhanKhau.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/cnpm/CNPM.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/ThemHoKhauService.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/TachHoKhauService.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/views/biendoinhaukhau/KhaiTu.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/chontv.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/HoKhauTVService.java</file>
+            <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/Tach_Ho_Khau.java</file>
         </group>
     </open-files>
 </project-private>
