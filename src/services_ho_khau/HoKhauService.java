@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import static services.MysqlConnection.getMysqlConnection;
+
 import model_ho_khau.NhanKhautest;
 import static services.MysqlConnection.getMysqlConnection;
 /**
@@ -21,7 +23,9 @@ public class HoKhauService {
     public static List<NhanKhautest> getnhankhau() {
         List<NhanKhautest> nhankhauList = new ArrayList<>();
         Connection conn = getMysqlConnection();
+
         String sql = "SELECT DISTINCT n.ID,n.hoTen,n.SoCMND,n.gioiTinh,n.diaChiHienNay FROM nhan_khau n WHERE n.ID not in (SELECT idChuHo FROM  ho_khau) AND n.QuanHeVoiChuHo = \"Chủ hộ\"";
+
         Statement st;
         ResultSet rs;
         try {

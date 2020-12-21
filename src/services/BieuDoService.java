@@ -23,16 +23,22 @@ import services.MysqlConnection;
 public class BieuDoService {
 
     
-    public List<NhanKhauModel> statisticByGender() {
+    public List<NhanKhauModel> statisticByGender(int tuTuoi, int denTuoi, String gioiTinh) {
         Connection cons = MysqlConnection.getMysqlConnection();
-        String sql = "SELECT gioiTinh, COUNT(*) as so_luong FROM nhan_khau GROUP BY gioiTinh;";
+        String sql = "SELECT COUNT(*) as so_luong FROM nhan_khau"
+                + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) BETWEEN "
+                + tuTuoi
+                + " and "
+                + denTuoi
+                + " and gioiTinh = '"
+                + gioiTinh + "'";
         List<NhanKhauModel> list = new ArrayList<>();
         try {
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 NhanKhauModel nhanKhauModel = new NhanKhauModel();
-                nhanKhauModel.setGioiTinh(rs.getString("gioiTinh"));
+                
                 nhanKhauModel.setSoLuong(rs.getInt("so_luong"));
                 list.add(nhanKhauModel);
             }

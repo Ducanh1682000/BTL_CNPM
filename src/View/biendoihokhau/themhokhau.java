@@ -14,8 +14,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.dao.ConnectionUtil;
+
 import model_ho_khau.ThanhVienCuaHo;
+
 import model_ho_khau.HoKhau;
 import model_ho_khau.NhanKhautest;
 import services_ho_khau.ThemHoKhauService;
