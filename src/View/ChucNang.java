@@ -6,8 +6,8 @@
 package View;
 
 //import views.biendoinhaukhau.DangKyTamVang;
-import views.biendoinhaukhau.DangKyTamTru;
-import views.biendoinhaukhau.DangKyTamVang_TraCuu;
+import views.biendoinhaukhau.QuanLyTamTruFrame;
+import views.biendoinhaukhau.QuanLyTamVangFrame;
 import views.biendoinhaukhau.KhaiTu;
 import views.biendoinhaukhau.ThayDoiNhanKhau;
 import views.biendoinhaukhau.ThemNhanKhau;
@@ -56,14 +56,14 @@ public class ChucNang extends javax.swing.JFrame {
             }
         });
 
-        btnDangKyTamTru.setText("Đăng ký tạm trú");
+        btnDangKyTamTru.setText("Quản lý tạm trú");
         btnDangKyTamTru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangKyTamTruActionPerformed(evt);
             }
         });
 
-        btnTamVang.setText("Đăng ký tạm vắng");
+        btnTamVang.setText("Quản lý tạm vắng");
         btnTamVang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTamVangActionPerformed(evt);
@@ -127,7 +127,7 @@ public class ChucNang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThayDoiNhanKhauActionPerformed
 
     private void btnDangKyTamTruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyTamTruActionPerformed
-        DangKyTamTru tamTru = new DangKyTamTru();
+        QuanLyTamTruFrame tamTru = new QuanLyTamTruFrame();
         dispose();
         tamTru.setLocationRelativeTo(null);
         tamTru.setResizable(false);
@@ -135,7 +135,7 @@ public class ChucNang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDangKyTamTruActionPerformed
 
     private void btnTamVangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTamVangActionPerformed
-        DangKyTamVang_TraCuu tamVang = new DangKyTamVang_TraCuu();
+        QuanLyTamVangFrame tamVang = new QuanLyTamVangFrame();
         dispose();
         tamVang.setLocationRelativeTo(null);
         tamVang.setResizable(false);

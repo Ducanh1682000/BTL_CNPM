@@ -55,33 +55,50 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Đăng kí tạm vắng");
         setPreferredSize(new java.awt.Dimension(900, 600));
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("ĐĂNG KÍ TẠM VẮNG");
 
+        fullnameLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         fullnameLabel.setLabelFor(fullname);
         fullnameLabel.setText("Họ và tên");
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Ngày, tháng, năm sinh");
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Giới tính");
 
         gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
 
+        quocTichLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         quocTichLabel.setLabelFor(quocTich);
         quocTichLabel.setText("Quốc tịch");
 
         quocTich.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Việt Nam", "English", "China", "Thailand", "Lao", "Brazil", "America" }));
 
+        cmndLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmndLabel.setLabelFor(cmndLabel);
         cmndLabel.setText("CMND số");
 
+        hoChieuLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         hoChieuLabel.setLabelFor(HOCHIEU);
         hoChieuLabel.setText("Hộ chiếu số");
 
+        oldAddrLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         oldAddrLabel.setLabelFor(oldAddress);
         oldAddrLabel.setText(" Nơi thường trú, tạm trú");
 
@@ -94,7 +111,13 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 51, 51));
         jButton1.setText("Quay lại");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        newAddrLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         newAddrLabel.setLabelFor(newAddress);
         newAddrLabel.setText("Nơi đến");
 
@@ -104,10 +127,13 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
         newAddress.setRows(5);
         jScrollPane2.setViewportView(newAddress);
 
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel10.setText("Tạm vắng từ");
 
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel11.setText("Đến ngày");
 
+        resonLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         resonLabel.setLabelFor(reason);
         resonLabel.setText("Lý do tạm vắng");
 
@@ -121,6 +147,33 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Đăng kí");
 
+        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setText("(*)");
+
+        jLabel5.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel5.setText("(*)");
+
+        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel6.setText("(*)");
+
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel7.setText("(*)");
+
+        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel8.setText("(*)");
+
+        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel9.setText("(*)");
+
+        jLabel12.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel12.setText("(*)");
+
+        jLabel13.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel13.setText("(*)");
+
+        jLabel14.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel14.setText("(*)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,20 +181,12 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(oldAddrLabel))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -153,48 +198,78 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(oldAddrLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(newAddrLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(newAddrLabel)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(70, 70, 70)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(resonLabel)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                    .addComponent(CMND, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                    .addComponent(HOCHIEU, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(261, 261, 261))))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(70, 70, 70)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(resonLabel)
-                                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(112, 112, 112)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(hoChieuLabel)
+                                                        .addComponent(jLabel14))
+                                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(11, 11, 11)
+                                                        .addComponent(jLabel9)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                                                        .addComponent(CMND, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(1, 1, 1)))
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(cmndLabel)
-                                            .addComponent(jLabel11))))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(hoChieuLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(HOCHIEU, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6))
+                                    .addComponent(cmndLabel)
+                                    .addComponent(jLabel11))))))
+                .addGap(0, 213, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
+                        .addGap(375, 375, 375)
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -210,24 +285,28 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fullnameLabel))
+                            .addComponent(fullnameLabel)
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
                         .addGap(30, 30, 30)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CMND, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmndLabel))
+                    .addComponent(cmndLabel)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(hoChieuLabel)
-                        .addComponent(HOCHIEU, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(HOCHIEU, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(quocTichLabel)
                         .addComponent(quocTich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -238,36 +317,44 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel11))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel5)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(oldAddrLabel)
-                            .addComponent(newAddrLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(resonLabel)
-                        .addGap(16, 16, 16)))
+                                .addComponent(jLabel10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(oldAddrLabel)
+                    .addComponent(newAddrLabel)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(resonLabel)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new QuanLyTamVangFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,8 +407,17 @@ public class DangKiTamVangFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

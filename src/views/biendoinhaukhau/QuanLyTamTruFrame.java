@@ -6,17 +6,45 @@
 
 package views.biendoinhaukhau;
 
+import View.ChucNang;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import models.TamTruModel;
+import services.TamTruService;
+
 /**
  *
  * @author Khac Tao
  */
 public class QuanLyTamTruFrame extends javax.swing.JFrame {
-
+    TamTruService tamTruService;
+    DefaultTableModel defaultTableModel;
     /** Creates new form QuanLyTamTruFrame */
     public QuanLyTamTruFrame() {
         initComponents();
+        tamTruService = new TamTruService();
+        defaultTableModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        tamTruTable.setModel(defaultTableModel);
+        defaultTableModel.addColumn("Mã Hộ khẩu tạm trú");
+        defaultTableModel.addColumn("Mã giấy tạm trú");
+        defaultTableModel.addColumn("Họ tên");
+        defaultTableModel.addColumn("Ngày chuyển đến");
+        defaultTableModel.addColumn("Ngày chuyển đi");
+        defaultTableModel.addColumn("Trạng thái");
+        
+        setTableData(tamTruService.getAllTamTru());
     }
-
+    private void setTableData(List<TamTruModel> tamTruList){
+        for(TamTruModel tamtru : tamTruList){
+            defaultTableModel.addRow(new Object[]{tamtru.getMaHoKhauTamTru(), tamtru.getMaGiayTamTru(), tamtru.getHoten(), tamtru.getNgayChuyenDen(),
+            tamtru.getNgayChuyenDi(), tamtru.getTrangThai()});
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -28,21 +56,22 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        tamTruTable = new javax.swing.JTable();
+        backButton = new javax.swing.JButton();
+        maGiayText = new javax.swing.JTextField();
+        maDonSearch = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        maChuHoText = new javax.swing.JTextField();
+        maChuHoSearch = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("DANH SÁCH TẠM TRÚ TRÊN ĐỊA BÀN");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tamTruTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -55,21 +84,50 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
                 "Mã đơn", "Họ tên", "Từ ngày", "Đến ngày", "Trạng thái đơn", "Thời gian còn lại"
             }
         ));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        tamTruTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tamTruTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tamTruTable.setShowGrid(false);
+        jScrollPane1.setViewportView(tamTruTable);
 
-        jButton1.setText("Quay lại");
+        backButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 51, 51));
+        backButton.setText("Quay lại");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Tìm kiếm");
+        maDonSearch.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        maDonSearch.setText("Tìm kiếm");
+        maDonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maDonSearchActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Tìm kiếm theo mã đơn");
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setText("Tìm kiếm theo mã giấy");
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Tìm kiếm theo mã chủ hộ");
 
-        jButton3.setText("Tìm kiếm");
+        maChuHoSearch.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        maChuHoSearch.setText("Tìm kiếm");
+        maChuHoSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maChuHoSearchActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Thêm mới");
+        addButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        addButton.setForeground(new java.awt.Color(51, 51, 255));
+        addButton.setText("Thêm mới");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,20 +140,20 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(139, 139, 139)
-                                .addComponent(jLabel1)
+                                .addComponent(backButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4)))
+                                .addComponent(jLabel1)
+                                .addGap(92, 92, 92)
+                                .addComponent(addButton)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maChuHoText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(jButton3)
+                        .addComponent(maChuHoSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maGiayText, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(maDonSearch)
                         .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -109,24 +167,50 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addComponent(backButton)
+                    .addComponent(addButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(maGiayText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maDonSearch)
+                    .addComponent(maChuHoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maChuHoSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        new DangKiTamTruFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+       new ChucNang().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void maChuHoSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maChuHoSearchActionPerformed
+        // TODO add your handling code here:
+        String maChuHo = maChuHoText.getText();
+        defaultTableModel.setRowCount(0);
+        setTableData(tamTruService.searchTamTru(maChuHo));
+    }//GEN-LAST:event_maChuHoSearchActionPerformed
+
+    private void maDonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maDonSearchActionPerformed
+        // TODO add your handling code here:
+        String maGiay = maGiayText.getText();
+        defaultTableModel.setRowCount(0);
+        setTableData(tamTruService.searchMaGiay(maGiay));
+    }//GEN-LAST:event_maDonSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,17 +248,17 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton maChuHoSearch;
+    private javax.swing.JTextField maChuHoText;
+    private javax.swing.JButton maDonSearch;
+    private javax.swing.JTextField maGiayText;
+    private javax.swing.JTable tamTruTable;
     // End of variables declaration//GEN-END:variables
 
 }
