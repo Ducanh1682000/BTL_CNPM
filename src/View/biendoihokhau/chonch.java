@@ -5,7 +5,8 @@
  */
 package View.biendoihokhau;
 
-import static Controller.hoKhauControler.getnhankhau;
+import static services_ho_khau.HoKhauService.getnhankhau;
+import java.awt.Font;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model_ho_khau.NhanKhautest;
@@ -28,6 +29,7 @@ public class chonch extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         hk = (themhokhau) parent;
+        tbchuho.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
         show_nk_Jtable();
     }
        public void show_nk_Jtable(){
@@ -89,6 +91,13 @@ public class chonch extends javax.swing.JDialog {
             tbchuho.getColumnModel().getColumn(0).setPreferredWidth(20);
         }
 
+        txttimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttimkiemActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Xác nhận");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +105,7 @@ public class chonch extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Hủy");
         jButton2.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +171,10 @@ public class chonch extends javax.swing.JDialog {
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txttimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttimkiemActionPerformed
 
     /**
      * @param args the command line arguments

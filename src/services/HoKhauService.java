@@ -224,14 +224,9 @@ public class HoKhauService {
         return list;
     }
     
-    /**
-     * ham tao moi ho khau va up date lai thong tin nhan khau co trong ho cu
-     * @param hoKhauBean ho khau moi duoc tach ra
-     */
+   
     public void tachHoKhau(HoKhauBean hoKhauBean) {
-        /**
-         * xoa cac thanh vien co trong moi ra khoi bang thanh_vien_cua_ho
-         */
+       
         
         // xoa chu ho
         String query = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + hoKhauBean.getChuHo().getID();   

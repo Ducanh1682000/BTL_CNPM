@@ -38,7 +38,11 @@ public class NhanKhauModel {
     private int idNguoiXoa;
     private String lyDoXoa;
     private String ghiChu;
-    
+    private String soCMT;
+    private Date ngayCap;
+    private String noiCap;
+    private String maHoKhau;
+    private String quanHe;
     //Bieudo
     private int soLuong;
 
@@ -306,6 +310,47 @@ public class NhanKhauModel {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+
+    public Date getNgayCap() {
+        return ngayCap;
+    }
+
+    public void setNgayCap(Date ngayCap) {
+        this.ngayCap = ngayCap;
+    }
+
+    public String getNoiCap() {
+        return noiCap;
+    }
+
+    public void setNoiCap(String noiCap) {
+        this.noiCap = noiCap;
+    }
+
+    public String getMaHoKhau() {
+        return maHoKhau;
+    }
+
+    public void setMaHoKhau(String maHoKhau) {
+        this.maHoKhau = maHoKhau;
+    }
+
+    public String getQuanHe() {
+        return quanHe;
+    }
+
+    public void setQuanHe(String quanHe) {
+        this.quanHe = quanHe;
+    }
+
+    public String getSoCMT() {
+        return soCMT;
+    }
+
+    public void setSoCMT(String soCMT) {
+        this.soCMT = soCMT;
     }
 
 

@@ -14,7 +14,7 @@ import java.util.Date;
 public class HoKhau {
     private int ID;
     private String maHoKhau;
-    private String idChuHo;
+    private int idChuHo;
     private String maKhuVuc;
     private String DiaChi;
     private Date ngayLap;
@@ -26,7 +26,7 @@ public class HoKhau {
     }
 
     
-    public HoKhau(int ID, String maHoKhau, String idChuHo, String maKhuVuc, String DiaChi, Date ngayLap, Date ngayChuyenDi, String lyDoChuyen, String nguoiThucHien) {
+    public HoKhau(int ID, String maHoKhau, int idChuHo, String maKhuVuc, String DiaChi, Date ngayLap, Date ngayChuyenDi, String lyDoChuyen, String nguoiThucHien) {
         this.ID = ID;
         this.maHoKhau = maHoKhau;
         this.idChuHo = idChuHo;
@@ -36,6 +36,14 @@ public class HoKhau {
         this.ngayChuyenDi = ngayChuyenDi;
         this.lyDoChuyen = lyDoChuyen;
         this.nguoiThucHien = nguoiThucHien;
+    }
+
+    public HoKhau(int ID, String maHoKhau, int idChuHo, String maKhuVuc, String DiaChi) {
+        this.ID = ID;
+        this.maHoKhau = maHoKhau;
+        this.idChuHo = idChuHo;
+        this.maKhuVuc = maKhuVuc;
+        this.DiaChi = DiaChi;
     }
 
     public int getID() {
@@ -54,11 +62,11 @@ public class HoKhau {
         this.maHoKhau = maHoKhau;
     }
 
-    public String getIdChuHo() {
+    public int getIdChuHo() {
         return idChuHo;
     }
 
-    public void setIdChuHo(String idChuHo) {
+    public void setIdChuHo(int idChuHo) {
         this.idChuHo = idChuHo;
     }
 

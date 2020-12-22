@@ -170,8 +170,8 @@ public class BieuDoJFrame extends javax.swing.JFrame {
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
         BieuDoController controller = new BieuDoController();
-        if (jrd1.isSelected()) controller.setDataToChart1(jpnView);
-        else if (jrd2.isSelected()) controller.setDataToChart2(jpnView);
+        //if (jrd1.isSelected()) controller.setDataToChart1(jpnView);
+        //else if (jrd2.isSelected()) controller.setDataToChart2(jpnView);
     }//GEN-LAST:event_btnShowActionPerformed
 
    

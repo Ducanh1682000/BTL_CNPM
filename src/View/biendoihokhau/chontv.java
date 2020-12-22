@@ -5,12 +5,14 @@
  */
 package View.biendoihokhau;
 
-import static Controller.hoKhauControler.getnhankhau;
+import static services_ho_khau.HoKhauTVService.getnhankhau;
+import java.awt.Font;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model_ho_khau.ThanhVienCuaHo;
 
 import model_ho_khau.NhanKhautest;
 
@@ -26,19 +28,20 @@ public class chontv extends javax.swing.JDialog {
      */
     private themhokhau hk;
     private DefaultTableModel tblModel;
-    private DefaultTableModel tblModel1;
-    public List<String> str;
-    public List<NhanKhautest> ListTbgd;
-    public List<NhanKhautest> ListTbtv;
+    //public List<String> str;
+    public static List<NhanKhautest> ListTbgd;
+    public static List<NhanKhautest> ListTbtv;
     private int indexTbGiaDinh;
     private int indexTbthanhVien;
     public chontv(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         hk = (themhokhau) parent;
-        str = new ArrayList<>();
+       // str = new ArrayList<>();
         ListTbtv = new ArrayList<>();
         setLocationRelativeTo(null);
+        tbgiadinh.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
+        tbthanhvien.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
         show_nk_Jtable();
        
     }
@@ -86,7 +89,7 @@ public class chontv extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Họ tên", "CMND", "Giới tính", "Địa chỉ hiện nay"
+                "ID", "Họ tên", "CMND", "Quan hệ với chủ hộ"
             }
         ));
         tbgiadinh.setGridColor(new java.awt.Color(255, 255, 255));
@@ -125,6 +128,7 @@ public class chontv extends javax.swing.JDialog {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton5.setText("Hủy");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +136,7 @@ public class chontv extends javax.swing.JDialog {
             }
         });
 
+        jButton6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton6.setText("Tạo mới");
         jButton6.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -148,6 +153,7 @@ public class chontv extends javax.swing.JDialog {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton4.setText("Lưu");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,12 +171,12 @@ public class chontv extends javax.swing.JDialog {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField2)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -189,9 +195,9 @@ public class chontv extends javax.swing.JDialog {
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(79, 79, 79)
                         .addComponent(jButton2)
-                        .addGap(30, 30, 30)
+                        .addGap(26, 26, 26)
                         .addComponent(jButton3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -231,7 +237,7 @@ public class chontv extends javax.swing.JDialog {
          tblModel.setRowCount(0);
             for(NhanKhautest nk: ListTbgd){
             tblModel.addRow(new Object[]{
-            nk.getID(),nk.getHoTen(),nk.getSoCMND(),nk.getGioiTinh(),nk.getDiaChiHienNay()
+            nk.getID(),nk.getHoTen(),nk.getSoCMND(),nk.getQuanHeVoiChuHo()
             });
         }
      }
@@ -255,7 +261,7 @@ public class chontv extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Bạn đã chọn rồi");
             } else {
                 NhanKhautest nkk = ListTbgd.get(indexTbGiaDinh);
-                str.add(JOptionPane.showInputDialog(rootPane,"Quan hệ Với Chủ Hộ", "Quan Hệ", JOptionPane.NO_OPTION));
+                //str.add(JOptionPane.showInputDialog(rootPane,"Quan hệ Với Chủ Hộ", "Quan Hệ", JOptionPane.NO_OPTION));
                 addTb1ToTb2(nkk);
             }
             
@@ -279,7 +285,7 @@ public class chontv extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Bạn chưa chọn thành viên");
         } else {
             ListTbtv.remove(indexTbthanhVien);
-            str.remove(indexTbthanhVien);
+           // str.remove(indexTbthanhVien);
             showData();
         }
         // TODO add your handling code here:
@@ -292,13 +298,21 @@ public class chontv extends javax.swing.JDialog {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         tblModel = (DefaultTableModel) tbthanhvien.getModel();
         tblModel.setRowCount(0);
-        str.clear();
+    //    str.clear();
         ListTbtv.clear();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        hk.addtb(ListTbtv, str);
+        hk.resetListtv();
+        for(int i = 0; i< ListTbtv.size();i++){
+            ThanhVienCuaHo tv = new ThanhVienCuaHo();
+            tv.setIdNhanKhau(ListTbtv.get(i).getID());
+            tv.setQuanHeVoiChuHo(ListTbtv.get(i).getQuanHeVoiChuHo());
+            hk.addListtv(tv);
+        }
+        hk.addtb(ListTbtv);
+        
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -318,7 +332,7 @@ public class chontv extends javax.swing.JDialog {
         for (int i = 0; i< ListTbtv.size();i++){
             row[0] = ListTbtv.get(i).getHoTen();
             row[1] = ListTbtv.get(i).getSoCMND();
-            row[2] = str.get(i);
+            row[2] =  ListTbtv.get(i).getQuanHeVoiChuHo();
             
             tblModel.addRow(row);
         }
