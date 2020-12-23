@@ -19,7 +19,7 @@ public class ThongKeService {
         List<NhanKhauModel> list = new ArrayList<>();
         
         String query = "SELECT * FROM nhan_khau "
-                    + " INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau"
+//                    + " INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau"
                     + " LEFT JOIN tam_tru ON nhan_khau.ID = tam_tru.idNhanKhau "
                     + " LEFT JOIN tam_vang ON nhan_khau.ID = tam_vang.idNhanKhau "
                     + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) >= "
@@ -30,19 +30,19 @@ public class ThongKeService {
             query += " AND nhan_khau.gioiTinh = '" + gioiTinh + "'";
         }
         if (Status.equalsIgnoreCase("Toan bo")) {
-            query += " AND (tam_tru.denNgay >= CURDATE() OR tam_tru.denNgay IS NULL)"
-                    + " AND (tam_vang.denNgay <= CURDATE() OR tam_vang.denNgay IS NULL)";
+            query += " AND (tam_tru.NgayChuyenDi >= CURDATE() OR tam_tru.NgayChuyenDi IS NULL)"
+                    + " AND (tam_vang.vangTuNgay <= CURDATE() OR tam_vang.vangDenNgay IS NULL)";
         } else if (Status.equalsIgnoreCase("Thuong tru")) {
-            query += " AND tam_tru.denNgay IS NULL";
+            query += " AND tam_tru.NgayChuyenDi IS NULL";
             
         } else if (Status.equalsIgnoreCase("Tam tru")) {
-            query += " AND (tam_tru.tuNgay BETWEEN '"
+            query += " AND (tam_tru.NgayChuyenDen BETWEEN '"
                     + tuNgay
                     + "' AND '"
                     + denNgay
                     + "'";
         } else if (Status.equalsIgnoreCase("Tam vang")) {
-            query += " AND (tam_vang.tuNgay BETWEEN '"
+            query += " AND (tam_vang.vangTuNgay BETWEEN '"
                     + tuNgay
                     + "' AND '"
                     + denNgay
