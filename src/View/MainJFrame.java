@@ -5,7 +5,7 @@ import Controller.ChuyenManHinhController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import views.biendoinhaukhau.ThemNhanKhau;
+import views.biendoinhaukhau.ThemNhanKhauFrame;
 
 /**
  *
@@ -266,11 +266,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jpnNhanKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jpnHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(18, 18, 18)
                 .addComponent(jpnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jpnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -325,11 +325,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jpnNhanKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnNhanKhauMouseClicked
         // TODO add your handling code here:
-        dispose();
-        ThemNhanKhau them = new ThemNhanKhau();
-        them.setLocationRelativeTo(null);
-        them.setResizable(false);
-        them.setVisible(true);
+       
     }//GEN-LAST:event_jpnNhanKhauMouseClicked
 
     private void jlbLogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbLogoutMousePressed
