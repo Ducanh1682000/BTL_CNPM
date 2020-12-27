@@ -123,7 +123,7 @@ public class NhanKhauService {
         List<NhanKhauBean> list = new ArrayList<>();
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
-            String query1 = "SELECT * FROM nhan_khau ORDER BY ngayTao DESC";
+            String query1 = "SELECT * FROM nhan_khau JOIN chung_minh_thu ON chung_minh_thu.idNhanKhau = nhan_khau.ID ORDER BY ngayTao DESC";
             PreparedStatement preparedStatement1 = (PreparedStatement)connection.prepareStatement(query1);
             ResultSet rs = preparedStatement1.executeQuery();
             while (rs.next()){
@@ -134,11 +134,11 @@ public class NhanKhauService {
                 nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-//                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
-//                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-//                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-//                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-//                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
+                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
+                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
+                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
+                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
                 
                 list.add(nhanKhauBean);
             }
@@ -349,3 +349,4 @@ public class NhanKhauService {
         return nhanKhau;
     }
 }
+
