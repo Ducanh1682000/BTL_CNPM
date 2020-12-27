@@ -32,7 +32,7 @@ public class TamTruService {
                 tamtru.setMaGiayTamTru(rs.getInt("MaGiayTamTru"));
                 tamtru.setMaHoKhauTamTru(rs.getString("MaHoKhauTamTru"));
                 tamtru.setHoten(rs.getString("Hoten"));
-                tamtru.setSoCMND(rs.getInt("soCMND"));
+                tamtru.setSoCMND(rs.getString("soCMND"));
                 tamtru.setNgaySinh(rs.getDate("NgaySinh"));
                 tamtru.setGioiTinh(rs.getString("GioiTinh"));
                 tamtru.setNgayChuyenDen(rs.getDate("NgayChuyenDen"));
@@ -42,7 +42,6 @@ public class TamTruService {
                 tamtru.setLyDoTamTru(rs.getString("LyDoTamTru"));
                 tamtru.setGhiChu(rs.getString("GhiChu"));
                 tamtru.setQueQuan(rs.getString("QueQuan"));
-                tamtru.setHOCHIEU(rs.getInt("HOCHIEU"));
                 tamtru.setDiaChiThuongTru(rs.getString("DiaChiThuongTru"));
                 
                 tamTruList.add(tamtru);
@@ -55,26 +54,22 @@ public class TamTruService {
     
     public void addTamTru(TamTruModel tamtru){
         Connection connection = (Connection) MysqlConnection.getMysqlConnection();
-        String query = "INSERT INTO tam_tru(MaGiayTamTru, MaHoKhauTamTru, Hoten, soCMND, NgaySinh, GioiTinh"
-                + ", NgayChuyenDen, NgayChuyenDi, soDT, TrangThai, LyDoTamTru, GhiChu, QueQuan, HOCHIEU, DiaChiThuongTru)"
-                + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO tam_tru(MaHoKhauTamTru, Hoten, soCMND, NgaySinh, GioiTinh"
+                + ", NgayChuyenDen, NgayChuyenDi, soDT, LyDoTamTru, QueQuan, DiaChiThuongTru)"
+                + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
-            preparedStatement.setInt(1, tamtru.getMaGiayTamTru());
-            preparedStatement.setString(2, tamtru.getMaHoKhauTamTru());
-            preparedStatement.setString(3, tamtru.getHoten());
-            preparedStatement.setInt(4, tamtru.getSoCMND());
-            preparedStatement.setDate(5, (Date) tamtru.getNgaySinh());
-            preparedStatement.setString(6, tamtru.getGioiTinh());
-            preparedStatement.setDate(7, (Date) tamtru.getNgayChuyenDen());
-            preparedStatement.setDate(8, (Date) tamtru.getNgayChuyenDi());
-            preparedStatement.setString(9, tamtru.getSoDT());
-            preparedStatement.setString(10, tamtru.getTrangThai());
-            preparedStatement.setString(11, tamtru.getLyDoTamTru());
-            preparedStatement.setString(12, tamtru.getGhiChu());
-            preparedStatement.setString(13, tamtru.getQueQuan());
-            preparedStatement.setInt(14, tamtru.getHOCHIEU());
-            preparedStatement.setString(15, tamtru.getDiaChiThuongTru());
+            preparedStatement.setString(1, tamtru.getMaHoKhauTamTru());
+            preparedStatement.setString(2, tamtru.getHoten());
+            preparedStatement.setString(3, tamtru.getSoCMND());
+            preparedStatement.setDate(4, (Date) tamtru.getNgaySinh());
+            preparedStatement.setString(5, tamtru.getGioiTinh());
+            preparedStatement.setDate(6, (Date) tamtru.getNgayChuyenDen());
+            preparedStatement.setDate(7, (Date) tamtru.getNgayChuyenDi());
+            preparedStatement.setString(8, tamtru.getSoDT());
+            preparedStatement.setString(9, tamtru.getLyDoTamTru());
+            preparedStatement.setString(10, tamtru.getQueQuan());
+            preparedStatement.setString(11, tamtru.getDiaChiThuongTru());
             
             preparedStatement.executeUpdate();
         }catch(SQLException e){
@@ -84,12 +79,12 @@ public class TamTruService {
     public void updateTamTru(TamTruModel tamtru){
         Connection connection = (Connection) MysqlConnection.getMysqlConnection();
         String query = "UPDATE tam_tru SET MaHoKhauTamTru = ?, Hoten = ?, soCMND = ?, NgaySinh = ?, GioiTinh = ?, NgayChuyenDen = ?, NgayChuyenDi = ?, soDT = ?, "
-                +"TrangThai = ?, LyDoTamTru = ?, GhiChu = ?, QueQuan = ?, HOCHIEU = ?, DiaChiThuongTru = ? WHERE MaGiayTamTru = ?";
+                +"TrangThai = ?, LyDoTamTru = ?, GhiChu = ?, QueQuan = ?, DiaChiThuongTru = ? WHERE MaGiayTamTru = ?";
         try{
            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
            preparedStatement.setString(1, tamtru.getMaHoKhauTamTru());
            preparedStatement.setString(2, tamtru.getHoten());
-           preparedStatement.setInt(3, tamtru.getSoCMND());
+           preparedStatement.setString(3, tamtru.getSoCMND());
            preparedStatement.setDate(4, (Date) tamtru.getNgaySinh());
            preparedStatement.setString(5, tamtru.getGioiTinh());
            preparedStatement.setDate(6, (Date) tamtru.getNgayChuyenDen());
@@ -99,9 +94,8 @@ public class TamTruService {
            preparedStatement.setString(10, tamtru.getLyDoTamTru());
            preparedStatement.setString(11, tamtru.getGhiChu());
            preparedStatement.setString(12, tamtru.getQueQuan());
-           preparedStatement.setInt(13, tamtru.getHOCHIEU());
-           preparedStatement.setString(14, tamtru.getDiaChiThuongTru());
-           preparedStatement.setInt(15, tamtru.getMaGiayTamTru());
+           preparedStatement.setString(13, tamtru.getDiaChiThuongTru());
+           preparedStatement.setInt(14, tamtru.getMaGiayTamTru());
            
            preparedStatement.executeUpdate();
         }catch(SQLException e){
@@ -122,7 +116,7 @@ public class TamTruService {
                 tamtru.setMaGiayTamTru(rs.getInt("MaGiayTamTru"));
                 tamtru.setMaHoKhauTamTru(rs.getString("MaHoKhauTamTru"));
                 tamtru.setHoten(rs.getString("Hoten"));
-                tamtru.setSoCMND(rs.getInt("soCMND"));
+                tamtru.setSoCMND(rs.getString("soCMND"));
                 tamtru.setNgaySinh(rs.getDate("NgaySinh"));
                 tamtru.setGioiTinh(rs.getString("GioiTinh"));
                 tamtru.setNgayChuyenDen(rs.getDate("NgayChuyenDen"));
@@ -132,7 +126,6 @@ public class TamTruService {
                 tamtru.setLyDoTamTru(rs.getString("LyDoTamTru"));
                 tamtru.setGhiChu(rs.getString("GhiChu"));
                 tamtru.setQueQuan(rs.getString("QueQuan"));
-                tamtru.setHOCHIEU(rs.getInt("HOCHIEU"));
                 tamtru.setDiaChiThuongTru(rs.getString("DiaChiThuongTru"));
                 
                 tamTruSearch.add(tamtru);
@@ -157,7 +150,7 @@ public class TamTruService {
                 tamtru.setMaGiayTamTru(rs.getInt("MaGiayTamTru"));
                 tamtru.setMaHoKhauTamTru(rs.getString("MaHoKhauTamTru"));
                 tamtru.setHoten(rs.getString("Hoten"));
-                tamtru.setSoCMND(rs.getInt("soCMND"));
+                tamtru.setSoCMND(rs.getString("soCMND"));
                 tamtru.setNgaySinh(rs.getDate("NgaySinh"));
                 tamtru.setGioiTinh(rs.getString("GioiTinh"));
                 tamtru.setNgayChuyenDen(rs.getDate("NgayChuyenDen"));
@@ -167,7 +160,6 @@ public class TamTruService {
                 tamtru.setLyDoTamTru(rs.getString("LyDoTamTru"));
                 tamtru.setGhiChu(rs.getString("GhiChu"));
                 tamtru.setQueQuan(rs.getString("QueQuan"));
-                tamtru.setHOCHIEU(rs.getInt("HOCHIEU"));
                 tamtru.setDiaChiThuongTru(rs.getString("DiaChiThuongTru"));
                 
                 tamTruSearch.add(tamtru);

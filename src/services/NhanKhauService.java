@@ -4,6 +4,7 @@ import Bean.NhanKhauBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -329,5 +330,22 @@ public class NhanKhauService {
      */
     private void exceptionHandle(String message) {
         JOptionPane.showMessageDialog(null, message, "Warning", JOptionPane.ERROR_MESSAGE);
+    }
+    public NhanKhauModel searchByID(int id){
+        NhanKhauModel nhanKhau = new NhanKhauModel();
+        try{
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "SELECT * FROM nhan_khau WHERE ID ="+id;
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                nhanKhau.setSoCMT(rs.getString("SoCMND"));
+                nhanKhau.setHoTen(rs.getString("hoTen"));
+                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+            }
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return nhanKhau;
     }
 }

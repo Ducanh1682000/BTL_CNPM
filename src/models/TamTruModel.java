@@ -10,7 +10,7 @@ public class TamTruModel {
     private int MaGiayTamTru;
     private String MaHoKhauTamTru;
     private String Hoten;
-    private int soCMND;
+    private String soCMND;
     private Date NgaySinh;
     private String GioiTinh;
     private String QueQuan;
@@ -21,15 +21,6 @@ public class TamTruModel {
     private String LyDoTamTru;
     private String GhiChu;
     private String TrangThai;
-    private int HOCHIEU;
-
-    public int getHOCHIEU() {
-        return HOCHIEU;
-    }
-
-    public void setHOCHIEU(int HOCHIEU) {
-        this.HOCHIEU = HOCHIEU;
-    }
 
     public TamTruModel() {
         
@@ -59,11 +50,11 @@ public class TamTruModel {
         this.Hoten = Hoten;
     }
 
-    public int getSoCMND() {
+    public String getSoCMND() {
         return soCMND;
     }
 
-    public void setSoCMND(int soCMND) {
+    public void setSoCMND(String soCMND) {
         this.soCMND = soCMND;
     }
 
