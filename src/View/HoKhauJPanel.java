@@ -6,17 +6,17 @@
 package View;
 
 import Controller.HoKhauController;
-<<<<<<< HEAD
+
 import View.biendoihokhau.*;
 import java.awt.Panel;
 import javax.swing.RootPaneContainer;
 import javax.swing.plaf.RootPaneUI;
 import org.jfree.ui.tabbedui.RootPanel;
-=======
+
 import View.biendoihokhau.ThayDoiHoKhau;
 import View.biendoihokhau.ThayDoiThanhVienCuaHo;
 import View.biendoihokhau.themhokhau;
->>>>>>> 6014fffdc8653d7658cc84c6320f8c026246b4df
+
 
 /**
  *
@@ -59,11 +59,8 @@ public class HoKhauJPanel extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-<<<<<<< HEAD
+
         jButton1.setText("Thêm mới");
-=======
-        jButton1.setText("Thêm hộ mới");
->>>>>>> 6014fffdc8653d7658cc84c6320f8c026246b4df
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -77,11 +74,8 @@ public class HoKhauJPanel extends javax.swing.JPanel {
             }
         });
 
-<<<<<<< HEAD
+
         jButton3.setText("cập nhập");
-=======
-        jButton3.setText("Chuyển đi");
->>>>>>> 6014fffdc8653d7658cc84c6320f8c026246b4df
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -138,7 +132,7 @@ public class HoKhauJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //setVisible(false);
         new themhokhau().setVisible(true);
@@ -159,27 +153,7 @@ public class HoKhauJPanel extends javax.swing.JPanel {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-=======
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ThayDoiHoKhau frame = new ThayDoiHoKhau();
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //Tách hộ
-     
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Thêm hộ mới
-        themhokhau frame = new themhokhau();
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
->>>>>>> 6014fffdc8653d7658cc84c6320f8c026246b4df
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
