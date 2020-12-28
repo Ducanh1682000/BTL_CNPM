@@ -106,7 +106,7 @@ public class NhanKhauController {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                JOptionPane.showConfirmDialog(null, table.getSelectedRow());
+//               JOptionPane.showConfirmDialog(null, table.getSelectedRow());
                 if (e.getClickCount() > 1) {
                     NhanKhauBean temp = listNhanKhauBeans.get(table.getSelectedRow());
                     NhanKhauBean info = nhanKhauService.getNhanKhau(temp.getChungMinhThuModel().getSoCMT());
