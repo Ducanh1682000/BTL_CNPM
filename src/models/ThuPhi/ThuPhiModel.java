@@ -5,6 +5,7 @@
  */
 package models.ThuPhi;
 
+import models.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,6 +23,35 @@ public class ThuPhiModel implements Serializable {
 //    private boolean trangThai;
     private Date ngayNop;
     private String ghiChu;
+    private int idDotThu;
+    private String tenDotThu;
+    private String loaiPhiThu;
+
+    public int getIdDotThu() {
+        return idDotThu;
+    }
+
+    public void setIdDotThu(int idDotThu) {
+        this.idDotThu = idDotThu;
+    }
+
+    public String getTenDotThu() {
+        return tenDotThu;
+    }
+
+    public void setTenDotThu(String tenDotThu) {
+        this.tenDotThu = tenDotThu;
+    }
+
+    public String getLoaiPhiThu() {
+        return loaiPhiThu;
+    }
+
+    public void setLoaiPhiThu(String loaiPhiThu) {
+        this.loaiPhiThu = loaiPhiThu;
+    }
+    
+    
 
     public int getIdHoKhau() {
         return idHoKhau;

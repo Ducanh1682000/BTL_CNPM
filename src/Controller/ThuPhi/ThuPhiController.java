@@ -5,15 +5,19 @@
  */
 package Controller.ThuPhi;
 
+
 import com.toedter.calendar.JDateChooser;
-import java.awt.Color;
-import java.awt.HeadlessException;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,10 +25,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import models.ThuPhi.DotThuModel;
+
 import models.ThuPhi.ThongTinThuPhiModel;
+import models.ThuPhi.ThuPhiModel;
 import services.MysqlConnection;
 import services.ThuPhiService;
+import utility.PhieuThuJFrame;
 
 /**
  *
@@ -84,8 +90,12 @@ public class ThuPhiController {
     }
 
     public void setView() {
+        
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        
 
-        jdcNgayNop.setDate(new java.sql.Date(System.currentTimeMillis()));
+        jdcNgayNop.setDate(date);
         jtfMaHoKhau.setEnabled(false);
         jtfSoTien.setEnabled(false);
         jtaGhiChu.setEnabled(false);
@@ -192,6 +202,34 @@ public class ThuPhiController {
                 setView();
             }
         });
+        
+        
+        btnPrint.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    ThuPhiModel thuPhiModel = new ThuPhiModel();
+                    thuPhiModel.setIdDotThu(Integer.valueOf(jtfMaDotThu.getText()));
+                    thuPhiModel.setTenDotThu(jtfTenDotThu.getText());
+                    thuPhiModel.setIdHoKhau(Integer.valueOf(jtfMaHoKhau.getText()));
+                    thuPhiModel.setHoTenChuHo(jtfTenChuHo.getText());
+                    thuPhiModel.setSoTien(Integer.valueOf(jtfSoTien.getText()));
+                    thuPhiModel.setGhiChu(jtaGhiChu.getText());
+                    thuPhiModel.setLoaiPhiThu(jrbBatBuoc.isSelected() ? "Bắt buộc" : "Đóng góp");
+                    
+                    thuPhiModel.setNgayNop(jdcNgayNop.getDate());
+                    
+                    PhieuThuJFrame frame = new PhieuThuJFrame(thuPhiModel);
+                    frame.setLocationRelativeTo(null);
+                    frame.setResizable(false);
+                    frame.setTitle("Xuất phiếu thu");
+                    frame.setVisible(true);
+ 
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
     }
 
@@ -228,18 +266,9 @@ public class ThuPhiController {
             Connection connection = MysqlConnection.getMysqlConnection();
             String query = "SELECT ho_khau.ID, nhan_khau.hoTen FROM ho_khau, nhan_khau "
                     + "WHERE ho_khau.ID = ? AND ho_khau.IdChuHo = nhan_khau.ID";
-//            
-            PreparedStatement ps1 = connection.prepareStatement(query);
-//            
-            ps1.setInt(1, maHoKhau);
-//            
-            ResultSet rs = ps1.executeQuery();
-
-            if (rs.next()) {
-                jtfTenChuHo.setText(rs.getString("hoTen"));
-            }
-//            
-            ps1.close();
+            
+            
+            
             String query2 = "SELECT COUNT(*) as soTV FROM thanh_vien_cua_ho WHERE idHoKhau = ?";
             PreparedStatement ps2 = connection.prepareStatement(query2);
             ps2.setInt(1, maHoKhau);
@@ -249,8 +278,18 @@ public class ThuPhiController {
             }
 
             ps2.close();
-            connection.close();
-            return true;
+            PreparedStatement ps1 = connection.prepareStatement(query);          
+            ps1.setInt(1, maHoKhau);           
+            ResultSet rs = ps1.executeQuery();
+
+            if (rs.next()) {
+                jtfTenChuHo.setText(rs.getString("hoTen"));
+                return true;
+            }
+           
+            ps1.close();
+            
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra! vui lòng kiểm tra lại.", "Warning!!", JOptionPane.WARNING_MESSAGE);
         }
@@ -298,4 +337,6 @@ public class ThuPhiController {
         }
         return false;
     }
+    
+    
 }

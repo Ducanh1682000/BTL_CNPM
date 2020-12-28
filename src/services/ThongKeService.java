@@ -20,7 +20,7 @@ public class ThongKeService {
         
         String query = "SELECT * FROM nhan_khau "
 //                    + " INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau"
-                    + " LEFT JOIN tam_tru ON nhan_khau.ID = tam_tru.idNhanKhau "
+//                    + " LEFT JOIN tam_tru ON nhan_khau.ID = tam_tru.idNhanKhau "
                     + " LEFT JOIN tam_vang ON nhan_khau.ID = tam_vang.idNhanKhau "
                     + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) >= "
                     + tuTuoi
@@ -30,19 +30,22 @@ public class ThongKeService {
             query += " AND nhan_khau.gioiTinh = '" + gioiTinh + "'";
         }
         if (Status.equalsIgnoreCase("Toan bo")) {
-            query += " AND (tam_tru.NgayChuyenDi >= CURDATE() OR tam_tru.NgayChuyenDi IS NULL)"
-                    + " AND (tam_vang.vangTuNgay <= CURDATE() OR tam_vang.vangDenNgay IS NULL)";
+//            query += " AND (tam_tru.NgayChuyenDi >= CURDATE() OR tam_tru.NgayChuyenDi IS NULL)"
+              query += " AND (tam_vang.vangTuNgay <= CURDATE() OR tam_vang.vangDenNgay IS NULL)";
         } else if (Status.equalsIgnoreCase("Thuong tru")) {
-            query += " AND tam_tru.NgayChuyenDi IS NULL";
             
-        } else if (Status.equalsIgnoreCase("Tam tru")) {
-            query += " AND (tam_tru.NgayChuyenDen BETWEEN '"
-                    + tuNgay
-                    + "' AND '"
-                    + denNgay
-                    + "'";
+              query += "";
+//            query += " AND tam_tru.NgayChuyenDi IS NULL";
+//            
+//        } else if (Status.equalsIgnoreCase("Tam tru")) {
+//            
+//            query += " AND (tam_tru.NgayChuyenDen BETWEEN '"
+//                    + tuNgay
+//                    + "' AND '"
+//                    + denNgay
+//                    + "'";
         } else if (Status.equalsIgnoreCase("Tam vang")) {
-            query += " AND (tam_vang.vangTuNgay BETWEEN '"
+            query += " AND tam_vang.vangTuNgay BETWEEN '"
                     + tuNgay
                     + "' AND '"
                     + denNgay
@@ -57,7 +60,7 @@ public class ThongKeService {
             
             while (rs.next()){
                 NhanKhauModel nhanKhau = new NhanKhauModel();
-                idNhanKhau = rs.getInt("idNhanKhau");
+                idNhanKhau = rs.getInt("ID");
                 nhanKhau.setID(idNhanKhau);
                 nhanKhau.setHoTen(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getString("gioiTinh"));

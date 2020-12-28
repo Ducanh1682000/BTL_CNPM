@@ -23,16 +23,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.NhanKhauModel;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellType;
-//import org.apache.poi.xssf.usermodel.XSSFRow;
-//import org.apache.poi.xssf.usermodel.XSSFSheet;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.ThongKeService;
 import services.StringService;
 import utility.TableModelNhanKhau;
-import utility.TableModelThuPhi;
-import views.BieuDoJFrame.BieuDoJFrame;
+
 
 /**
  *
@@ -50,14 +44,14 @@ public class ThongKeJPanelController {
     private JLabel jlbKetQua;
     private JButton btnPrint;
     private JButton btnThongKe;
-    private JButton btnBieuDo;
+
 
     private ThongKeService thongKeService;
 
     private TableModelNhanKhau tableModelNhanKhau;
     private final String[] COLUMNS = {"ID", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ hiện nay"};
 
-    public ThongKeJPanelController(JComboBox genderJcb, JComboBox statusJcb, JTextField tuTuoiJtf, JTextField denTuoiJtf, JDateChooser jdcTuNgay, JDateChooser jdcDenNgay, JPanel jpnView, JLabel jlbKetQua, JButton btnPrint, JButton btnThongKe, JButton btnBieuDo) {
+    public ThongKeJPanelController(JComboBox genderJcb, JComboBox statusJcb, JTextField tuTuoiJtf, JTextField denTuoiJtf, JDateChooser jdcTuNgay, JDateChooser jdcDenNgay, JPanel jpnView, JLabel jlbKetQua, JButton btnPrint, JButton btnThongKe) {
         this.GenderJcb = genderJcb;
         this.StatusJcb = statusJcb;
         this.tuTuoiJtf = tuTuoiJtf;
@@ -68,7 +62,7 @@ public class ThongKeJPanelController {
         this.jlbKetQua = jlbKetQua;
         this.btnPrint = btnPrint;
         this.btnThongKe = btnThongKe;
-        this.btnBieuDo = btnBieuDo;
+
 
         this.thongKeService = new ThongKeService();
 
@@ -200,14 +194,6 @@ public class ThongKeJPanelController {
     }
 
     public void setEvent() {
-        btnBieuDo.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                BieuDoJFrame jframe = new BieuDoJFrame();
-                jframe.setLocationRelativeTo(null);
-                jframe.setVisible(true);
-            }
-        });
 
         btnThongKe.addMouseListener(new MouseAdapter() {
             @Override
