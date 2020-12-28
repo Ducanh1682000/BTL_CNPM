@@ -82,7 +82,7 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         jrd2.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jrd2);
         jrd2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jrd2.setText("Theo độ tuổi");
+        jrd2.setText("Dạng quạt");
         jrd2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrd2MouseClicked(evt);
@@ -97,7 +97,7 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         jrd1.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jrd1);
         jrd1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jrd1.setText("Theo giới tính");
+        jrd1.setText("Dạng cột");
         jrd1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrd1MouseClicked(evt);

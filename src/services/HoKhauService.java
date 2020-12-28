@@ -5,6 +5,7 @@
  */
 package services;
 import Bean.HoKhauBean;
+import Controller.LoginController;
 import View.LoginForm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -248,7 +249,7 @@ public class HoKhauService {
                 + noiChuyenDen
                 + "',"
                 + "nguoiThucHien = "
-                + LoginForm.currentUser.getID()
+                + LoginController.currentUser.getID()
                 + " WHERE ho_khau.ID = " + idhoKhau;
         try {
             Connection connection = MysqlConnection.getMysqlConnection();

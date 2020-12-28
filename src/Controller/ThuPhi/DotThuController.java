@@ -5,7 +5,10 @@
  */
 package Controller.ThuPhi;
 
+import View.ThuPhi.DotThuJPanel;
+import View.ThuPhi.ThuPhiMainJFrame;
 import com.toedter.calendar.JDateChooser;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,8 +17,10 @@ import java.sql.PreparedStatement;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,7 +35,7 @@ import services.ThuPhiService;
 public class DotThuController {
 
     private JButton btnSave;
-    
+
     private JTextField jtfMaDotThu;
     private JTextField jtfTenDotThu;
     private JDateChooser jdcNgayBatDauThu;
@@ -46,7 +51,9 @@ public class DotThuController {
 
     private ThuPhiService thuPhiService = null;
 
-    public DotThuController(JButton btnSave, JTextField jtfMaDotThu, JTextField jtfTenDotThu, JDateChooser jdcNgayBatDauThu, JDateChooser jdcNgayKetThucThu, JDateChooser jdcNgayTao, JTextField jtfSoTien, JRadioButton jrbBatBuoc, JRadioButton jrbDongGop, JLabel jlbTrangThai) {
+    public DotThuController(JButton btnSave, JTextField jtfMaDotThu, JTextField jtfTenDotThu,
+            JDateChooser jdcNgayBatDauThu, JDateChooser jdcNgayKetThucThu, JDateChooser jdcNgayTao,
+            JTextField jtfSoTien, JRadioButton jrbBatBuoc, JRadioButton jrbDongGop, JLabel jlbTrangThai) {
         this.btnSave = btnSave;
         this.jtfMaDotThu = jtfMaDotThu;
         this.jtfTenDotThu = jtfTenDotThu;
@@ -59,6 +66,7 @@ public class DotThuController {
         this.jlbTrangThai = jlbTrangThai;
 
         this.thuPhiService = new ThuPhiService();
+
     }
 
     public void setView(DotThuModel dotThuModel) {
@@ -79,35 +87,36 @@ public class DotThuController {
             jtfSoTien.setEnabled(false);
         }
 
-       
         setEvent();
     }
-    
+
     // set event
     public void setEvent() {
         jrbBatBuoc.addMouseListener(new MouseAdapter() {
-             @Override
+            @Override
             public void mouseClicked(MouseEvent e) {
                 jtfSoTien.setEnabled(true);
-                
+
             }
         });
         jrbDongGop.addMouseListener(new MouseAdapter() {
-             @Override
+            @Override
             public void mouseClicked(MouseEvent e) {
                 jtfSoTien.setEnabled(false);
-                
+
             }
         });
-  
+
         btnSave.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
                     if (!checkNotNull()) {
-                        jlbTrangThai.setText("Vui lòng nhập dữ liệu bắt buộc!");
+//                        jlbTrangThai.setText("Vui lòng nhập dữ liệu bắt buộc!");
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhập hết các trường bắt buộc", "Warning", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        dotThuModel.setTenDotThu(jtfTenDotThu.getText().trim());
+                        if (checkDate()){
+                            dotThuModel.setTenDotThu(jtfTenDotThu.getText().trim());
                         dotThuModel.setNgayBatDauThu(covertDateToDateSql(jdcNgayBatDauThu.getDate()));
                         dotThuModel.setNgayKetThucThu(covertDateToDateSql(jdcNgayKetThucThu.getDate()));
                         dotThuModel.setSoTienTrenMotNhanKhau(Integer.parseInt(jtfSoTien.getText()));
@@ -118,14 +127,21 @@ public class DotThuController {
                             if (lastId != 0) {
                                 dotThuModel.setMaDotThu(lastId);
                                 jtfMaDotThu.setText("DT" + dotThuModel.getMaDotThu());
-                                jlbTrangThai.setText("Xử lý cập nhật dữ liệu thành công!");
+                                
+                                
+
+//                                jlbTrangThai.setText("Xử lý cập nhật dữ liệu thành công!");
+                                JOptionPane.showMessageDialog(null, "Cập nhật dữ liệu thành công!!");
                             } else {
                                 jlbTrangThai.setText("Có lỗi xảy ra, vui lòng thử lại!");
                             }
                         }
+                        } else 
+                        JOptionPane.showMessageDialog(null, "Thời gian bắt đầu, kết thúc không phù hợp", "Warning", JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (Exception ex) {
-                    jlbTrangThai.setText(ex.toString());
+//                    jlbTrangThai.setText(ex.toString());
+                    ex.printStackTrace();
                 }
             }
 
@@ -143,7 +159,21 @@ public class DotThuController {
     }
 
     private boolean checkNotNull() {
-        return jtfTenDotThu.getText() != null && !jtfTenDotThu.getText().equalsIgnoreCase("");
+        if (jtfTenDotThu.getText().trim().isEmpty()
+                || jdcNgayBatDauThu.getDate()==null
+                || jdcNgayKetThucThu.getDate()==null
+                || jdcNgayTao.getDate()==null) {
+
+            return false;
+        }
+        return true;
+
+    }
+    
+    private boolean checkDate() {
+        if(jdcNgayBatDauThu.getDate().before(jdcNgayKetThucThu.getDate()) )
+            return true;
+        else return false;
     }
 
     private boolean showDialog() {
@@ -155,4 +185,5 @@ public class DotThuController {
     public java.sql.Date covertDateToDateSql(Date d) {
         return new java.sql.Date(d.getTime());
     }
+
 }

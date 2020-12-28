@@ -107,14 +107,29 @@ public class ThuPhiService {
     }
     
 
-    public List<ThongTinThuPhiModel> getListPhiVeSinh() {
-        Connection cons = MysqlConnection.getMysqlConnection();
+    public List<ThongTinThuPhiModel> getListPhiVeSinh(String Status) {
+        
+        List<ThongTinThuPhiModel> list = new ArrayList<>();
         String sql = "SELECT tv.idHoKhau, idChuHo, hoTen, diaChi, COUNT(idNhanKhau) as soThanhVien, 6000*12*COUNT(idNhanKhau) as soTien" 
                     +" FROM thanh_vien_cua_ho tv, ho_khau, nhan_khau" 
-                    +" WHERE tv.idHoKhau = ho_khau.ID and idChuHo = nhan_khau.ID" 
-                    +" GROUP BY  idHoKhau";
-        List<ThongTinThuPhiModel> list = new ArrayList<>();
+                    +" WHERE tv.idHoKhau = ho_khau.ID and idChuHo = nhan_khau.ID";
+        if (Status.equalsIgnoreCase("Toan bo")) {
+            sql += "";
+        } else if (Status.equalsIgnoreCase("Đa đong")) {
+            sql += " AND tv.idHoKhau IN (SELECT maHoKhau" 
+                    +" FROM dot_thu , thong_tin_thu_phi" 
+                    +" WHERE loaiPhiThu = 1 AND dot_thu.maDotThu = thong_tin_thu_phi.maDotThu)";
+        } else if (Status.equalsIgnoreCase("Chua đong")) {
+            sql += " AND tv.idHoKhau NOT IN (SELECT maHoKhau" 
+                    +" FROM dot_thu , thong_tin_thu_phi" 
+                    +" WHERE loaiPhiThu = 1 AND dot_thu.maDotThu = thong_tin_thu_phi.maDotThu)";
+        }
+        sql += " GROUP BY  idHoKhau";
+    
+        
+        
         try {
+            Connection cons = MysqlConnection.getMysqlConnection();
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

@@ -13,13 +13,50 @@ import java.util.Date;
  */
 public class KhaiTuModel {
     private int ID;
-    private String soGiayKhaiTu;
+    private int soGiayKhaiTu;
     private int idNguoiKhai;
     private int idNguoiChet;
     private Date ngayKhai;
     private Date ngayChet;
     private String lyDoChet;
+    private String hoTen;
+    private String gioiTinh;
+    private Date ngaySinh;
+    private String soCMND;
 
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getSoCMND() {
+        return soCMND;
+    }
+
+    public void setSoCMND(String soCMND) {
+        this.soCMND = soCMND;
+    }
+
+    
     public int getID() {
         return ID;
     }
@@ -28,11 +65,11 @@ public class KhaiTuModel {
         this.ID = ID;
     }
 
-    public String getSoGiayKhaiTu() {
+    public int getSoGiayKhaiTu() {
         return soGiayKhaiTu;
     }
 
-    public void setSoGiayKhaiTu(String soGiayKhaiTu) {
+    public void setSoGiayKhaiTu(int soGiayKhaiTu) {
         this.soGiayKhaiTu = soGiayKhaiTu;
     }
 

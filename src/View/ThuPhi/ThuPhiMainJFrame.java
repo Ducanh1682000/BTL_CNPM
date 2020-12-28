@@ -18,15 +18,16 @@ public class ThuPhiMainJFrame extends javax.swing.JFrame {
     public ThuPhiMainJFrame() {
         initComponents();
 
-        setTitle("QUẢN LÝ NHÂN KHẨU");
-
-        ChuyenManHinhThuPhiController controller = new ChuyenManHinhThuPhiController(jpnView);
-        controller.setView(jpnTrangChu, jlbTrangChu);
-
+        setTitle("QUẢN LÝ THU PHÍ");
         List<DanhMucBean> listItem = new ArrayList<>();
         listItem.add(new DanhMucBean("TrangChu", jpnTrangChu, jlbTrangChu));
         listItem.add(new DanhMucBean("DotThu", jpnDotThu, jlbDotThu));
         listItem.add(new DanhMucBean("ThongKe", jpnThongKe, jlbThongKe));
+
+        ChuyenManHinhThuPhiController controller = new ChuyenManHinhThuPhiController(this.jpnView, this);
+        controller.setView(jpnTrangChu, jlbTrangChu, "TrangChu");
+
+        
         controller.setEvent(listItem);
     }
 

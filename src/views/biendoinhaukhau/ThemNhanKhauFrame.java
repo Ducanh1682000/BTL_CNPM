@@ -23,17 +23,15 @@ import javax.swing.JOptionPane;
 import models.NhanKhauModel1;
 import services.MysqlConnection;
 
-
 /**
  *
  * @author THUAN.HQ183840
  */
 public class ThemNhanKhauFrame extends javax.swing.JFrame {
-    
 
     public ThemNhanKhauFrame() {
         initComponents();
-       
+
     }
 
     /**
@@ -103,7 +101,7 @@ public class ThemNhanKhauFrame extends javax.swing.JFrame {
         btnHuy = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Thêm nhân khẩu");
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
@@ -501,138 +499,137 @@ public class ThemNhanKhauFrame extends javax.swing.JFrame {
 
     private void rNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rNuActionPerformed
 
-          
+
     }//GEN-LAST:event_rNuActionPerformed
 
     public void reset() {
-      
-      txtHoTen.setText("");
-      txtBietDanh.setText("");
-      buttonGroup1.clearSelection();
-      txtNoiSinh.setText("");
-      txtQueQuan.setText("");
-      txtQuocTich.setText("");
-      txtDanToc.setText("");
-      txtCMND.setText("");
-      txtNgheNghiep.setText("");
-      txtNoiLamViec.setText("");
-      txtDiaChiTT.setText("");
-      txtGhiChu.setText("");
-      txtNoiCap.setText("");
-      txtTonGiao.setText("");
-      jdNgayCap.setCalendar(null);
-      jdNgaySinh.setCalendar(null);
-   }
+
+        txtHoTen.setText("");
+        txtBietDanh.setText("");
+        buttonGroup1.clearSelection();
+        txtNoiSinh.setText("");
+        txtQueQuan.setText("");
+        txtQuocTich.setText("");
+        txtDanToc.setText("");
+        txtCMND.setText("");
+        txtNgheNghiep.setText("");
+        txtNoiLamViec.setText("");
+        txtDiaChiTT.setText("");
+        txtGhiChu.setText("");
+        txtNoiCap.setText("");
+        txtTonGiao.setText("");
+        jdNgayCap.setCalendar(null);
+        jdNgaySinh.setCalendar(null);
+        txtQuanHe.setText("");
+    }
     private void rNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rNamActionPerformed
-     
+
     }//GEN-LAST:event_rNamActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-      reset();
+        reset();
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-            
-            NhanKhauModel1 nk = new NhanKhauModel1();
-            ThemMoiController t = new ThemMoiController();
-            nk.setQuanhe(txtQuanHe.getText());
-            nk.setHoTen(txtHoTen.getText());
-            nk.setBietDanh(txtBietDanh.getText());
-            nk.setNoiSinh(txtNoiSinh.getText());
-            nk.setNgheNghiep(txtNgheNghiep.getText());
-            nk.setNoiLamViec(txtNoiLamViec.getText());
-            nk.setNoiCap(txtNoiCap.getText());
-            nk.setDanToc(txtDanToc.getText());
-            nk.setTonGiao(txtTonGiao.getText());
-            nk.setSoCMT(txtCMND.getText());
-            nk.setGhiChu(txtGhiChu.getText());
-            nk.setNguyenQuan(txtQueQuan.getText());
-            nk.setQuocTich(txtQuocTich.getText());
-            nk.setNamSinh(jdNgaySinh.getDate());
-            nk.setNgayCap(jdNgayCap.getDate());
-            String tempCMT = this.txtCMND.getText().trim() ;
-//            nk.setNgayCap(java.sql.Date().get);
-           // String date = "0000-00-00";
-          
-               if(rNam.isSelected()) {
-                   nk.setGioiTinh("Nam");
+
+        NhanKhauModel1 nk = new NhanKhauModel1();
+        ThemMoiController t = new ThemMoiController();
+        nk.setQuanhe(txtQuanHe.getText());
+        nk.setHoTen(txtHoTen.getText());
+        nk.setBietDanh(txtBietDanh.getText());
+        nk.setNoiSinh(txtNoiSinh.getText());
+        nk.setNgheNghiep(txtNgheNghiep.getText());
+        nk.setNoiLamViec(txtNoiLamViec.getText());
+        nk.setNoiCap(txtNoiCap.getText());
+        nk.setDanToc(txtDanToc.getText());
+        nk.setTonGiao(txtTonGiao.getText());
+        nk.setSoCMT(txtCMND.getText());
+        nk.setGhiChu(txtGhiChu.getText());
+        nk.setNguyenQuan(txtQueQuan.getText());
+        nk.setQuocTich(txtQuocTich.getText());
+        nk.setNamSinh(jdNgaySinh.getDate());
+        nk.setNgayCap(jdNgayCap.getDate());
+        String tempCMT = this.txtCMND.getText().trim();
+
+        if (rNam.isSelected()) {
+            nk.setGioiTinh("Nam");
+        } else if (rNu.isSelected()) {
+            nk.setGioiTinh("Nữ");
+        } else {
+            nk.setGioiTinh("");
+        }
+
+        try {
+            java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse("1111-11-11");
+            if (txtQuanHe.getText().trim().isEmpty() || jdNgaySinh.getDate() == null || txtHoTen.getText().trim().isEmpty()
+                    || nk.getGioiTinh() == "" || txtQueQuan.getText().trim().isEmpty()
+                    || txtNoiSinh.getText().trim().isEmpty() || txtQuocTich.getText().trim().isEmpty() || txtTonGiao.getText().trim().isEmpty() || txtDanToc.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ các trường thông tin bắt buộc", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tiếp tục không ?", "Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
+                    dispose();
                 }
-                else if(rNu.isSelected()){
-                    nk.setGioiTinh("Nữ");
+
+                return;
+            } else {
+                if (tempCMT.isEmpty() && jdNgayCap.getDate() == null) {
+                    nk.setNgayCap(date2);
+
                 }
-               else
-                    nk.setGioiTinh("");
-           
-            try {
-                java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse("1111-11-11");
-                if(txtQuanHe.getText().trim().isEmpty()||jdNgaySinh.getDate() == null ||txtHoTen.getText().trim().isEmpty()
-                       ||nk.getGioiTinh() == "" ||txtQueQuan.getText().trim().isEmpty()
-                       ||txtNoiSinh.getText().trim().isEmpty()||txtQuocTich.getText().trim().isEmpty()||txtTonGiao.getText().trim().isEmpty()||txtDanToc.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ các trường thông tin bắt buộc", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    if(JOptionPane.showConfirmDialog(null,"Bạn có muốn tiếp tục không ?","Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
-                            System.exit(0);
-                        }
-                   
-                    return;
-                }
-          
-                else {
-                     if( tempCMT.isEmpty() && jdNgayCap.getDate() == null) {
-                        nk.setNgayCap(date2);
-                        
-                }
-                    if(!tempCMT.isEmpty()) {
-                        try {
-                  
-                            int cmt = Integer.parseInt(tempCMT);
-                            if( jdNgayCap.getDate() == null) {
+                if (!tempCMT.isEmpty()) {
+                    try {
+                        int cmt = Integer.parseInt(tempCMT);
+                        if (jdNgayCap.getDate() == null) {
                             JOptionPane.showMessageDialog(null, "Vui lòng nhập ngày cấp CMND / CCCD", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                            if(JOptionPane.showConfirmDialog(null,"Bạn có muốn tiếp tục không ?","Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
-                            System.exit(0);
+                            if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tiếp tục không ?", "Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
+                                dispose();
+                            }
+                            nk.setNgayCap(jdNgayCap.getDate());
+                            return;
                         }
-                            nk.setNgayCap(jdNgayCap.getDate());  
-                             return;
-                   }
-       
-                    } 
-                        
-                        catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Sai định dạng CMND/CCCD !", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                            if(JOptionPane.showConfirmDialog(null,"Bạn có muốn tiếp tục không ?","Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
-                            System.exit(0);
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Sai định dạng CMND/CCCD !", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tiếp tục không ?", "Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
+                            dispose();
                         }
                         nk.setSoCMT("");
-                        
+
                         return;
-                     }
-                   }
-                   if(jdNgayCap.getDate() != null ){
-                        if(tempCMT.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Vui lòng nhập CMND / CCCD ", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                             if(JOptionPane.showConfirmDialog(null,"Bạn có muốn tiếp tục không ?","Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
-                            System.exit(0);
-                        }
-                             return;
-                        }
                     }
-                   
-                   if(t.ThemMoiNhanKhau(nk)) {
-                        JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");
-                        if(JOptionPane.showConfirmDialog(null,"Bạn có muốn tiếp tục không ?","Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
-                            System.exit(0);
-                         }
-            
-                        reset();
-                 }
-               }
+                }
+                if (jdNgayCap.getDate() != null) {
+                    if (tempCMT.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhập CMND / CCCD ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tiếp tục không ?", "Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
+                            dispose();
+                        }
+                        return;
+                    }
+                }
+
+                if (t.ThemMoiNhanKhau(nk)) {
+                    JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");
+                    if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tiếp tục không ?", "Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
+                        dispose();
+                    }
+
+                  
+                    //reset();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nhân khẩu đã tồn tại trong hệ thống", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tiếp tục không ?", "Xác nhận", JOptionPane.YES_NO_OPTION) != 0) {
+                        dispose();
+                    }
+                }
             }
-            catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                System.out.println(ex);
-                ex.printStackTrace();
-            }
-            
-  
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);
+            ex.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtDiaChiTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiTTActionPerformed
@@ -643,7 +640,7 @@ public class ThemNhanKhauFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ThemNhanKhauFrame().setVisible(true);

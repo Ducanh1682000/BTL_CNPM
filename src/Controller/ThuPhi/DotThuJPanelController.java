@@ -14,7 +14,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -36,7 +35,7 @@ import utility.TableModelThuPhi;
 public class DotThuJPanelController {
 
     private JPanel jpnView;
-    private JButton btnAdd;
+
     private JTextField jtfSearch;
     
 
@@ -49,9 +48,9 @@ public class DotThuJPanelController {
 
     private TableRowSorter<TableModel> rowSorter = null;
 
-    public DotThuJPanelController(JPanel jpnView, JButton btnAdd, JTextField jtfSearch) {
+    public DotThuJPanelController(JPanel jpnView, JTextField jtfSearch) {
         this.jpnView = jpnView;
-        this.btnAdd = btnAdd;
+
         this.jtfSearch = jtfSearch;
         
 
@@ -94,7 +93,7 @@ public class DotThuJPanelController {
         });
 
         
-        //Sự kiện thêm đợt thu
+        //Xem thoong tin dot thu
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -142,19 +141,5 @@ public class DotThuJPanelController {
         jpnView.repaint();
     }
 
-    public void setEvent() {
-        //Thêm SV
-        btnAdd.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                DotThuJFrame frame = new DotThuJFrame(new DotThuModel());
-                frame.setLocationRelativeTo(null);
-                frame.setResizable(false);
-                frame.setTitle("Thông tin đợt thu");
-                frame.setVisible(true);
-            }
 
-        });
-        
-    }
 }

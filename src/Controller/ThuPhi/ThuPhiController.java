@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -46,17 +47,18 @@ public class ThuPhiController {
     private JButton btnCheckMaHoKhau;
     private JLabel iconCheck1;
     private JLabel iconCheck2;
-    
+
     private JRadioButton jrbBatBuoc;
     private JRadioButton jrbDongGop;
     private JTextField jtfSoThanhVien;
-    
+
+    private JFrame parentJFrame;
 
     private ThongTinThuPhiModel thongTinThuPhiModel = null;
     private ThuPhiService thuPhiService = null;
 
     public ThuPhiController(JTextField jtfMaDotThu, JTextField jtfTenDotThu, JTextField jtfMaHoKhau, JTextField jtfTenChuHo, JTextField jtfSoTien, JDateChooser jdcNgayNop, JTextArea jtaGhiChu,
-            JButton btnSave, JButton btnCancel, JButton btnPrint, JButton btnCheckMaDotThu, JButton btnCheckMaHoKhau, JLabel iconCheck1, JLabel iconCheck2, JRadioButton jrbBatBuoc,JRadioButton jrbDongGop, JTextField jtfSoThanhVien ) {
+            JButton btnSave, JButton btnCancel, JButton btnPrint, JButton btnCheckMaDotThu, JButton btnCheckMaHoKhau, JLabel iconCheck1, JLabel iconCheck2, JRadioButton jrbBatBuoc, JRadioButton jrbDongGop, JTextField jtfSoThanhVien) {
         this.jtfMaDotThu = jtfMaDotThu;
         this.jtfTenDotThu = jtfTenDotThu;
         this.jtfMaHoKhau = jtfMaHoKhau;
@@ -72,7 +74,7 @@ public class ThuPhiController {
 
         this.iconCheck1 = iconCheck1;
         this.iconCheck2 = iconCheck2;
-        
+
         this.jrbBatBuoc = jrbBatBuoc;
         this.jrbDongGop = jrbDongGop;
         this.jtfSoThanhVien = jtfSoThanhVien;
@@ -84,6 +86,9 @@ public class ThuPhiController {
     public void setView() {
 
         jdcNgayNop.setDate(new java.sql.Date(System.currentTimeMillis()));
+        jtfMaHoKhau.setEnabled(false);
+        jtfSoTien.setEnabled(false);
+        jtaGhiChu.setEnabled(false);
 
         setEvent();
     }
@@ -97,6 +102,7 @@ public class ThuPhiController {
                 if (checkNull()) {
 
                     if (checkMaDotThu(Integer.parseInt(jtfMaDotThu.getText())) && checkMaHoKhau(Integer.parseInt(jtfMaHoKhau.getText()))) {
+
                         ThongTinThuPhiModel temp = new ThongTinThuPhiModel();
                         temp.setMaDotThu(Integer.parseInt(jtfMaDotThu.getText()));
                         temp.setMaHoKhau(Integer.parseInt(jtfMaHoKhau.getText()));
@@ -114,9 +120,10 @@ public class ThuPhiController {
                             }
 
                         } catch (Exception ex) {
-                            System.out.println(ex.getMessage());
-                            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra. Vui long kiểm tra lại!!", "Warning", JOptionPane.WARNING_MESSAGE);
+//                                System.out.println(ex.getMessage());
+                            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra. Vui lòng kiểm tra lại!!", "Warning", JOptionPane.WARNING_MESSAGE);
                         }
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Mã đợt thu hoặc mã hộ khẩu không hợp lệ!!");
                     }
@@ -132,7 +139,8 @@ public class ThuPhiController {
             public void mouseClicked(MouseEvent e) {
                 if (checkNULLMaDotThu()) {
                     if (checkMaDotThu(Integer.parseInt(jtfMaDotThu.getText()))) {
-                        iconCheck1.setEnabled(true); 
+                        iconCheck1.setEnabled(true);
+                        jtfMaHoKhau.setEnabled(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Mã đợt thu không tồn tại", "Check ID", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -148,18 +156,25 @@ public class ThuPhiController {
             public void mouseClicked(MouseEvent e) {
                 if (checkNULLMaHoKhau()) {
                     if (checkMaHoKhau(Integer.parseInt(jtfMaHoKhau.getText()))) {
-                        iconCheck2.setEnabled(true);
-                        
+                        if (checkTrungLap(Integer.parseInt(jtfMaDotThu.getText()), Integer.parseInt(jtfMaHoKhau.getText()))) {
+                            JOptionPane.showMessageDialog(null, "Hộ đã đóng khoản này", "Warning!!", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            iconCheck2.setEnabled(true);
+                            jtfSoTien.setEnabled(true);
+                            jtaGhiChu.setEnabled(true);
+                        }
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Mã hộ khẩu không tồn tại", "Check ID", JOptionPane.INFORMATION_MESSAGE);
                     }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập hết các trường bắt buộc", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
 
             }
         });
-        
+
         btnCancel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -174,9 +189,10 @@ public class ThuPhiController {
                 iconCheck2.setEnabled(false);
                 jrbBatBuoc.setSelected(false);
                 jrbDongGop.setSelected(false);
+                setView();
             }
         });
-        
+
     }
 
     public java.sql.Date covertDateToDateSql(Date d) {
@@ -218,7 +234,7 @@ public class ThuPhiController {
             ps1.setInt(1, maHoKhau);
 //            
             ResultSet rs = ps1.executeQuery();
-            
+
             if (rs.next()) {
                 jtfTenChuHo.setText(rs.getString("hoTen"));
             }
@@ -247,14 +263,15 @@ public class ThuPhiController {
             String query = "SELECT * FROM dot_thu WHERE maDotThu = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, maDotThu);
-            
 
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                 jtfTenDotThu.setText(rs.getString("tenDotThu"));
-                 if(rs.getBoolean("loaiPhiThu")) {
-                     jrbBatBuoc.setSelected(true);
-                 } else jrbDongGop.setSelected(true);
+                jtfTenDotThu.setText(rs.getString("tenDotThu"));
+                if (rs.getBoolean("loaiPhiThu")) {
+                    jrbBatBuoc.setSelected(true);
+                } else {
+                    jrbDongGop.setSelected(true);
+                }
                 return true;
             }
         } catch (Exception e) {
@@ -263,4 +280,22 @@ public class ThuPhiController {
         return false;
     }
 
+    public boolean checkTrungLap(int maDotThu, int maHoKhau) {
+        try {
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "SELECT * FROM thong_tin_thu_phi WHERE maDotThu = ? AND maHoKhau = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, maDotThu);
+            ps.setInt(2, maHoKhau);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+                return true;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra! vui lòng kiểm tra lại.", "Warning!!", JOptionPane.WARNING_MESSAGE);
+        }
+        return false;
+    }
 }

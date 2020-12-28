@@ -39,54 +39,92 @@ public class BieuDoController {
         
         final String nam = "Nam";        
         final String nu = "Nữ";  
-        final String nhom1 = "0-18T";
-        final String nhom2 = "19-60T";
-        final String nhom3 = ">60T";
+        final String nhom1 = "0-5T";
+        final String nhom2 = "6-10T";
+        final String nhom3 = "11-14T";
+        final String nhom4 = "15-18T";
+        final String nhom5 = "19-60T";
+        final String nhom6 = ">60T";
         //con nua
 
       
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        List<NhanKhauModel> listItem = bieuDoService.statisticByGender(0,18,"Nam");
-        if (listItem != null) {
-            for (NhanKhauModel item : listItem) {
+        List<NhanKhauModel> listItem1 = bieuDoService.statisticByGender(0,5,"Nam");
+        if (listItem1 != null) {
+            for (NhanKhauModel item : listItem1) {
                 dataset.addValue(item.getSoLuong(), nam, nhom1);
             }
         }
-        List<NhanKhauModel> listItem2 = bieuDoService.statisticByGender(19,60,"Nam");
-        if (listItem != null) {
+        List<NhanKhauModel> listItem2 = bieuDoService.statisticByGender(6,10,"Nam");
+        if (listItem2 != null) {
             for (NhanKhauModel item : listItem2) {
                 dataset.addValue(item.getSoLuong(), nam, nhom2);
             }
         }
-        List<NhanKhauModel> listItem3 = bieuDoService.statisticByGender(61,200,"Nam");
-        if (listItem != null) {
+        List<NhanKhauModel> listItem3 = bieuDoService.statisticByGender(11,14,"Nam");
+        if (listItem3 != null) {
             for (NhanKhauModel item : listItem3) {
                 dataset.addValue(item.getSoLuong(), nam, nhom3);
             }
         }
-        List<NhanKhauModel> listItem4 = bieuDoService.statisticByGender(0,18,"Nu");
-        if (listItem != null) {
+        List<NhanKhauModel> listItem4 = bieuDoService.statisticByGender(15,18,"Nam");
+        if (listItem4 != null) {
             for (NhanKhauModel item : listItem4) {
+                dataset.addValue(item.getSoLuong(), nam, nhom4);
+            }
+        }
+        List<NhanKhauModel> listItem5 = bieuDoService.statisticByGender(19,60,"Nam");
+        if (listItem5 != null) {
+            for (NhanKhauModel item : listItem5) {
+                dataset.addValue(item.getSoLuong(), nam, nhom5);
+            }
+        }
+        List<NhanKhauModel> listItem6 = bieuDoService.statisticByGender(61,200,"Nam");
+        if (listItem6 != null) {
+            for (NhanKhauModel item : listItem6) {
+                dataset.addValue(item.getSoLuong(), nam, nhom6);
+            }
+        }
+        List<NhanKhauModel> listItem7 = bieuDoService.statisticByGender(0,5,"Nữ");
+        if (listItem7 != null) {
+            for (NhanKhauModel item : listItem7) {
                 dataset.addValue(item.getSoLuong(), nu, nhom1);
             }
         }
-
-        List<NhanKhauModel> listItem5 = bieuDoService.statisticByGender(19,60,"Nu");
-        if (listItem != null) {
-            for (NhanKhauModel item : listItem5) {
+        List<NhanKhauModel> listItem8 = bieuDoService.statisticByGender(6,10,"Nữ");
+        if (listItem8 != null) {
+            for (NhanKhauModel item : listItem8) {
                 dataset.addValue(item.getSoLuong(), nu, nhom2);
             }
         }
-        List<NhanKhauModel> listItem6 = bieuDoService.statisticByGender(61,200,"Nu");
-        if (listItem != null) {
-            for (NhanKhauModel item : listItem6) {
+        List<NhanKhauModel> listItem9 = bieuDoService.statisticByGender(11,14,"Nữ");
+        if (listItem9 != null) {
+            for (NhanKhauModel item : listItem9) {
                 dataset.addValue(item.getSoLuong(), nu, nhom3);
+            }
+        }
+        List<NhanKhauModel> listItem10 = bieuDoService.statisticByGender(15,18,"Nữ");
+        if (listItem10 != null) {
+            for (NhanKhauModel item : listItem10) {
+                dataset.addValue(item.getSoLuong(), nu, nhom4);
+            }
+        }
+        List<NhanKhauModel> listItem11 = bieuDoService.statisticByGender(19,60,"Nữ");
+        if (listItem11 != null) {
+            for (NhanKhauModel item : listItem11) {
+                dataset.addValue(item.getSoLuong(), nu, nhom5);
+            }
+        }
+        List<NhanKhauModel> listItem12 = bieuDoService.statisticByGender(61,200,"Nữ");
+        if (listItem12 != null) {
+            for (NhanKhauModel item : listItem12) {
+                dataset.addValue(item.getSoLuong(), nu, nhom6);
             }
         }
         //con nua
 
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Thống kê cơ cấu nhân khẩu theo giới tính và độ tuổi".toUpperCase(),
+                "Cơ cấu dân số theo giới tính và độ tuổi".toUpperCase(),
                 "Nhóm tuổi", "Số lượng",
                 dataset, PlotOrientation.VERTICAL, true, true, false);
 

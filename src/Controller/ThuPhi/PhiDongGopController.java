@@ -55,18 +55,18 @@ public class PhiDongGopController {
     private JTextField jtfTimKiem;
     private JButton btnThongKe;
     private JButton btnPrint3;
-    private JLabel  jlbKetQua;
+    private JLabel jlbKetQua;
 
     private TableModelThuPhi classTableModel = null;
 
     private ThuPhiService thuPhiService = null;
 
     private final String[] COLUMNS1 = {"ID hộ khẩu", "Tên chủ hộ", "Số tiền (VNĐ)", "Ngày thu", "Ghi chú"};
-    
+
     private final String[] COLUMNS2 = {"ID hộ khẩu", "Tên chủ hộ", "Số tiền (VNĐ)", "Tên đợt thu", "Ngày thu"};
 
-    public PhiDongGopController(JPanel jpnView2, JComboBox jcbDotDongGop, JButton btnXemDanhSach, 
-            JButton btnPrint2, JLabel jlbsoHo, JLabel jlbsoTien, JPanel jpnView3, JComboBox jcbTimKiem, 
+    public PhiDongGopController(JPanel jpnView2, JComboBox jcbDotDongGop, JButton btnXemDanhSach,
+            JButton btnPrint2, JLabel jlbsoHo, JLabel jlbsoTien, JPanel jpnView3, JComboBox jcbTimKiem,
             JTextField jtfTimKiem, JButton btnThongKe, JButton btnPrint3, JLabel jlbKetQua) {
         this.jpnView2 = jpnView2;
         this.jcbDotDongGop = jcbDotDongGop;
@@ -85,10 +85,10 @@ public class PhiDongGopController {
         this.classTableModel = new TableModelThuPhi();
         this.thuPhiService = new ThuPhiService();
     }
-    
+
     public void setDataComboBox() {
         Connection cons = MysqlConnection.getMysqlConnection();
-        String sql ="SELECT * FROM dot_thu WHERE loaiPhiThu = 0";
+        String sql = "SELECT * FROM dot_thu WHERE loaiPhiThu = 0";
         try {
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -97,11 +97,11 @@ public class PhiDongGopController {
             }
             ps.close();
             cons.close();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
+
     }
 
     //table thống kê theo đợt đóng góp
@@ -119,10 +119,10 @@ public class PhiDongGopController {
         table.validate();
         table.repaint();
         table.setFont(new Font("Arial", Font.PLAIN, 14));
-        
-        table.getColumnModel().getColumn(0).setMaxWidth(80);
-        table.getColumnModel().getColumn(0).setMinWidth(80);
-        table.getColumnModel().getColumn(0).setPreferredWidth(80);
+
+        table.getColumnModel().getColumn(0).setMaxWidth(100);
+        table.getColumnModel().getColumn(0).setMinWidth(100);
+        table.getColumnModel().getColumn(0).setPreferredWidth(100);
 
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
@@ -174,7 +174,6 @@ public class PhiDongGopController {
                     tenChuHo = (this.jtfTimKiem.getText().trim());
                 }
             }
-            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jtfTimKiem, "Vui lòng nhập đúng kiểu dữ liệu!!", "Warring", JOptionPane.ERROR_MESSAGE);
@@ -191,10 +190,10 @@ public class PhiDongGopController {
         table.validate();
         table.repaint();
         table.setFont(new Font("Arial", Font.PLAIN, 14));
-        
-        table.getColumnModel().getColumn(0).setMaxWidth(80);
-        table.getColumnModel().getColumn(0).setMinWidth(80);
-        table.getColumnModel().getColumn(0).setPreferredWidth(80);
+
+        table.getColumnModel().getColumn(0).setMaxWidth(100);
+        table.getColumnModel().getColumn(0).setMinWidth(100);
+        table.getColumnModel().getColumn(0).setPreferredWidth(100);
 
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
@@ -221,7 +220,7 @@ public class PhiDongGopController {
         });
 
     }
-    
+
     public void setEvent() {
         btnXemDanhSach.addMouseListener(new MouseAdapter() {
             @Override
@@ -233,18 +232,22 @@ public class PhiDongGopController {
                 }
             }
         });
-        
+
         btnThongKe.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                try {
-                    setDataToTable2();
-                } catch (Exception ex) {
-                    Logger.getLogger(PhiVeSinhController.class.getName()).log(Level.SEVERE, null, ex);
+                if (jtfTimKiem.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin cần tìm", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    try {
+                        setDataToTable2();
+                    } catch (Exception ex) {
+                        Logger.getLogger(PhiVeSinhController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
-        
+
     }
 
 }

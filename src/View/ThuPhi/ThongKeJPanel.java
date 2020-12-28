@@ -21,7 +21,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         
         initComponents();
         
-        PhiVeSinhController controller = new PhiVeSinhController(jpnView, btnShow, btnPrint, jcbTenDotThu);
+        PhiVeSinhController controller = new PhiVeSinhController(jpnView, btnShow, btnPrint, jcbTenDotThu, jcbStatus);
         
         controller.setDataComboBox();
         controller.setEvent();
@@ -49,6 +49,8 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jcbTenDotThu = new javax.swing.JComboBox<>();
         jpnView = new javax.swing.JPanel();
+        jcbStatus = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jcbDotDongGop = new javax.swing.JComboBox<>();
         btnXemDanhSach = new javax.swing.JButton();
@@ -80,13 +82,13 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         btnShow.setBackground(new java.awt.Color(0, 204, 204));
         btnShow.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnShow.setForeground(new java.awt.Color(255, 255, 255));
-        btnShow.setText("Show");
+        btnShow.setText("Lấy danh sách");
         btnShow.setBorder(null);
 
         btnPrint.setBackground(new java.awt.Color(0, 204, 204));
         btnPrint.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnPrint.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrint.setText("Print");
+        btnPrint.setText("In");
         btnPrint.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -105,15 +107,21 @@ public class ThongKeJPanel extends javax.swing.JPanel {
             .addGap(0, 441, Short.MAX_VALUE)
         );
 
+        jcbStatus.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toàn bộ", "Đã đóng", "Chưa đóng" }));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel10.setText("Tình trạng:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(639, Short.MAX_VALUE)
-                .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -123,7 +131,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jcbTenDotThu, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 305, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,7 +144,9 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcbTenDotThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbTenDotThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,7 +396,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -398,6 +412,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnXemDanhSach;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -413,6 +428,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcbDotDongGop;
+    private javax.swing.JComboBox<String> jcbStatus;
     private javax.swing.JComboBox<String> jcbTenDotThu;
     private javax.swing.JComboBox<String> jcbTimKiem;
     private javax.swing.JLabel jlbKetQua;

@@ -58,10 +58,10 @@ public class TableModelThuPhi {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-            @Override
-            public Class<?> getColumnClass(int columnIndex) {
-                return columnIndex == 8 ? Boolean.class : String.class;
-            }
+//            @Override
+//            public Class<?> getColumnClass(int columnIndex) {
+//                return columnIndex == 8 ? Boolean.class : String.class;
+//            }
         };
 
         dtm.setColumnIdentifiers(listColumn);
@@ -74,8 +74,8 @@ public class TableModelThuPhi {
             obj[3] = item.getDiaChiThu();
             obj[4] = item.getSoNhanKhau();
             obj[5] = item.getTongSoTien();
-            obj[6] = item.getNgayThu();
-            obj[7] = item.getGhiChu();
+//            obj[6] = item.getNgayThu();
+//            obj[7] = item.getGhiChu();
             dtm.addRow(obj);
 
         });

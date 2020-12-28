@@ -6,6 +6,8 @@
 package View.ThuPhi;
 
 import Controller.ThuPhi.DotThuJPanelController;
+import javax.swing.JFrame;
+import models.ThuPhi.DotThuModel;
 
 /**
  *
@@ -13,14 +15,16 @@ import Controller.ThuPhi.DotThuJPanelController;
  */
 public class DotThuJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form DotThuJPanel
-     */
+
+    
     public DotThuJPanel() {
+       
         initComponents();
-        DotThuJPanelController controller = new DotThuJPanelController(jpnView, btnAdd, jtfSearch);
+         DotThuJPanelController controller = new DotThuJPanelController(jpnView, jtfSearch);
+        
         controller.setDataToTable();
-        controller.setEvent();
+        
+
     }
 
     /**
@@ -46,7 +50,7 @@ public class DotThuJPanel extends javax.swing.JPanel {
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         jtfSearch.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -97,7 +101,7 @@ public class DotThuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnRootLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
@@ -125,7 +129,11 @@ public class DotThuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfSearchActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        DotThuJFrame themDotThuJFrame = new DotThuJFrame(new DotThuModel()); 
+        themDotThuJFrame.setLocationRelativeTo(null);
+        themDotThuJFrame.setResizable(false);
+        themDotThuJFrame.setVisible(true);
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnThuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThuPhiActionPerformed

@@ -10,23 +10,50 @@ import java.sql.Date;
 import models.NhanKhauModel1;
 import services.MysqlConnection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author THUAN.HQ183840
  */
 public class ThemMoiController {
-    public boolean ThemMoiNhanKhau(NhanKhauModel1 nk) {
+     public boolean checkCMND(NhanKhauModel1 nk) {
+        
+        try {
+            String sql = "select * from nhan_khau where soCMND = ?";
+            com.mysql.jdbc.PreparedStatement pst = (com.mysql.jdbc.PreparedStatement) MysqlConnection.getMysqlConnection().prepareStatement(sql);
+            pst.setString(1, nk.getSoCMT());
+            ResultSet res = pst.executeQuery();
+           
+            if(res.next()) {
+       
+               sql = "select * from nhan_khau where soCMND = '"+nk.getSoCMT()+"'";
+               res = pst.executeQuery(sql);
+               while(res.next()) {
+                    if (res.getString("soCMND") == null ? nk.getSoCMT() == null : res.getString("soCMND").equals(nk.getSoCMT()))
+                          return false;
+               }              
+            }
+           
+        }
+        catch(Exception e) { 
+        }
+        return true;
+    }
+   
+     
+public boolean ThemMoiNhanKhau(NhanKhauModel1 nk) {
     Connection con = (Connection) MysqlConnection.getMysqlConnection();
      
     String sql = "INSERT INTO nhan_khau(quanhevoichuho,hoTen, bietDanh, namSinh, GioiTinh, SoCMND,ngaycapCMND, NoiCapCMND,"
            + " noiSinh, nguyenQuan, danToc, tonGiao, quocTich, soHoChieu, noiThuongTru, diaChiHienNay, trinhDoHocVan, TrinhDoChuyenMon,"
             + " bietTiengDanToc, trinhDoNgoaiNgu, ngheNghiep, noiLamViec, ghiChu,ngaytao) "
            + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())";
-      
+      if(checkCMND(nk)) {
         try {
             PreparedStatement pst = con.prepareStatement(sql);
           
@@ -57,13 +84,16 @@ public class ThemMoiController {
            
            
             pst.executeUpdate();
+             return true;
         } 
         catch (SQLException ex) {
             Logger.getLogger(ThemMoiController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
 
-        return true;
+       
+    }
+       return false;
     }
 }  
 

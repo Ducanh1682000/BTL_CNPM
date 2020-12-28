@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import models.ThuPhi.ThongTinThuPhiModel;
 import models.ThuPhi.ThuPhiModel;
 import services.MysqlConnection;
+import services.StringService;
 import services.ThuPhiService;
 import utility.TableModelThuPhi;
 
@@ -39,19 +40,22 @@ public class PhiVeSinhController {
     private JButton btnShow;
     private JButton btnPrint;
     private JComboBox jcbTenDotThu;
+    
+    private JComboBox jcbStatus;
 
     private TableModelThuPhi classTableModel = null;
 
     private ThuPhiService thuPhiService = null;
 
     private final String[] COLUMNS = {"ID hộ khẩu", "ID chủ hộ", "Tên chủ hộ", "Địa chỉ hiện nay",
-        "Số thành viên", "Số tiền (VNĐ)", "Thời gian nộp", "Ghi chú"};
+        "Số thành viên", "Số tiền (VNĐ)"};
 
-    public PhiVeSinhController(JPanel jpnView, JButton btnShow, JButton btnPrint, JComboBox jcbTenDotThu) {
+    public PhiVeSinhController(JPanel jpnView, JButton btnShow, JButton btnPrint, JComboBox jcbTenDotThu, JComboBox jcbStatus) {
         this.jpnView = jpnView;
         this.btnShow = btnShow;
         this.btnPrint = btnPrint;
         this.jcbTenDotThu = jcbTenDotThu;
+        this.jcbStatus = jcbStatus;
 
         this.classTableModel = new TableModelThuPhi();
         this.thuPhiService = new ThuPhiService();
@@ -79,7 +83,9 @@ public class PhiVeSinhController {
 
     
     public void setDataToTable() {
-        List<ThongTinThuPhiModel> listItem = thuPhiService.getListPhiVeSinh();
+        String status = StringService.covertToString((String) this.jcbStatus.getSelectedItem());
+
+        List<ThongTinThuPhiModel> listItem = thuPhiService.getListPhiVeSinh(status);
         DefaultTableModel model = classTableModel.setTablePhiVeSinh(listItem, COLUMNS);
         JTable table = new JTable(model);
 

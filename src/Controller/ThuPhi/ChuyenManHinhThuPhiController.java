@@ -7,7 +7,7 @@ package Controller.ThuPhi;
 
 import Bean.DanhMucBean;
 import View.ThuPhi.DotThuJPanel;
-import View.ThuPhi.ThuPhiJFrame;
+
 
 //import View.TachHoJPanel;
 //import View.TamTruJPanel;
@@ -22,6 +22,7 @@ import View.ThuPhi.TrangChuJPanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JFrame;
 
 
 /**
@@ -29,22 +30,43 @@ import java.util.List;
  * @author ADMIN
  */
 public class ChuyenManHinhThuPhiController {
+    
+    private JFrame jfrMain;
 
     private JPanel root;
-    private String kindSelected = "";
+     private String kindSelected;
     private List<DanhMucBean> listItem = null;
-    public ChuyenManHinhThuPhiController(JPanel jpnRoot) {
+    public ChuyenManHinhThuPhiController(JPanel jpnRoot, JFrame jfrMain) {
         this.root = jpnRoot;
+        this.jfrMain = jfrMain;
     }
 
-    public void setView(JPanel jpnItem, JLabel jlbItem) {
-        kindSelected = "TrangChu";
+    public void setView(JPanel jpnItem, JLabel jlbItem, String kind) {
+        this.kindSelected = kind;
         jpnItem.setBackground(new Color(0,109,106));
         jlbItem.setBackground(new Color(0,109,106));
+        
+        JPanel view = new  JPanel();
+        switch(kind) {
+            case "TrangChu":
+                    view = new View.ThuPhi.TrangChuJPanel();
+                    break;
+            case "DotThu":
+                   view = new DotThuJPanel();
+                   break;
+            
+                case "ThongKe":
+                    view = new ThongKeJPanel();
+                    break;
+                    
+                    
+            default:
+                    break;        
+        }
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new TrangChuJPanel());
+        root.add(view);
         root.validate();
         root.repaint();
 
@@ -63,12 +85,20 @@ public class ChuyenManHinhThuPhiController {
 
         private JPanel jpnItem;
         private JLabel jlbItem;
+        
+        private JFrame jfrMain;
 
         public LabelEvent(String kind, JPanel jpnItem, JLabel jlbItem) {
             this.kind = kind;
             this.jpnItem = jpnItem;
             this.jlbItem = jlbItem;
       }
+        public LabelEvent(JFrame jfrMain, String kind, JPanel jpnItem, JLabel jlbItem) {
+            this.jfrMain = jfrMain;
+            this.kind = kind;
+            this.jpnItem = jpnItem;
+            this.jlbItem = jlbItem;
+        }
 
         @Override
         public void mouseClicked(MouseEvent e) {
