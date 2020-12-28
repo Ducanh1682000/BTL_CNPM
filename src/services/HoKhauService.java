@@ -241,6 +241,7 @@ public class HoKhauService {
     }
     
     public void chuyenDi(int idhoKhau, String noiChuyenDen, String lyDoChuyen) {
+        
         String sql = "UPDATE ho_khau SET lyDoChuyen = '"
                 + lyDoChuyen
                 + "',"
@@ -251,13 +252,39 @@ public class HoKhauService {
                 + "nguoiThucHien = "
                 + LoginController.currentUser.getID()
                 + " WHERE ho_khau.ID = " + idhoKhau;
+        
+        
+        String sql2 = "UPDATE nhan_khau SET "
+                + "noiThuongTru = '"
+                + noiChuyenDen
+                + "', "
+                + "diaChiHienNay = '"
+                + noiChuyenDen
+                + "' WHERE ID = " + idhoKhau;
+        
+        String sql3 = "UPDATE gia_dinh SET "
+                + "diaChiHienTai = '"
+                + noiChuyenDen
+                + "' WHERE gia_dinh.idNhanKhau = " + idhoKhau;
+         
+        
         try {
+            
             Connection connection = MysqlConnection.getMysqlConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            int rs = preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            preparedStatement2.executeUpdate();
+            preparedStatement2.close();
+            PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
+            preparedStatement3.executeUpdate();
+            preparedStatement3.close();
+            connection.close();
+            
         } catch (Exception e) {
             System.out.println("services.HoKhauService.chuyenDi()");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

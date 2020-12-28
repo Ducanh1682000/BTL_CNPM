@@ -28,11 +28,10 @@ public class TamVangService {
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
                 TamVangModel tamvang = new TamVangModel();
-                tamvang.setMaGiayTamVang(rs.getString("maGiayTamVang"));
+                tamvang.setMaGiayTamVang(rs.getInt("maGiayTamVang"));
                 tamvang.setLyDo(rs.getString("lyDo"));
                 tamvang.setNoiTamTru(rs.getString("noiTamTru"));
                 tamvang.setTrangThai(rs.getString("trangThai"));
-                tamvang.setID(rs.getInt("ID"));
                 tamvang.setVangTuNgay(rs.getDate("vangTuNgay"));
                 tamvang.setVangDenNgay(rs.getDate("vangDenNgay"));
                 tamvang.setIdNhanKhau(rs.getInt("idNhanKhau"));
@@ -45,15 +44,14 @@ public class TamVangService {
     }
     public void addTamVang(TamVangModel tamvang){
         Connection connection = (Connection) MysqlConnection.getMysqlConnection();
-        String query = "INSERT INTO tam_vang(idNhanKhau, maGiayTamVang, noiTamTru, tuNgay, denNgay, lyDo) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO tam_vang(idNhanKhau, noiTamTru, vangTuNgay, vangDenNgay, lyDo) VALUES (?, ?, ?, ?, ?)";
         try{
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             preparedStatement.setInt(1, tamvang.getIdNhanKhau());
-            preparedStatement.setString(2, tamvang.getMaGiayTamVang());
-            preparedStatement.setString(3, tamvang.getNoiTamTru());
-            preparedStatement.setDate(4, (Date) tamvang.getVangTuNgay());
-            preparedStatement.setDate(5, (Date) tamvang.getVangDenNgay());
-            preparedStatement.setString(6, tamvang.getLyDo());
+            preparedStatement.setString(2, tamvang.getNoiTamTru());
+            preparedStatement.setDate(3, (Date) tamvang.getVangTuNgay());
+            preparedStatement.setDate(4, (Date) tamvang.getVangDenNgay());
+            preparedStatement.setString(5, tamvang.getLyDo());
             
             preparedStatement.executeUpdate();
         }catch(SQLException e){
@@ -62,16 +60,15 @@ public class TamVangService {
     }
     public void updateTamVang(TamVangModel tamvang){
         Connection connection = (Connection) MysqlConnection.getMysqlConnection();
-        String query = "UPDATE tam_vang SET idNhanKhau = ?, maGiayTamVang = ?, noiTamTru = ?, tuNgay = ?, denNgay = ?, lyDo = ? WHERE ID = ?";
+        String query = "UPDATE tam_vang SET idNhanKhau = ?, noiTamTru = ?, vangTuNgay = ?, vangDenNgay = ?, lyDo = ? WHERE maGiayTamVang = ?";
         try{
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             preparedStatement.setInt(1, tamvang.getIdNhanKhau());
-            preparedStatement.setString(2, tamvang.getMaGiayTamVang());
-            preparedStatement.setString(3, tamvang.getNoiTamTru());
+            preparedStatement.setString(2, tamvang.getNoiTamTru());
+            preparedStatement.setDate(3, (Date) tamvang.getVangTuNgay());
             preparedStatement.setDate(4, (Date) tamvang.getVangDenNgay());
-            preparedStatement.setDate(5, (Date) tamvang.getVangTuNgay());
-            preparedStatement.setString(6, tamvang.getLyDo());
-            preparedStatement.setInt(7, tamvang.getID());
+            preparedStatement.setString(5, tamvang.getLyDo());
+            preparedStatement.setInt(6, tamvang.getMaGiayTamVang());
             
             preparedStatement.executeUpdate();
         }catch(SQLException e){
@@ -97,11 +94,10 @@ public class TamVangService {
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
                 TamVangModel tamvang = new TamVangModel();
-                tamvang.setMaGiayTamVang(rs.getString("maGiayTamVang"));
+                tamvang.setMaGiayTamVang(rs.getInt("maGiayTamVang"));
                 tamvang.setLyDo(rs.getString("lyDo"));
                 tamvang.setNoiTamTru(rs.getString("noiTamTru"));
                 tamvang.setTrangThai(rs.getString("trangThai"));
-                tamvang.setID(rs.getInt("ID"));
                 tamvang.setVangTuNgay(rs.getDate("vangTuNgay"));
                 tamvang.setVangDenNgay(rs.getDate("vangDenNgay"));
                 tamvang.setIdNhanKhau(rs.getInt("idNhanKhau"));
@@ -121,11 +117,10 @@ public class TamVangService {
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
                 TamVangModel tamvang = new TamVangModel();
-                tamvang.setMaGiayTamVang(rs.getString("maGiayTamVang"));
+                tamvang.setMaGiayTamVang(rs.getInt("maGiayTamVang"));
                 tamvang.setLyDo(rs.getString("lyDo"));
                 tamvang.setNoiTamTru(rs.getString("noiTamTru"));
                 tamvang.setTrangThai(rs.getString("trangThai"));
-                tamvang.setID(rs.getInt("ID"));
                 tamvang.setVangTuNgay(rs.getDate("vangTuNgay"));
                 tamvang.setVangDenNgay(rs.getDate("vangDenNgay"));
                 tamvang.setIdNhanKhau(rs.getInt("idNhanKhau"));

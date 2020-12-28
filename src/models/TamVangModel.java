@@ -7,13 +7,12 @@ import java.util.Date;
  * @author Khac Tao
  */
 public class TamVangModel {
-    private String maGiayTamVang;
+    private int maGiayTamVang;
     private String noiTamTru;
     private Date vangTuNgay;
     private Date vangDenNgay;
     private String lyDo;
     private String trangThai;
-    private int ID;
     private int idNhanKhau;
 
     public int getIdNhanKhau() {
@@ -24,23 +23,15 @@ public class TamVangModel {
         this.idNhanKhau = idNhanKhau;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-    
     public TamVangModel() {
         
     }
 
-    public String getMaGiayTamVang() {
+    public int getMaGiayTamVang() {
         return maGiayTamVang;
     }
 
-    public void setMaGiayTamVang(String maGiayTamVang) {
+    public void setMaGiayTamVang(int maGiayTamVang) {
         this.maGiayTamVang = maGiayTamVang;
     }
 

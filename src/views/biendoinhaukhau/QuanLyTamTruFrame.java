@@ -30,7 +30,7 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
             }
         };
         tamTruTable.setModel(defaultTableModel);
-        defaultTableModel.addColumn("Mã Hộ khẩu tạm trú");
+        defaultTableModel.addColumn("Mã hộ khẩu tạm trú");
         defaultTableModel.addColumn("Mã giấy tạm trú");
         defaultTableModel.addColumn("Họ tên");
         defaultTableModel.addColumn("Ngày chuyển đến");
@@ -194,7 +194,6 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-       new ChucNang().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 

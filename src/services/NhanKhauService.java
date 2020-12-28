@@ -4,6 +4,7 @@ import Bean.NhanKhauBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -122,7 +123,7 @@ public class NhanKhauService {
         List<NhanKhauBean> list = new ArrayList<>();
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
-            String query1 = "SELECT * FROM nhan_khau ORDER BY ngayTao DESC";
+            String query1 = "SELECT * FROM nhan_khau JOIN chung_minh_thu ON chung_minh_thu.idNhanKhau = nhan_khau.ID ORDER BY ngayTao DESC";
             PreparedStatement preparedStatement1 = (PreparedStatement)connection.prepareStatement(query1);
             ResultSet rs = preparedStatement1.executeQuery();
             while (rs.next()){
@@ -133,12 +134,14 @@ public class NhanKhauService {
                 nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+
                 
                 ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
                 chungMinhThuModel.setIdNhanKhau(rs.getInt("ID"));
                 chungMinhThuModel.setSoCMT(rs.getString("SoCMND"));
                 chungMinhThuModel.setNgayCap(rs.getDate("NgayCapCMND"));
                 chungMinhThuModel.setNoiCap(rs.getString("NoiCapCMND"));
+
                 
                 list.add(nhanKhauBean);
             }
@@ -331,4 +334,22 @@ public class NhanKhauService {
     private void exceptionHandle(String message) {
         JOptionPane.showMessageDialog(null, message, "Warning", JOptionPane.ERROR_MESSAGE);
     }
+    public NhanKhauModel searchByID(int id){
+        NhanKhauModel nhanKhau = new NhanKhauModel();
+        try{
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "SELECT * FROM nhan_khau WHERE ID ="+id;
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                nhanKhau.setSoCMT(rs.getString("SoCMND"));
+                nhanKhau.setHoTen(rs.getString("hoTen"));
+                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+            }
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return nhanKhau;
+    }
 }
+
