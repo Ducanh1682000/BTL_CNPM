@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/HoKhauService.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/View/biendoihokhau/TachHoKhau.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/models/HoKhauModel.java</file>
@@ -25,6 +26,14 @@
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/Controllers/HoKhau/ThayDoiThanhVienCuaHoConTroller.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/Tach_Ho_Khau.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/models/NhanKhauModel.java</file>
+=======
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/views/biendoinhaukhau/QuanLyTamTruFrame.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/views/biendoinhaukhau/DangKiTamTruFrame.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/biendoihokhau/themhokhau.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/View/HoKhauJPanel.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/views/biendoinhaukhau/DetailTamTruFrame.java</file>
+            <file>file:/E:/CNPM/BTL_CNPM/CNPM/src/views/biendoinhaukhau/ThemNhanKhauFrame.java</file>
+>>>>>>> 6014fffdc8653d7658cc84c6320f8c026246b4df
         </group>
     </open-files>
 </project-private>

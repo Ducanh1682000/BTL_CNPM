@@ -103,6 +103,11 @@ public class themhokhau extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Thêm hộ khẩu");
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(443, 50));
@@ -273,7 +278,7 @@ public class themhokhau extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,6 +447,15 @@ public class themhokhau extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            dispose();
+        } else {
+            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
+    }//GEN-LAST:event_formWindowClosing
     
     /**
      * @param args the command line arguments

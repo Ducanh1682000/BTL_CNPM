@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import models.KhaiTuModel;
@@ -85,7 +87,12 @@ public class TableKhaiTu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tableKhaiTu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,41 +214,16 @@ public class TableKhaiTu extends javax.swing.JFrame {
               kt.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TableKhaiTu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TableKhaiTu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TableKhaiTu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TableKhaiTu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            dispose();
+        } else {
+            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_formWindowClosing
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TableKhaiTu().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

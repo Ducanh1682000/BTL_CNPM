@@ -18,32 +18,32 @@ import Controllers.HoKhau.ThayDoiHoKhauController;
 public class ThayDoiHoKhau extends javax.swing.JFrame {
     private HoKhauBean HoKhauBean;
     private ThayDoiHoKhauController controller;
-    private JFrame parentJFrame;
+//    private JFrame parentJFrame;
 
     /**
      * Creates new form ThayDoiHoKhau
      */
-    public ThayDoiHoKhau(JFrame parrent) {
+    public ThayDoiHoKhau() {
         initComponents();
         this.HoKhauBean = new HoKhauBean();
-        this.parentJFrame = parrent;
-        this.parentJFrame.setEnabled(false);
+//        this.parentJFrame = parrent;
+//        this.parentJFrame.setEnabled(false);
         this.controller = new ThayDoiHoKhauController(HoKhauBean,timKiemJtf, tableJpn);
         this.controller.setDataJtf(maHoKhauJtf, tenChuHoJtf, maKhuVucJtf, diaChiHienTaiJtf);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                parentJFrame.setEnabled(true);
-                close();
-                }
-        });
-    }
-    
-    private void close() {
-        if (JOptionPane.showConfirmDialog(this, "Are you sure to close??", "Confirm", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-            this.parentJFrame.setEnabled(true);
-            dispose();
-        }
+//        this.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+////                parentJFrame.setEnabled(true);
+//                close();
+//                }
+//        });
+//    }
+//    
+//    private void close() {
+//        if (JOptionPane.showConfirmDialog(this, "Are you sure to close??", "Confirm", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+////            this.parentJFrame.setEnabled(true);
+//            dispose();
+//        }
     }
 
     /**
@@ -86,7 +86,12 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pn3.setPreferredSize(new java.awt.Dimension(1000, 650));
 
@@ -322,7 +327,12 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void huyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyBtnActionPerformed
-        close();
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            dispose();
+        } else {
+            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
     }//GEN-LAST:event_huyBtnActionPerformed
 
     private void xacNhanJbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xacNhanJbtActionPerformed
@@ -330,10 +340,19 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập hết các trường bắt buộc!!", "Warning!", JOptionPane.NO_OPTION);
         } else {
             this.controller.getHoKhauService().chuyenDi(this.HoKhauBean.getHoKhauModel().getIdChuHo(), diaChiChuyenDenJtf.getText().trim(), lyDoChuyenDiJtf.getText().trim());
-            this.parentJFrame.setEnabled(true);
+//            this.parentJFrame.setEnabled(true);
             dispose();
         }
     }//GEN-LAST:event_xacNhanJbtActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            dispose();
+        } else {
+            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
