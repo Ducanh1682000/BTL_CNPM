@@ -40,5 +40,24 @@ public class ThanhVienCuaHo {
     public void setQuanHeVoiChuHo(String quanHeVoiChuHo) {
         this.quanHeVoiChuHo = quanHeVoiChuHo;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ThanhVienCuaHo){
+           ThanhVienCuaHo tv = (ThanhVienCuaHo) obj;
+        if(this.idHoKhau == tv.getIdHoKhau() && this.idNhanKhau == tv.getIdNhanKhau()) 
+            return true;
+    }
+        return false;
     
+}
+//    public static void main(String[] args) {
+//        ThanhVienCuaHo tv1 = new ThanhVienCuaHo();
+//        tv1.setIdHoKhau(2);
+//        tv1.setIdNhanKhau(4);
+//        ThanhVienCuaHo tv2 = new ThanhVienCuaHo();
+//        tv2.setIdHoKhau(2);
+//        tv2.setIdNhanKhau(3);
+//        System.out.println(tv1.equals(tv2));
+//    }
 }

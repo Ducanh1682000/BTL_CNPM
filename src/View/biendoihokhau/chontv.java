@@ -161,6 +161,8 @@ public class chontv extends javax.swing.JDialog {
             }
         });
 
+        jTextField2.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(

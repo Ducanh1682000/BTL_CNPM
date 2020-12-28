@@ -30,7 +30,7 @@ public class TachHoKhauService {
     public static List<Tach_Ho_Khau> tachhk() {
         List<Tach_Ho_Khau> tachhkList = new ArrayList<>();
         Connection conn = getMysqlConnection();
-        String sql = "SELECT h.ID,n.hoTen,h.diaChi FROM nhan_khau n,"
+        String sql = "SELECT h.ID,n.hoTen,h.diaChi,h.maHoKhau FROM nhan_khau n,"
                 + " ho_khau h WHERE n.ID = h.idChuHo";
         Statement st;
         ResultSet rs;
@@ -44,6 +44,7 @@ public class TachHoKhauService {
                 nk.setHoTen(rs.getString("HoTen"));
                 hk.setID(rs.getInt("ID"));
                 hk.setDiaChi(rs.getString("diaChi"));
+                hk.setMaHoKhau(rs.getString("maHoKhau"));
                 Tach_Ho_Khau tach = new Tach_Ho_Khau(nk, hk);
                 tachhkList.add(tach);
 

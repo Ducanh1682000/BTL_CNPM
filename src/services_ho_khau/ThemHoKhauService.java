@@ -69,7 +69,7 @@ public class ThemHoKhauService {
             try {
                 String sql = "DELETE FROM `thanh_vien_cua_ho` WHERE idNhanKhau =" + ListTv.get(i).getIdNhanKhau();
                 Statement st = con.createStatement();
-                st.executeUpdate(sql);
+                 st.executeUpdate(sql) ;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -91,6 +91,40 @@ public class ThemHoKhauService {
             }
         }
         return true;
+    }
+    
+    public boolean addThanhVienCuaHo1(List<ThanhVienCuaHo> ListTv) {
+        String sql = "INSERT INTO thanh_vien_cua_ho(idNhanKhau, idHoKhau, quanHeVoiChuHo)"
+                + " values (?, ?, ?)";
+        int n = 0;
+        for (int i = 0; i < ListTv.size(); i++) {
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, ListTv.get(i).getIdNhanKhau());
+                ps.setInt(2, ListTv.get(i).getIdHoKhau());
+                ps.setString(3, ListTv.get(i).getQuanHeVoiChuHo());
+                  n = ps.executeUpdate() ;
+
+            } catch (Exception e) {
+                //e.printStackTrace();
+            }
+        }
+        return n > 0;
+    }
+        public boolean XoaThanhVienCuaHo1(List<ThanhVienCuaHo> ListTv) {
+            String sql = "DELETE FROM `thanh_vien_cua_ho` WHERE idNhanKhau = ? and idHoKhau = ?";
+            int n = 0;
+        for (int i = 0; i < ListTv.size(); i++) {
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, ListTv.get(i).getIdNhanKhau());
+                ps.setInt(2, ListTv.get(i).getIdHoKhau());
+                  n = ps.executeUpdate() ;
+            } catch (Exception e) {
+                //e.printStackTrace();
+            }
+        }
+        return n > 0;
     }
 
 }
