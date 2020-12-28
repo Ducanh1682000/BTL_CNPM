@@ -113,7 +113,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setText("đến");
 
-        btnThongKe.setBackground(new java.awt.Color(0, 153, 153));
+        btnThongKe.setBackground(new java.awt.Color(0, 181, 204));
         btnThongKe.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnThongKe.setForeground(new java.awt.Color(255, 255, 255));
         btnThongKe.setText("Thống kê");
@@ -129,7 +129,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jlbKetQua.setForeground(new java.awt.Color(255, 0, 51));
         jlbKetQua.setText("Kết quả:");
 
-        btnPrint.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrint.setBackground(new java.awt.Color(0, 181, 204));
         btnPrint.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnPrint.setForeground(new java.awt.Color(255, 255, 255));
         btnPrint.setText("In danh sách");
@@ -240,7 +240,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(0, 181, 204));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));

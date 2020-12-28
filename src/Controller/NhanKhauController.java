@@ -6,6 +6,7 @@
 package Controller;
 
 import Bean.NhanKhauBean;
+import View.InfoJframe;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,6 +17,7 @@ import java.util.EventObject;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -50,6 +52,7 @@ public class NhanKhauController {
 
     public NhanKhauController() {
     }
+    
     public void initAction(){
         this.jtfSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -100,20 +103,20 @@ public class NhanKhauController {
         table.getColumnModel().getColumn(0).setMaxWidth(80);
         table.getColumnModel().getColumn(0).setMinWidth(80);
         table.getColumnModel().getColumn(0).setPreferredWidth(80);
-//        table.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-////                JOptionPane.showConfirmDialog(null, table.getSelectedRow());
-//                if (e.getClickCount() > 1) {
-//                    NhanKhauBean temp = listNhanKhauBeans.get(table.getSelectedRow());
-//                    NhanKhauBean info = nhanKhauService.getNhanKhau(temp.getChungMinhThuModel().getSoCMT());
-//                    InfoJframe infoJframe = new InfoJframe(info.toString(), parentJFrame);
-//                    infoJframe.setLocationRelativeTo(null);
-//                    infoJframe.setVisible(true);
-//                }
-//            }
-//            
-//        });
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                JOptionPane.showConfirmDialog(null, table.getSelectedRow());
+                if (e.getClickCount() > 1) {
+                    NhanKhauBean temp = listNhanKhauBeans.get(table.getSelectedRow());
+                    NhanKhauBean info = nhanKhauService.getNhanKhau(temp.getChungMinhThuModel().getSoCMT());
+                    InfoJframe infoJframe = new InfoJframe(info.toString(), parentJFrame);
+                    infoJframe.setLocationRelativeTo(null);
+                    infoJframe.setVisible(true);
+                }
+            }
+            
+        });
         
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);

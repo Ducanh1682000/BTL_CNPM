@@ -159,7 +159,7 @@ public class LoginForm extends javax.swing.JFrame {
                 btnLogin1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 110, 30));
+        jPanel1.add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 120, 30));
 
         jblCancel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jblCancel.setForeground(new java.awt.Color(255, 255, 255));
@@ -184,7 +184,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Vui lòng đăng nhập");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 170, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

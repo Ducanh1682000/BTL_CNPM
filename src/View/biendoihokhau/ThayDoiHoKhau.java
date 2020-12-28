@@ -125,7 +125,7 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
         chonHoKhaulb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         chonHoKhaulb.setText("Chọn hộ khẩu");
 
-        timKiemJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        timKiemJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tableJpn.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -146,29 +146,29 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
         tenChuHolb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tenChuHolb.setText("Tên chủ hộ:");
 
-        maHoKhauJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        maHoKhauJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        tenChuHoJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tenChuHoJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         maKhuVuclb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         maKhuVuclb.setText("Mã khu vực:");
 
-        maKhuVucJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        maKhuVucJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         diaChiHienTailb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         diaChiHienTailb.setText("Địa chỉ hiện tại:");
 
-        diaChiHienTaiJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        diaChiHienTaiJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         diaChiChuyenDenlb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         diaChiChuyenDenlb.setText("Địa chỉ chuyển đến:");
 
-        diaChiChuyenDenJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        diaChiChuyenDenJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lyDoChuyenDilb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lyDoChuyenDilb.setText("Lý do chuyển đi:");
 
-        lyDoChuyenDiJtf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lyDoChuyenDiJtf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         huyBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         huyBtn.setText("Hủy");
@@ -256,7 +256,7 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
                             .addComponent(batBuoclb4)
                             .addComponent(batBuoclb5)
                             .addComponent(batBuoclb6))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         pn3Layout.setVerticalGroup(
             pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,11 +316,13 @@ public class ThayDoiHoKhau extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pn3, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pn3, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+            .addComponent(pn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

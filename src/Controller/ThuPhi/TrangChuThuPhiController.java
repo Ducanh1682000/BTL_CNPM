@@ -20,17 +20,13 @@ public class TrangChuThuPhiController {
     private JLabel jlbBatBuoc;
     private JLabel jlbDongGop;
     private JLabel jlbSoTien;
-    private JLabel jlbKhoanDaHT;
-    private JLabel jlbKhoanChuaHT;
     
 
-    public TrangChuThuPhiController(JLabel jlbKhoanThu, JLabel jlbBatBuoc, JLabel jlbDongGop, JLabel jlbSoTien, JLabel jlbKhoanDaHT, JLabel jlbKhoanChuaHT) {
+    public TrangChuThuPhiController(JLabel jlbKhoanThu, JLabel jlbBatBuoc, JLabel jlbDongGop, JLabel jlbSoTien) {
         this.jlbKhoanThu = jlbKhoanThu;
         this.jlbBatBuoc = jlbBatBuoc;
         this.jlbDongGop = jlbDongGop;
         this.jlbSoTien = jlbSoTien;
-        this.jlbKhoanDaHT = jlbKhoanDaHT;
-        this.jlbKhoanChuaHT = jlbKhoanChuaHT;
        
     }
     
@@ -70,22 +66,6 @@ public class TrangChuThuPhiController {
             }
             preparedStatement.close();
             
-            
-            query = "SELECT COUNT(*) AS tong FROM dot_thu WHERE ngayKetThucThu > NOW()";
-            preparedStatement = (PreparedStatement)connection.prepareStatement(query);
-            rs = preparedStatement.executeQuery();
-            while (rs.next()){
-                this.jlbKhoanChuaHT.setText(String.valueOf(rs.getInt("tong")));
-            }
-            preparedStatement.close();
-            
-            query = "SELECT COUNT(*) AS tong FROM dot_thu WHERE ngayKetThucThu < NOW()";
-            preparedStatement = (PreparedStatement)connection.prepareStatement(query);
-            rs = preparedStatement.executeQuery();
-            while (rs.next()){
-                this.jlbKhoanDaHT.setText(String.valueOf(rs.getInt("tong")));
-            }
-            preparedStatement.close();
             
             connection.close();
         } catch (Exception ex) {

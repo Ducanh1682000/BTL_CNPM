@@ -6,6 +6,7 @@
 package Controller;
 
 import Bean.HoKhauBean;
+import View.InfoJframe;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -35,7 +36,7 @@ public class HoKhauController {
     private final HoKhauService hoKhauService = new HoKhauService();
     private final TableModelHoKhau tableModelHoKhau = new TableModelHoKhau();
     private final String COLUNMS[] = {"Mã hộ khẩu", "Họ tên chủ hộ", "Địa chỉ hiện nay"}; 
-//    private JFrame parentJFrame;
+    private JFrame parentJFrame;
 
     public HoKhauController(JTextField jtfSearch, JPanel jpnView) {
         this.jtfSearch = jtfSearch;
@@ -98,18 +99,18 @@ public class HoKhauController {
         table.validate();
         table.repaint();
         table.setFont(new Font("Arial", Font.PLAIN, 14));
-//        table.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() > 1) {
-//                    HoKhauBean temp = list.get(table.getSelectedRow());
-//                    InfoJframe infoJframe = new InfoJframe(temp.toString(), parentJFrame);
-//                    infoJframe.setLocationRelativeTo(null);
-//                    infoJframe.setVisible(true);
-//                }
-//            }
-//            
-//        });
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() > 1) {
+                    HoKhauBean temp = list.get(table.getSelectedRow());
+                    InfoJframe infoJframe = new InfoJframe(temp.toString(), parentJFrame);
+                    infoJframe.setLocationRelativeTo(null);
+                    infoJframe.setVisible(true);
+                }
+            }
+            
+        });
         
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
@@ -119,4 +120,9 @@ public class HoKhauController {
         jpnView.validate();
         jpnView.repaint();
     }
+
+    public void setParentJFrame(JFrame parentJFrame) {
+        this.parentJFrame = parentJFrame;
+    }
+    
 }

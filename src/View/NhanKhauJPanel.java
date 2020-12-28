@@ -9,8 +9,8 @@ import Controller.NhanKhauController;
 import utility.TableKhaiTu;
 import views.biendoinhaukhau.QuanLyTamTruFrame;
 import views.biendoinhaukhau.QuanLyTamVangFrame;
-
 import views.biendoinhaukhau.ThemNhanKhauFrame;
+import javax.swing.JFrame;
 
 /**
  *
@@ -21,9 +21,14 @@ public class NhanKhauJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NhanKhauJPanel
      */
+    NhanKhauController controller;
+    private JFrame parentJFrame;
     public NhanKhauJPanel() {
         initComponents();
-        NhanKhauController controller = new NhanKhauController(jpnView, jtfSearch);
+        this.parentJFrame = parentJFrame;
+        controller = new NhanKhauController(jpnView, jtfSearch);
+        
+        controller.setParentJFrame(parentJFrame);
         controller.setDataTable();
     }
 
