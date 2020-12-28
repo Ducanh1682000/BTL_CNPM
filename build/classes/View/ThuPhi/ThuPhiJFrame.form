@@ -233,7 +233,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; h&#x1ed9; kh&#x1ea9;u:"/>
+            <Property name="text" type="java.lang.String" value="ID h&#x1ed9; kh&#x1ea9;u:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

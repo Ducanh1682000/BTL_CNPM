@@ -86,7 +86,7 @@ public class ThuPhiJFrame extends javax.swing.JFrame {
         jLabel1.setText("Mã đợt thu:");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("Mã hộ khẩu:");
+        jLabel2.setText("ID hộ khẩu:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Tên chủ hộ:");
