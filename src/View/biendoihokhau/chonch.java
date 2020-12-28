@@ -8,6 +8,7 @@ package View.biendoihokhau;
 import static services_ho_khau.HoKhauService.getnhankhau;
 import java.awt.Font;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model_ho_khau.NhanKhautest;
 
@@ -91,6 +92,7 @@ public class chonch extends javax.swing.JDialog {
             tbchuho.getColumnModel().getColumn(0).setPreferredWidth(20);
         }
 
+        txttimkiem.setEnabled(false);
         txttimkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttimkiemActionPerformed(evt);
@@ -217,7 +219,7 @@ public class chonch extends javax.swing.JDialog {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
