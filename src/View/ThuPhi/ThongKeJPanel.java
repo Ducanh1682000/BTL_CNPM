@@ -79,19 +79,19 @@ public class ThongKeJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnShow.setBackground(new java.awt.Color(0, 204, 204));
+        btnShow.setBackground(new java.awt.Color(0, 153, 153));
         btnShow.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnShow.setForeground(new java.awt.Color(255, 255, 255));
         btnShow.setText("Lấy danh sách");
         btnShow.setBorder(null);
 
-        btnPrint.setBackground(new java.awt.Color(0, 204, 204));
+        btnPrint.setBackground(new java.awt.Color(0, 153, 153));
         btnPrint.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnPrint.setForeground(new java.awt.Color(255, 255, 255));
         btnPrint.setText("In");
         btnPrint.setBorder(null);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Khoản thu:");
 
         jcbTenDotThu.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -110,7 +110,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jcbStatus.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toàn bộ", "Đã đóng", "Chưa đóng" }));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("Tình trạng:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -135,7 +135,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 305, Short.MAX_VALUE)))
+                        .addGap(0, 293, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,8 +167,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnXemDanhSach.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnXemDanhSach.setBackground(new java.awt.Color(0, 153, 153));
+        btnXemDanhSach.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnXemDanhSach.setForeground(new java.awt.Color(255, 255, 255));
         btnXemDanhSach.setText("Show");
+        btnXemDanhSach.setBorder(null);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Chọn đợt:");
@@ -184,8 +187,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
             .addGap(0, 376, Short.MAX_VALUE)
         );
 
-        btnPrint2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnPrint2.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrint2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnPrint2.setForeground(new java.awt.Color(255, 255, 255));
         btnPrint2.setText("Print");
+        btnPrint2.setBorder(null);
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconhome.png"))); // NOI18N
@@ -278,9 +284,9 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnXemDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPrint2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnXemDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnPrint2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -321,8 +327,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
 
         jtfTimKiem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        btnThongKe.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnThongKe.setBackground(new java.awt.Color(0, 153, 153));
+        btnThongKe.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnThongKe.setForeground(new java.awt.Color(255, 255, 255));
         btnThongKe.setText("Show");
+        btnThongKe.setBorder(null);
 
         javax.swing.GroupLayout jpnView3Layout = new javax.swing.GroupLayout(jpnView3);
         jpnView3.setLayout(jpnView3Layout);
@@ -335,8 +344,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
             .addGap(0, 435, Short.MAX_VALUE)
         );
 
-        btnPrint3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnPrint3.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrint3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnPrint3.setForeground(new java.awt.Color(255, 255, 255));
         btnPrint3.setText("Print");
+        btnPrint3.setBorder(null);
 
         jlbKetQua.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -356,10 +368,10 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPrint3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPrint3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
