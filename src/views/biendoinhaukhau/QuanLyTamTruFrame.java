@@ -6,8 +6,8 @@
 
 package views.biendoinhaukhau;
 
-import View.ChucNang;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.TamTruModel;
 import services.TamTruService;
@@ -66,11 +66,17 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
         maChuHoSearch = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("DANH SÁCH TẠM TRÚ TRÊN ĐỊA BÀN");
 
+        tamTruTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tamTruTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -89,7 +95,7 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
         tamTruTable.setShowGrid(false);
         jScrollPane1.setViewportView(tamTruTable);
 
-        backButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        backButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         backButton.setForeground(new java.awt.Color(255, 51, 51));
         backButton.setText("Quay lại");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +104,9 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
             }
         });
 
-        maDonSearch.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        maGiayText.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        maDonSearch.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         maDonSearch.setText("Tìm kiếm");
         maDonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,13 +114,15 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Tìm kiếm theo mã giấy");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Tìm kiếm theo mã chủ hộ");
 
-        maChuHoSearch.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        maChuHoText.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        maChuHoSearch.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         maChuHoSearch.setText("Tìm kiếm");
         maChuHoSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +130,7 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
             }
         });
 
-        addButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        addButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         addButton.setForeground(new java.awt.Color(51, 51, 255));
         addButton.setText("Thêm mới");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -143,23 +153,24 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
                                 .addComponent(backButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addGap(92, 92, 92)
+                                .addGap(54, 54, 54)
                                 .addComponent(addButton)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(maChuHoText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(maChuHoSearch)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maChuHoText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(maChuHoSearch)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(maGiayText, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(maDonSearch)
-                        .addGap(22, 22, 22))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(62, 62, 62))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maGiayText, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(maDonSearch)))
+                        .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,40 +222,16 @@ public class QuanLyTamTruFrame extends javax.swing.JFrame {
         setTableData(tamTruService.searchMaGiay(maGiay));
     }//GEN-LAST:event_maDonSearchActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuanLyTamTruFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuanLyTamTruFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuanLyTamTruFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuanLyTamTruFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            dispose();
+        } else {
+            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_formWindowClosing
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QuanLyTamTruFrame().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

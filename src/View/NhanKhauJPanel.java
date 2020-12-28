@@ -6,6 +6,7 @@
 package View;
 
 import Controller.NhanKhauController;
+import utility.TableKhaiTu;
 import views.biendoinhaukhau.QuanLyTamTruFrame;
 import views.biendoinhaukhau.QuanLyTamVangFrame;
 
@@ -73,6 +74,11 @@ public class NhanKhauJPanel extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Khai tử");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
         jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -163,13 +169,27 @@ public class NhanKhauJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new QuanLyTamTruFrame().setVisible(true);
+        
+        QuanLyTamTruFrame frame = new QuanLyTamTruFrame();
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        new QuanLyTamVangFrame().setVisible(true);
+        QuanLyTamVangFrame frame = new QuanLyTamVangFrame();
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        TableKhaiTu frame = new TableKhaiTu();
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
