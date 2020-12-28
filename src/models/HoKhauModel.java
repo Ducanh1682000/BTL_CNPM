@@ -13,7 +13,7 @@ public class HoKhauModel {
     private String maKhuVuc;
     private String diaChi;
     private Date ngayLap;
-    private Date ngayChuyDi;
+    private Date ngayChuyenDi;
     private String lyDoChuyen;
     private int nguoiThucHien;
 
@@ -66,11 +66,11 @@ public class HoKhauModel {
     }
 
     public Date getNgayChuyDi() {
-        return ngayChuyDi;
+        return ngayChuyenDi;
     }
 
     public void setNgayChuyDi(Date ngayChuyDi) {
-        this.ngayChuyDi = ngayChuyDi;
+        this.ngayChuyenDi = ngayChuyDi;
     }
 
     public String getLyDoChuyen() {

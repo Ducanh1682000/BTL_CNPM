@@ -1,0 +1,122 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controller;
+
+import Bean.HoKhauBean;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.EventObject;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import services.HoKhauService;
+import utility.TableModelHoKhau;
+
+/**
+ *
+ * @author ADMIN
+ */
+public class HoKhauController {
+    private List<HoKhauBean> list;
+    private JTextField jtfSearch;
+    private JPanel jpnView;
+    private final HoKhauService hoKhauService = new HoKhauService();
+    private final TableModelHoKhau tableModelHoKhau = new TableModelHoKhau();
+    private final String COLUNMS[] = {"Mã hộ khẩu", "Họ tên chủ hộ", "Địa chỉ hiện nay"}; 
+//    private JFrame parentJFrame;
+
+    public HoKhauController(JTextField jtfSearch, JPanel jpnView) {
+        this.jtfSearch = jtfSearch;
+        this.jpnView = jpnView;
+        this.list = hoKhauService.getListHoKhau();
+        setData();
+        initAction();
+    }
+    
+    public void initAction() {
+        this.jtfSearch.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String key = jtfSearch.getText().trim();
+                if (key.isEmpty()) {
+                    list = hoKhauService.getListHoKhau();
+                } else {
+                    list = hoKhauService.search(key);
+                }
+                setData();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String key = jtfSearch.getText().trim();
+                if (key.isEmpty()) {
+                    list = hoKhauService.getListHoKhau();
+                } else {
+                    list = hoKhauService.search(key);
+                }
+                setData();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String key = jtfSearch.getText().trim();
+                if (key.isEmpty()) {
+                    list = hoKhauService.getListHoKhau();
+                } else {
+                    list = hoKhauService.search(key);
+                }
+                setData();
+            }
+        });
+    }
+
+    public void setData() {
+        DefaultTableModel model = tableModelHoKhau.setTableHoKhau(list, COLUNMS);
+        
+        JTable table = new JTable(model) {
+            @Override
+            public boolean editCellAt(int row, int column, EventObject e) {
+                return false;
+            }
+            
+        };
+        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        table.getTableHeader().setPreferredSize(new Dimension(100, 50));
+        table.setRowHeight(50);
+        table.validate();
+        table.repaint();
+        table.setFont(new Font("Arial", Font.PLAIN, 14));
+//        table.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if (e.getClickCount() > 1) {
+//                    HoKhauBean temp = list.get(table.getSelectedRow());
+//                    InfoJframe infoJframe = new InfoJframe(temp.toString(), parentJFrame);
+//                    infoJframe.setLocationRelativeTo(null);
+//                    infoJframe.setVisible(true);
+//                }
+//            }
+//            
+//        });
+        
+        JScrollPane scroll = new JScrollPane();
+        scroll.getViewport().add(table);
+        jpnView.removeAll();
+        jpnView.setLayout(new BorderLayout());
+        jpnView.add(scroll);
+        jpnView.validate();
+        jpnView.repaint();
+    }
+}

@@ -7,10 +7,14 @@ package services;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import models.ThuPhi.DotThuModel;
+import models.ThuPhi.ThongTinThuPhiModel;
 import models.ThuPhiModel;
 
 
@@ -20,27 +24,124 @@ import models.ThuPhiModel;
  */
 public class ThuPhiService {
     
-    
-    public List<ThuPhiModel> getListPhiVeSinh() {
+    //List đợt thu phí
+    public List<DotThuModel> getListDotThu() {
         Connection cons = MysqlConnection.getMysqlConnection();
-        String sql = "SELECT tv.idHoKhau, idChuHo, hoTen, diaChi, COUNT(idNhanKhau) as soThanhVien, 6000*12*COUNT(idNhanKhau) as soTien, thoiGian, thu_phi.ghiChu" 
-                    +" FROM thanh_vien_cua_ho tv, ho_khau, nhan_khau, thu_phi" 
-                    +" WHERE tv.idHoKhau = ho_khau.ID and idChuHo = nhan_khau.ID and thu_phi.idHoKhau = ho_khau.ID" 
-                    +" GROUP BY  idHoKhau";
-        List<ThuPhiModel> list = new ArrayList<>();
+        String sql = "Select * FROM dot_thu";
+        List<DotThuModel> list = new ArrayList<>();
         try {
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ThuPhiModel thuPhiModel = new ThuPhiModel();
-                thuPhiModel.setIdHoKhau(rs.getInt("idHoKhau"));
+                DotThuModel dotThuModel = new DotThuModel();
+                dotThuModel.setMaDotThu(rs.getInt("maDotThu"));
+                dotThuModel.setTenDotThu(rs.getString("tenDotThu"));
+                dotThuModel.setLoaiPhiThu(rs.getBoolean("loaiPhiThu"));
+                dotThuModel.setNgayBatDauThu(rs.getDate("ngayBatDauThu"));
+                dotThuModel.setNgayKetThucThu(rs.getDate("ngayKetThucThu"));
+                dotThuModel.setSoTienTrenMotNhanKhau(rs.getInt("soTienTrenMotNhanKhau"));
+                dotThuModel.setNgayTao(rs.getDate("ngayTao")); 
+                
+                list.add(dotThuModel);
+            }
+            ps.close();
+            cons.close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //Sửa, thêm đợt thu
+    public int createOrUpdate(DotThuModel dotThuModel) {
+        try {
+            Connection cons = MysqlConnection.getMysqlConnection();
+            String sql = "INSERT INTO dot_thu(tenDotThu, loaiPhiThu, ngayBatDauThu, ngayKetThucThu, soTienTrenMotNhanKhau, ngayTao) "
+                    + "VALUES(?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE tenDotThu = VALUES(tenDotThu), loaiPhiThu = VALUES(loaiPhiThu), ngayBatDauThu = VALUES(ngayBatDauThu), ngayKetThucThu = VALUES(ngayKetThucThu), soTienTrenMotNhanKhau = VALUES(soTienTrenMotNhanKhau), ngayTao = VALUES(ngayTao);";
+            PreparedStatement ps = cons.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+//            ps.setInt(1, dotThuModel.getMaDotThu());
+            ps.setString(1, dotThuModel.getTenDotThu());
+            ps.setBoolean(2, dotThuModel.isLoaiPhiThu());
+            ps.setDate(3, (Date) dotThuModel.getNgayBatDauThu());
+            ps.setDate(4, (Date) dotThuModel.getNgayKetThucThu());
+            ps.setInt(5, dotThuModel.getSoTienTrenMotNhanKhau());
+            ps.setDate(6, (Date) dotThuModel.getNgayTao());
+            
+         
+            ps.execute();
+            ResultSet rs = ps.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+            ps.close();
+            cons.close();
+            return generatedKey;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+    
+    
+    //Nộp phí
+    public boolean nopPhi(ThongTinThuPhiModel thongTinThuPhiModel) {
+        try {
+            Connection cons = MysqlConnection.getMysqlConnection();
+            String sql = "INSERT INTO thong_tin_thu_phi(maDotThu, maHoKhau, tongSoTien, ngayThu, ghiChu) VALUES(?, ?, ?, ?, ?)";
+            PreparedStatement ps = cons.prepareStatement(sql);
+            ps.setInt(1, thongTinThuPhiModel.getMaDotThu());
+            ps.setInt(2, thongTinThuPhiModel.getMaHoKhau());
+            ps.setInt(3, thongTinThuPhiModel.getTongSoTien());
+            ps.setDate(4, (Date) thongTinThuPhiModel.getNgayThu());
+            ps.setString(5, thongTinThuPhiModel.getGhiChu());
+            ps.execute();
+            ps.close();
+            cons.close();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        
+    }
+    
+
+    public List<ThongTinThuPhiModel> getListPhiVeSinh(String Status) {
+        
+        List<ThongTinThuPhiModel> list = new ArrayList<>();
+        String sql = "SELECT tv.idHoKhau, idChuHo, hoTen, diaChi, COUNT(idNhanKhau) as soThanhVien, 6000*12*COUNT(idNhanKhau) as soTien" 
+                    +" FROM thanh_vien_cua_ho tv, ho_khau, nhan_khau" 
+                    +" WHERE tv.idHoKhau = ho_khau.ID and idChuHo = nhan_khau.ID";
+        if (Status.equalsIgnoreCase("Toan bo")) {
+            sql += "";
+        } else if (Status.equalsIgnoreCase("Đa đong")) {
+            sql += " AND tv.idHoKhau IN (SELECT maHoKhau" 
+                    +" FROM dot_thu , thong_tin_thu_phi" 
+                    +" WHERE loaiPhiThu = 1 AND dot_thu.maDotThu = thong_tin_thu_phi.maDotThu)";
+        } else if (Status.equalsIgnoreCase("Chua đong")) {
+            sql += " AND tv.idHoKhau NOT IN (SELECT maHoKhau" 
+                    +" FROM dot_thu , thong_tin_thu_phi" 
+                    +" WHERE loaiPhiThu = 1 AND dot_thu.maDotThu = thong_tin_thu_phi.maDotThu)";
+        }
+        sql += " GROUP BY  idHoKhau";
+    
+        
+        
+        try {
+            Connection cons = MysqlConnection.getMysqlConnection();
+            PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongTinThuPhiModel thuPhiModel = new ThongTinThuPhiModel();
+                thuPhiModel.setMaHoKhau(rs.getInt("idHoKhau"));
                 thuPhiModel.setIdChuHo(rs.getInt("idChuHo"));
-                thuPhiModel.setHoTenChuHo(rs.getString("hoTen"));
-                thuPhiModel.setDiaChiHienNay(rs.getString("diaChi"));
-                thuPhiModel.setSoThanhVien(rs.getInt("soThanhVien"));
-                thuPhiModel.setSoTien(rs.getInt("soTien"));
-                thuPhiModel.setNgayNop(rs.getDate("thoiGian"));
-                thuPhiModel.setGhiChu(rs.getString("ghiChu"));
+                thuPhiModel.setTenChuHo(rs.getString("hoTen"));
+                thuPhiModel.setDiaChiThu(rs.getString("diaChi"));
+                thuPhiModel.setSoNhanKhau(rs.getInt("soThanhVien"));
+                thuPhiModel.setTongSoTien(rs.getInt("soTien"));
+//                thuPhiModel.setNgayNop(rs.getDate("thoiGian"));
+//                thuPhiModel.setGhiChu(rs.getString("ghiChu"));
                 
                 list.add(thuPhiModel);
             }
@@ -53,24 +154,24 @@ public class ThuPhiService {
         return null;
     }
 
-    public List<ThuPhiModel> getListDongGop(String dotDongGop) {
-        List<ThuPhiModel> list = new ArrayList<>();
-        String sql = "SELECT p.IdHoKhau, n.hoTen, p.thoiGian, p.soTien, p.ghiChu" 
-                +" FROM phi_dong_gop p, ho_khau h, nhan_khau n" 
-                +" WHERE p.IdHoKhau = h.ID and h.idChuHo=n.ID" 
-                +" and dotDongGop = '"
+    public List<ThongTinThuPhiModel> getListDongGop(String dotDongGop) {
+        List<ThongTinThuPhiModel> list = new ArrayList<>();
+        String sql = "SELECT ho_khau.ID, tongSoTien, hoTen, ngayThu, thong_tin_thu_phi.ghiChu " 
+                +"FROM dot_thu, thong_tin_thu_phi, ho_khau, nhan_khau " 
+                +"WHERE dot_thu.maDotThu = thong_tin_thu_phi.maDotThu AND thong_tin_thu_phi.maHoKhau = ho_khau.ID AND ho_khau.idChuHo = nhan_khau.ID " 
+                +"AND loaiPhiThu = 0 AND tenDotThu = '"
                 + dotDongGop
-                +"' ORDER BY p.thoiGian DESC";
+                + "'";
         try {
             Connection cons = MysqlConnection.getMysqlConnection();
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ThuPhiModel thuPhiModel = new ThuPhiModel();
-                thuPhiModel.setIdHoKhau(rs.getInt("idHoKhau"));
-                thuPhiModel.setHoTenChuHo(rs.getString("hoTen"));      
-                thuPhiModel.setSoTien(rs.getInt("soTien"));
-                thuPhiModel.setNgayNop(rs.getDate("thoiGian"));
+                ThongTinThuPhiModel thuPhiModel = new ThongTinThuPhiModel();
+                thuPhiModel.setMaHoKhau(rs.getInt("ID"));
+                thuPhiModel.setTenChuHo(rs.getString("hoTen"));      
+                thuPhiModel.setTongSoTien(rs.getInt("tongSoTien"));
+                thuPhiModel.setNgayThu(rs.getDate("ngayThu"));
                 thuPhiModel.setGhiChu(rs.getString("ghiChu"));
                
                 list.add(thuPhiModel);
@@ -85,30 +186,30 @@ public class ThuPhiService {
     }
     
     
-    public List<ThuPhiModel> thongKeDongGop(String tenChuHo, int idHoKhau, String Status) {
-        List<ThuPhiModel> list = new ArrayList<>();
-        String sql = "SELECT p.IdHoKhau, n.hoTen, p.thoiGian, p.soTien, p.dotDongGop" 
-                +" FROM phi_dong_gop p, ho_khau h, nhan_khau n" 
-                +" WHERE p.IdHoKhau = h.ID AND h.idChuHo=n.ID" 
-                +" AND ";
+    public List<ThongTinThuPhiModel> thongKeThuPhiTheoHo(String tenChuHo, int idHoKhau, String Status) {
+        List<ThongTinThuPhiModel> list = new ArrayList<>();
+        String sql = "SELECT tenDotThu, ho_khau.ID, tongSoTien, hoTen, ngayThu " 
+                +"FROM dot_thu, thong_tin_thu_phi, ho_khau, nhan_khau " 
+                +"WHERE dot_thu.maDotThu = thong_tin_thu_phi.maDotThu AND thong_tin_thu_phi.maHoKhau = ho_khau.ID AND ho_khau.idChuHo = nhan_khau.ID " 
+                +"AND ";
         if(Status.equalsIgnoreCase("ID Ho khau")) 
-            sql += "p.IdHoKhau = '"+ idHoKhau +"'";
+            sql += "ho_khau.ID = '"+ idHoKhau +"'";
         
         if(Status.equalsIgnoreCase("Ten chu ho")) 
-            sql += "n.hoTen = '" + tenChuHo + "'";
-        sql += " ORDER BY thoiGian DESC";
+            sql += "hoTen = '" + tenChuHo + "'";
+        sql += " ORDER BY ngayThu DESC";
                 
         try {
             Connection cons = MysqlConnection.getMysqlConnection();
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ThuPhiModel thuPhiModel = new ThuPhiModel();
-                thuPhiModel.setIdHoKhau(rs.getInt("IdHoKhau"));
-                thuPhiModel.setHoTenChuHo(rs.getString("hoTen"));      
-                thuPhiModel.setSoTien(rs.getInt("soTien"));
-                thuPhiModel.setNgayNop(rs.getDate("thoiGian"));
-                thuPhiModel.setGhiChu(rs.getString("dotDongGop"));
+                ThongTinThuPhiModel thuPhiModel = new ThongTinThuPhiModel();
+                thuPhiModel.setMaHoKhau(rs.getInt("ID"));
+                thuPhiModel.setTenChuHo(rs.getString("hoTen"));      
+                thuPhiModel.setTongSoTien(rs.getInt("tongSoTien"));
+                thuPhiModel.setNgayThu(rs.getDate("ngayThu"));
+                thuPhiModel.setTenDotThu(rs.getString("tenDotThu"));
                
                 list.add(thuPhiModel);
             }

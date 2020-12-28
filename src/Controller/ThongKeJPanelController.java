@@ -30,7 +30,8 @@ import models.NhanKhauModel;
 //import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.ThongKeService;
 import services.StringService;
-import utility.ClassTableModel;
+import utility.TableModelNhanKhau;
+import utility.TableModelThuPhi;
 import views.BieuDoJFrame.BieuDoJFrame;
 
 /**
@@ -53,7 +54,7 @@ public class ThongKeJPanelController {
 
     private ThongKeService thongKeService;
 
-    private ClassTableModel classTableModel;
+    private TableModelNhanKhau tableModelNhanKhau;
     private final String[] COLUMNS = {"ID", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ hiện nay"};
 
     public ThongKeJPanelController(JComboBox genderJcb, JComboBox statusJcb, JTextField tuTuoiJtf, JTextField denTuoiJtf, JDateChooser jdcTuNgay, JDateChooser jdcDenNgay, JPanel jpnView, JLabel jlbKetQua, JButton btnPrint, JButton btnThongKe, JButton btnBieuDo) {
@@ -71,7 +72,7 @@ public class ThongKeJPanelController {
 
         this.thongKeService = new ThongKeService();
 
-        this.classTableModel = new ClassTableModel();
+        this.tableModelNhanKhau = new TableModelNhanKhau();
     }
 
     public void setDataTable() {
@@ -104,7 +105,7 @@ public class ThongKeJPanelController {
 
         List<NhanKhauModel> listItem = thongKeService.statisticNhanKhau(tuTuoi, denTuoi, gioiTinh, status, tuNgay, denNgay);
 
-        DefaultTableModel model = classTableModel.setTableNhanKhau(listItem, COLUMNS);
+        DefaultTableModel model = tableModelNhanKhau.setTableNhanKhau(listItem, COLUMNS);
         JTable table = new JTable(model);
         //So KQ
         jlbKetQua.setText("Có " + table.getRowCount() + " kết quả theo điều kiện thống kê!");

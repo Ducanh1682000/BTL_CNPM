@@ -4,24 +4,16 @@ import java.util.Date;
 
 /**
  *
- * @author Hai
+ * @author Khac Tao
  */
 public class TamVangModel {
-    private int ID;
-    private int idNhanKhau;
-    private String maGiayTamVang;
+    private int maGiayTamVang;
     private String noiTamTru;
-    private Date tuNgay;
-    private Date denNgay;
+    private Date vangTuNgay;
+    private Date vangDenNgay;
     private String lyDo;
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+    private String trangThai;
+    private int idNhanKhau;
 
     public int getIdNhanKhau() {
         return idNhanKhau;
@@ -31,11 +23,15 @@ public class TamVangModel {
         this.idNhanKhau = idNhanKhau;
     }
 
-    public String getMaGiayTamVang() {
+    public TamVangModel() {
+        
+    }
+
+    public int getMaGiayTamVang() {
         return maGiayTamVang;
     }
 
-    public void setMaGiayTamVang(String maGiayTamVang) {
+    public void setMaGiayTamVang(int maGiayTamVang) {
         this.maGiayTamVang = maGiayTamVang;
     }
 
@@ -47,20 +43,20 @@ public class TamVangModel {
         this.noiTamTru = noiTamTru;
     }
 
-    public Date getTuNgay() {
-        return tuNgay;
+    public Date getVangTuNgay() {
+        return vangTuNgay;
     }
 
-    public void setTuNgay(Date tuNgay) {
-        this.tuNgay = tuNgay;
+    public void setVangTuNgay(Date vangTuNgay) {
+        this.vangTuNgay = vangTuNgay;
     }
 
-    public Date getDenNgay() {
-        return denNgay;
+    public Date getVangDenNgay() {
+        return vangDenNgay;
     }
 
-    public void setDenNgay(Date denNgay) {
-        this.denNgay = denNgay;
+    public void setVangDenNgay(Date vangDenNgay) {
+        this.vangDenNgay = vangDenNgay;
     }
 
     public String getLyDo() {
@@ -70,6 +66,12 @@ public class TamVangModel {
     public void setLyDo(String lyDo) {
         this.lyDo = lyDo;
     }
-    
-    
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
 }

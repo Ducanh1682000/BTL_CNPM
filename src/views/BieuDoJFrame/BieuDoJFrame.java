@@ -14,11 +14,11 @@ import Controller.BieuDoController;
  */
 public class BieuDoJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BieuDoJFrame
-     */
+    BieuDoController controller = new BieuDoController();
+    
     public BieuDoJFrame() {
-        initComponents();     
+        initComponents();  
+        
     }
 
     /**
@@ -37,7 +37,6 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         jpnView = new javax.swing.JPanel();
         jrd2 = new javax.swing.JRadioButton();
         jrd1 = new javax.swing.JRadioButton();
-        btnShow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -83,7 +82,12 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         jrd2.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jrd2);
         jrd2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jrd2.setText("Theo độ tuổi");
+        jrd2.setText("Dạng quạt");
+        jrd2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrd2MouseClicked(evt);
+            }
+        });
         jrd2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrd2ActionPerformed(evt);
@@ -93,19 +97,15 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         jrd1.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jrd1);
         jrd1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jrd1.setText("Theo giới tính");
+        jrd1.setText("Dạng cột");
+        jrd1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrd1MouseClicked(evt);
+            }
+        });
         jrd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrd1ActionPerformed(evt);
-            }
-        });
-
-        btnShow.setBackground(new java.awt.Color(255, 255, 255));
-        btnShow.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnShow.setText("Show");
-        btnShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowActionPerformed(evt);
             }
         });
 
@@ -113,18 +113,17 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(71, 71, 71))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,8 +131,7 @@ public class BieuDoJFrame extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrd2)
-                    .addComponent(jrd1)
-                    .addComponent(btnShow))
+                    .addComponent(jrd1))
                 .addGap(18, 18, 18)
                 .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -168,16 +166,18 @@ public class BieuDoJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jrd2ActionPerformed
 
-    private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-        BieuDoController controller = new BieuDoController();
-        //if (jrd1.isSelected()) controller.setDataToChart1(jpnView);
-        //else if (jrd2.isSelected()) controller.setDataToChart2(jpnView);
-    }//GEN-LAST:event_btnShowActionPerformed
+    private void jrd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrd1MouseClicked
+        
+        controller.setDataToChart1(jpnView);
+    }//GEN-LAST:event_jrd1MouseClicked
+
+    private void jrd2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrd2MouseClicked
+        controller.setDataToChart2(jpnView);
+    }//GEN-LAST:event_jrd2MouseClicked
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnShow;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

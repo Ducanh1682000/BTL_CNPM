@@ -4,20 +4,25 @@
  * and open the template in the editor.
  */
 package View;
+
+import Controller.LoginController;
+import View.ThuPhi.ThuPhiMainJFrame;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.security.interfaces.RSAKey;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-
 
 /**
  *
  * @author THUAN.HQ183840
  */
-public class LoginForm extends javax.swing.JFrame{
+public class LoginForm extends javax.swing.JFrame {
+
+    private LoginController con = new LoginController();
+
     public LoginForm() {
         initComponents();
         setLocationRelativeTo(null);
@@ -25,7 +30,7 @@ public class LoginForm extends javax.swing.JFrame{
         keyListenner(jtfUserName);
         keyListenner(jtfPassword);
     }
-    
+
     // xu ly su kien nhan enter
     private void keyListenner(JTextField jtf) {
         jtf.addKeyListener(new KeyAdapter() {
@@ -33,44 +38,43 @@ public class LoginForm extends javax.swing.JFrame{
             public void keyPressed(KeyEvent e) {
                 // neu keycode == 10 ~ enter
                 if (e.getKeyCode() == 10) {
-                   login();
+                    login();
                 }
             }
-        }); 
+        });
     }
+
     private void login() {
-        
+        String userName = jtfUserName.getText();
+        String password = String.valueOf(jtfPassword.getPassword());
+
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlynhankhau","root","");
-            String sql = "select *  from users where userName = ? and passwd = ?";
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, jtfUserName.getText());
-            pst.setString(2, jtfPassword.getText());
-            ResultSet res = pst.executeQuery();
-            if(jtfUserName.getText().trim().isEmpty() || String.valueOf(jtfPassword.getPassword()).trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Vui lòng nhập đầy đủ thông tin đăng nhập!","Lỗi",JOptionPane.ERROR_MESSAGE);
+            if (jtfUserName.getText().trim().isEmpty() || String.valueOf(jtfPassword.getPassword()).trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin đăng nhập!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (this.con.login(userName, password) == 1) {
+                    dispose();
+                    MainJFrame mainJFrame = new MainJFrame();
+                    mainJFrame.setLocationRelativeTo(null);
+                    mainJFrame.setResizable(true);
+                    mainJFrame.setVisible(true);
+
+                } else if (this.con.login(userName, password) == 2) {
+                    dispose();
+                    ThuPhiMainJFrame thuPhiMainJFrame = new ThuPhiMainJFrame();
+                    thuPhiMainJFrame.setLocationRelativeTo(null);
+                    thuPhiMainJFrame.setResizable(true);
+                    thuPhiMainJFrame.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            else if(res.next()) {
-                dispose();
-                MainJFrame m = new MainJFrame();
-                m.setLocationRelativeTo(null);
-                m.setResizable(false);
-                m.setVisible(true);
-//                  ThemNhanKhau them = new ThemNhanKhau();
-//                  them.setLocationRelativeTo(null);
-//                  them.setResizable(false);
-//                  them.setVisible(true);
-            }
-            else {
-                JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        catch(Exception e) {
-              JOptionPane.showMessageDialog(null, "Không thể đăng nhập! Vui lòng kiểm tra lại đường dẫn tới Database!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra!! Vui lòng kiểm tra lại!", "Warning!!", JOptionPane.ERROR_MESSAGE);
         }
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -200,18 +204,18 @@ public class LoginForm extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
+
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         login();
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
     private void jtfUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfUserNameMouseClicked
-      
+
     }//GEN-LAST:event_jtfUserNameMouseClicked
 
     private void jtfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfUserNameActionPerformed
         jtfUserName.setToolTipText("user");
-        
+
     }//GEN-LAST:event_jtfUserNameActionPerformed
 
     private void jblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jblCancelMouseClicked
@@ -220,7 +224,7 @@ public class LoginForm extends javax.swing.JFrame{
     }//GEN-LAST:event_jblCancelMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát không?", "Chú ý", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
             System.exit(0);
         } else {
@@ -229,50 +233,9 @@ public class LoginForm extends javax.swing.JFrame{
     }//GEN-LAST:event_formWindowClosing
 
     private void jtfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPasswordActionPerformed
-              // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jtfPasswordActionPerformed
- 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin1;
@@ -290,6 +253,5 @@ public class LoginForm extends javax.swing.JFrame{
     private javax.swing.JPasswordField jtfPassword;
     private javax.swing.JTextField jtfUserName;
     // End of variables declaration//GEN-END:variables
- 
-    
+
 }

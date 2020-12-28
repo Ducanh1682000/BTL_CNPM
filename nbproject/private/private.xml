@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/HoKhauService.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/services_ho_khau/ThemHoKhauService.java</file>
@@ -11,5 +12,8 @@
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/Controllers/HoKhau/ThayDoiThanhVienCuaHoConTroller.java</file>
             <file>file:/D:/20201/Nhap%20mon%20cnpm/New%20folder%20(3)/CNPM/src/model_ho_khau/Tach_Ho_Khau.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 16dfe0643a80dcf45d87e0f0fb1b20297d57de2e
     </open-files>
 </project-private>
