@@ -6,8 +6,6 @@
 package View.biendoihokhau;
 
 import Controllers.HoKhau.ThayDoiThanhVienCuaHoConTroller;
-import View.HoKhauJPanel;
-import static View.biendoihokhau.chontv.ListTbgd;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +24,11 @@ import services_ho_khau.ThemHoKhauService;
  *
  * @author admin
  */
-public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
+public class ThayDoiThanhVienHo extends javax.swing.JFrame {
 
     /**
-     * Creates new form ThayDoiThanhVienCuaHo
+     * Creates new form ThayDoiThanhVienHo
      */
-   
     DefaultTableModel tblModel;
     private List<NhanKhautest> Listnk;
     private List<NhanKhautest> Listnk_1;
@@ -41,10 +38,9 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
     private List<ThanhVienCuaHo> ListThemTV;
     private List<ThanhVienCuaHo> ListBotTV;
     private int index1;
-    public ThayDoiThanhVienCuaHo(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ThayDoiThanhVienHo() {
         initComponents();
-        setLocationRelativeTo(null);
+         setLocationRelativeTo(null);
         
        
         ListThemTV = new ArrayList<>();
@@ -54,7 +50,6 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
         tb1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
         show_table2();
         show_table1();
-       
     }
 
     /**
@@ -91,7 +86,7 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
         txtmahk = new javax.swing.JTextField();
         txtdc = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -119,7 +114,7 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(258, 258, 258)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +189,6 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
             }
         });
         jScrollPane3.setViewportView(tb1);
-        if (tb1.getColumnModel().getColumnCount() > 0) {
-            tb1.getColumnModel().getColumn(0).setPreferredWidth(15);
-        }
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("ID hộ:");
@@ -339,6 +331,62 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        int index2 = tb2.getSelectedRow();
+
+        if(Listnk_1.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Không thể thêm");
+        } else if(index2 == -1){
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa chọn!","Cảnh báo", JOptionPane.ERROR_MESSAGE);
+        }   /*else{
+
+            boolean flag = true;
+            for( int i = 0; i < List2_1.size();i++){
+                if(List2_1.get(i).getTvh().getIdNhanKhau() == Listnk_1.get(index2).getID()){
+                    flag = false;
+                    break;
+                }
+            }
+            if(!flag) JOptionPane.showMessageDialog(rootPane, "Bạn đã chọn rồi");*/
+            else{
+                try {
+
+                    NhanKhautest nk = new NhanKhautest();
+                    ThanhVienCuaHo tv = new ThanhVienCuaHo();
+                    nk.setHoTen(Listnk_1.get(index2).getHoTen());
+                    tv.setIdNhanKhau(Listnk_1.get(index2).getID());
+                    tv.setQuanHeVoiChuHo(Listnk_1.get(index2).getQuanHeVoiChuHo());
+                    tv.setIdHoKhau(Integer.parseInt(txtid.getText()));
+                    ChonTvInTachHk chon = new ChonTvInTachHk(nk, tv);
+                    List2_1.add(chon);
+                    Listnk_1.remove(index2);
+                    for(int i = 0 ; i < ListThemTV.size();i++){
+                        if(tv.equals(ListThemTV.get(i))){
+                            ListBotTV.remove(tv);
+                            ListThemTV.remove(tv);
+                            break;
+                        }
+                    }
+                    ListThemTV.add(tv);
+                    ThayDoiThanhVienCuaHoConTroller.show_tb3(List2_1, tb3);
+                    ThayDoiThanhVienCuaHoConTroller.show_tb2(Listnk_1, tb2);
+                    /*tblModel = (DefaultTableModel) tb3.getModel();
+                    tblModel.setRowCount(0);
+                    for(ChonTvInTachHk chontv : List2_1){
+                        tblModel.addRow(new Object[]{
+                            chontv.getTvh().getIdNhanKhau(), chontv.getNk().getHoTen(),chontv.getTvh().getQuanHeVoiChuHo()
+                        });
+                    }*/
+                } catch (Exception e) {
+                }
+                //}
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int index3 = tb3.getSelectedRow();
         if(List2_1.size() == 0){
@@ -354,7 +402,7 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
             tv.setIdHoKhau(Integer.parseInt(txtid.getText()));
             tv.setIdNhanKhau(List2_1.get(index3).getTvh().getIdNhanKhau());
             tv.setQuanHeVoiChuHo(List2_1.get(index3).getTvh().getQuanHeVoiChuHo());
-            
+
             List2_1.remove(index3);
             Listnk_1.add(nk);
             for(int i =0; i< ListBotTV.size();i++){
@@ -367,101 +415,11 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
             ListBotTV.add(tv);
             ThayDoiThanhVienCuaHoConTroller.show_tb3(List2_1, tb3);
             ThayDoiThanhVienCuaHoConTroller.show_tb2(Listnk_1, tb2);
-            
+
         }
 
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        dispose();
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void txtdcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtdcActionPerformed
-
-    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
-        index1 = tb1.getSelectedRow();
-        txtid.setText(List1.get(index1).getHokhau().getID()+"");
-        txthoten.setText(List1.get(index1).getNhankhau().getHoTen());
-        txtmahk.setText(List1.get(index1).getHokhau().getMaHoKhau());
-        txtdc.setText(List1.get(index1).getHokhau().getDiaChi());
-        show_table3();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tb1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        int index2 = tb2.getSelectedRow();
-        
-       
-        if(Listnk_1.size() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Không thể thêm");
-        } else if(index2 == -1){
-        JOptionPane.showMessageDialog(rootPane, "Bạn chưa chọn!","Cảnh báo", JOptionPane.ERROR_MESSAGE);
-    }   /*else{
-          
-            boolean flag = true;
-            for( int i = 0; i < List2_1.size();i++){
-                if(List2_1.get(i).getTvh().getIdNhanKhau() == Listnk_1.get(index2).getID()){
-                    flag = false;
-                    break;
-                }
-            }
-            if(!flag) JOptionPane.showMessageDialog(rootPane, "Bạn đã chọn rồi");*/
-            else{
-                try {
-                    
-             
-                 NhanKhautest nk = new NhanKhautest();
-                 ThanhVienCuaHo tv = new ThanhVienCuaHo();
-                 nk.setHoTen(Listnk_1.get(index2).getHoTen());
-                 tv.setIdNhanKhau(Listnk_1.get(index2).getID());
-                 tv.setQuanHeVoiChuHo(Listnk_1.get(index2).getQuanHeVoiChuHo());
-                 tv.setIdHoKhau(Integer.parseInt(txtid.getText()));
-                 ChonTvInTachHk chon = new ChonTvInTachHk(nk, tv);
-                 List2_1.add(chon);
-                 Listnk_1.remove(index2);
-                 for(int i = 0 ; i < ListThemTV.size();i++){
-                     if(tv.equals(ListThemTV.get(i))){
-                         ListBotTV.remove(tv);
-                         ListThemTV.remove(tv);
-                         break;
-                     }
-                 }
-                 ListThemTV.add(tv);
-                 ThayDoiThanhVienCuaHoConTroller.show_tb3(List2_1, tb3);
-                 ThayDoiThanhVienCuaHoConTroller.show_tb2(Listnk_1, tb2);
-                 /*tblModel = (DefaultTableModel) tb3.getModel();
-                 tblModel.setRowCount(0);
-                 for(ChonTvInTachHk chontv : List2_1){
-                 tblModel.addRow(new Object[]{
-                 chontv.getTvh().getIdNhanKhau(), chontv.getNk().getHoTen(),chontv.getTvh().getQuanHeVoiChuHo()
-           });
-        }*/
-                 } catch (Exception e) {
-                }
-            //}
-            
-            
-                    
-        }
-        
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-            show_table2();
-            show_table3();
-            ListBotTV.clear();
-            ListThemTV.clear();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
@@ -473,16 +431,44 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
                 if(new ThemHoKhauService().addThanhVienCuaHo1(ListThemTV));
                 JOptionPane.showMessageDialog(rootPane, "Thành Công");
             }
-            
+
         } catch (Exception e) {
         } finally{
 
-        dispose();
+            dispose();
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-    public void show_table1(){
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        show_table2();
+        show_table3();
+        ListBotTV.clear();
+        ListThemTV.clear();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+        index1 = tb1.getSelectedRow();
+        txtid.setText(List1.get(index1).getHokhau().getID()+"");
+        txthoten.setText(List1.get(index1).getNhankhau().getHoTen());
+        txtmahk.setText(List1.get(index1).getHokhau().getMaHoKhau());
+        txtdc.setText(List1.get(index1).getHokhau().getDiaChi());
+        show_table3();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb1MouseClicked
+
+    private void txtdcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdcActionPerformed
+     public void show_table1(){
         List1 = tachhk();
         tblModel = (DefaultTableModel) tb1.getModel();
         tblModel.setRowCount(0);
@@ -520,7 +506,6 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
         }*/
         }
     }
-    
     /**
      * @param args the command line arguments
      */
@@ -538,27 +523,20 @@ public class ThayDoiThanhVienCuaHo extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThayDoiThanhVienCuaHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThayDoiThanhVienHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThayDoiThanhVienCuaHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThayDoiThanhVienHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThayDoiThanhVienCuaHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThayDoiThanhVienHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThayDoiThanhVienCuaHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThayDoiThanhVienHo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ThayDoiThanhVienCuaHo dialog = new ThayDoiThanhVienCuaHo(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new ThayDoiThanhVienHo().setVisible(true);
             }
         });
     }
